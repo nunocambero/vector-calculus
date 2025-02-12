@@ -1,0 +1,1491 @@
+\documentclass[11pt]{article}
+
+% Increase main memory size
+\usepackage{etex}
+\reserveinserts{1000}
+\usepackage{morewrites}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usetikzlibrary{external}
+\tikzexternalize % Correct placement
+
+\usepackage{etex}
+\reserveinserts{1000}
+\usepackage{morewrites}
+
+\listfiles
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{float}
+\usetikzlibrary{3d}
+
+% Page Layout
+\geometry{a4paper, margin=1in}
+\setlength\parindent{0pt}
+\pgfplotsset{compat=1.18}
+
+% Custom commands
+\newcommand{\card}[1]{\lvert #1 \rvert}
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+
+\title{\textbf{Vector Calculus}}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Euclidian space}
+We define the euclidian space in $\mathbb{R}^N, N \geq 1$ using cartesian coordinates.
+
+Any element $x \in \mathbb{R}^N, \quad x = (x_1,x_2, \dots , x_N), \quad x \in \mathbb{R}$
+
+\subsection*{Standard basis}
+\[
+e_1 = (1,0, \dots ,0), \dots , e_N = (0,0, \dots ,1)
+\]
+\[
+\text{Then, } x = \sum_{j = 1}^{N} x_j \cdot e_j
+\]
+
+In particular, $B_{\mathbb{R}^3} = \{i,j,k\}$, the canonical basis.
+
+\subsection*{Properties}
+\begin{itemize}
+    \item Addition: \quad $(x_1, \dots ,x_N) + (y_1, \dots , y_N) = (x_1 + y_1, \dots , x_N + y_N)$
+    \item Multiplication by a scalar $\lambda \in \mathbb{R}$: \quad $\lambda x = \lambda (x_1, \dots , x_N) = (\lambda x_1, \dots , \lambda x_N)$
+    \item Associative: \quad $\lambda, \mu \in \mathbb{R}, \quad (\lambda \mu)x = \lambda(\mu x)$
+    \item Additive Identity: \quad There exists a vector $\overline{0} = (0, \dots , 0)$ such that $x + \overline{0} = x$
+    \item Additive Inverse: \quad $\forall x = (x_1, \dots , x_N)$, $\exists$  $\overline{x} = (-x_1, \dots , -x_N)$ such that $x + \overline{x} = \overline{0}$
+    \item Distributive Property (over vector addition): 
+    \begin{center}
+        $\lambda \left( (x_1, \dots , x_N) + (y_1, \dots , y_N) \right) = \lambda(x_1, \dots , x_N) + \lambda(y_1, \dots , y_N)$
+    \end{center} 
+    \item Distributive Property (over scalar addition): 
+    \begin{center}
+        $(\lambda + \mu)(x_1, \dots , x_N) = \lambda(x_1, \dots , x_N) + \mu(x_1, \dots , x_N)$
+    \end{center}
+    \item Scalar Multiplication Identity: \quad $1 \cdot (x_1, \dots , x_N) = (x_1, \dots , x_N)$
+    \item Zero Scalar Multiplication: \quad $0 \cdot (x_1, \dots , x_N) = (0, \dots , 0)$
+\end{itemize}
+
+\subsection*{Norm}
+
+The euclidean space in $\mathbb{R}^N$ is a normal space with an associated norm function.
+\[ 
+\| \cdot \| : \mathbb{R}^N \rightarrow \mathbb{R}_+ \cup \{0\}
+\]
+\[
+x = (x_1, \dots ,x_N) \rightarrow \| x \| = \sqrt{x_1^2 + \dots + x_N^2}
+\]
+
+\subsection*{Properties}
+The norm satisfies the following properties:
+\begin{itemize}
+    \item[(a)] $\forall x \in \mathbb{R}^N$
+    \begin{itemize}
+        \item $\|x\| > 0 \iff x \neq 0$
+        \item $\|x\| = 0 \iff x = 0$
+    \end{itemize}
+    \item[(b)] $\|\lambda x\| = |\lambda| \, \|x\|$
+    \item[(c)] $\|x + y\| \leq \|x\| + \|y\| \quad \forall x, y \in \mathbb{R}^N$
+    \begin{itemize}
+        \item Triangular inequality.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Remark: Distance}
+We can define the distance between two elements in $\mathbb{R}^N$ as 
+
+\[ 
+dist(x,y) = \|x - y\| = \|y - x\|
+\] 
+\[
+dist(\cdot ,\cdot) : \mathbb{R}^N \times \mathbb{R}^N \rightarrow \mathbb{R}
+\]
+
+\begin{itemize}
+    \item $dist(x,y) = \|x - y\| > 0 \text{ if } x \neq y, \quad \text{and } dist(x,y) = 0 \text{ if } x = y$
+    \item $dist(x,y) = \|x - y\| = \|-(y - x)\| = \|-1\| \cdot \|y - x\| = dist(y,x)$
+    \item $dist(x,y) = \|x - y\| = \|x - z + z - y\| \leq \|x - z\| + \|z - y\| = dist(x,z) + dist(z,y)$ 
+\end{itemize}
+
+\subsection*{Remark}
+For $\mathbb{R}$ such a distance is the absolute value, $| \cdot | : \mathbb{R} \rightarrow \mathbb{R}$
+
+\section{Inner or scalar product}
+Let $x, y$ be two vectors in $\mathbb{R}^N$, then
+
+\[ 
+x \cdot y = x_1 y_1 + \dots + x_N y_N
+\]
+\[
+x \cdot y = \inner{x}{y} = (x,y) 
+\]
+
+\subsection{Properties}
+The inner product satisfies the following properties:
+\begin{itemize}
+    \item $\forall x \in \mathbb{R}^N \; \langle x, x \rangle > 0$ if $x \neq 0$
+    \item[] $\langle x, x \rangle = 0$ if $x = 0$
+    \item Symmetric: $\langle x, y \rangle = \langle y, x \rangle$
+    \item Bilinear: $\langle \lambda x + \mu y, z \rangle = \lambda \langle x, z \rangle + \mu \langle y, z \rangle$
+\end{itemize}
+
+\subsection{Cauchy-Schwartz inequality}
+\[ 
+|x \cdot y| \leq \|x\| \|y\|
+\]
+
+\paragraph*{Proof}
+If $y = \lambda x, |\inner{x}{\lambda y}| = |\lambda| \|x\|^2 = \|x\| |\lambda| \|x\| = \|x\|\|y\|$
+
+If $y \neq \lambda x$ (y and y are linearly independent).
+
+Assume $z = \lambda x + y$
+
+\[ 
+0 \leq \inner{z}{z} = \inner{\lambda x + y}{\lambda x + y} = \inner{\lambda x}{\lambda x} + \inner{\lambda x}{y} + \inner{y}{\lambda x} + \inner{y}{y}
+\]
+\[ 
+\text{Since } \|x\|^2 > 0, \quad = \lambda^2 \|x\|^2  + 2\lambda \inner{x}{y} + \|y\|^2
+\]
+
+If we represent it as a parabola in function of $\lambda$, it has no roots.
+
+\[
+\lambda = \frac{-2 \langle x, y \rangle \pm \sqrt{4 (\langle x, y \rangle)^2 - 4 \| x \|^2 \| y \|^2}}{2 \| x \|^2}
+\]
+
+So the discriminant $\leq 0$
+
+\[
+4 (\langle x, y \rangle)^2 - 4 \| x \|^2 \| y \|^2 \leq 0
+\]
+
+\[
+\implies | \langle x, y \rangle | \leq \| x \| \| y \|
+\]
+
+\subsection{Theorem}
+\[ 
+\inner{x}{y} = \|x\| \|y\| \cos \varphi
+\]
+
+Writing $x$ and $y$ in polar coordinates:
+
+\[ 
+x_1 = \|x\| \cos \alpha, \quad x_2 = \|x\| \sin \alpha
+\]
+\[ 
+y_1 = \|y\| \cos \beta, \quad y_2 = \|y\| \sin \beta
+\]
+
+\[
+\inner{x}{y} = x_1 y_1 + x_2 y_2 = \|x\| \cos \alpha \|y\| \cos \beta + \|x\| \sin \alpha \|y\| \sin \beta
+\]
+\[ 
+= \|x\|\|y\| (\cos \alpha \cos \beta + \sin \alpha \sin \beta)
+\]
+\[ 
+= \|x\|\|y\| \cos(\alpha - \beta) = \|x\|\|y\| \cos \varphi
+\]
+
+\subsection*{Remark}
+\[ 
+\cos \varphi = \frac{\inner{x}{y}}{\|x\|\|y\|}
+\]
+\begin{center}
+    Then $x \perp y \iff \inner{x}{y} = 0$
+\end{center}
+
+\subsection*{Examples:}
+\begin{itemize}
+    \item $C((a,b)) \cong \text{continuous functions in } (a,b)$
+    \[
+    f, g \in C((a,b)), \quad then \inner{f}{g} = \int_{a}^{b} f(t)g(t) \,dt 
+    \]
+    
+    We can add some weights:
+    \[
+    \inner{f}{g} = \int_{a}^{b} w(t)f(t)g(t) \,dt 
+    \]
+
+    An example: 
+    \[
+    \inner{f}{g} = \int_{a}^{b} e^{-t}f(t)g(t) \,dt 
+    \]
+    \item We might have an orthogonal family (with infinite elements) of functions.
+    \[
+    \{\cos nx,\sin nx\}_{n \in \mathbb{Z}} \quad \text{in } [0,2\pi]
+    \]
+    \[\|\cos nx\|^2 = 
+    \int_{0}^{2\pi} \cos^2 nx \,dx
+    \]
+    \[
+    \int_{0}^{2\pi} \cos nx \sin nx \,dx = \int_{0}^{2\pi} \cos nx \cos mx \,dx = 0 \quad \text{for } n \neq m
+    \]
+\end{itemize}
+
+\section{Vector Product (Only in $\mathbb{R}^3$)}
+
+Take $x, y \in \mathbb{R}^3$
+
+\[
+x \times y = \begin{vmatrix}
+i & j & k \\
+x_1 & x_2 & x_3 \\
+y_1 & y_2 & y_3
+\end{vmatrix}
+\]
+
+\[
+= \begin{vmatrix}
+x_2 & x_3 \\
+y_2 & y_3
+\end{vmatrix} i - \begin{vmatrix}
+x_1 & x_3 \\
+y_1 & y_3
+\end{vmatrix} j + \begin{vmatrix}
+x_1 & x_2 \\
+y_1 & y_2
+\end{vmatrix} k
+\]
+
+Recall:
+
+\[
+\begin{vmatrix}
+a & b \\
+c & d
+\end{vmatrix} = ad - bc
+\]
+
+\subsection{Triple product and properties}
+
+We take the triple product
+
+\[
+a \cdot (b \times c) = (a_1, a_2, a_3) \cdot \begin{vmatrix}
+b_1 & b_2 & b_3 \\
+c_1 & c_2 & c_3
+\end{vmatrix}
+\]
+
+\[
+= a_1 \begin{vmatrix}
+b_2 & b_3 \\
+c_2 & c_3
+\end{vmatrix} - a_2 \begin{vmatrix}
+b_1 & b_3 \\
+c_1 & c_3
+\end{vmatrix} + a_3 \begin{vmatrix}
+b_1 & b_2 \\
+c_1 & c_2
+\end{vmatrix}
+\]
+
+\[
+= \begin{vmatrix}
+a_1 & a_2 & a_3 \\
+b_1 & b_2 & b_3 \\
+c_1 & c_2 & c_3
+\end{vmatrix}
+\]
+
+If $u \in \text{span}\{b, c\}$ then $a \cdot (b \times c) = 0$ and $a, b, c$ are coplanar if $a \cdot (b \times c) = 0$
+
+\subsection{Geometric Interpretation}
+\begin{itemize}
+    \item The magnitude of $x \times y$ represents the area of the parallelogram formed by $x$ and $y$.
+    \item The direction of $x \times y$ is perpendicular to the plane spanned by $x$ and $y$, following the right-hand rule.
+    \item The cross product satisfies: $x \times y = - (y \times x)$.
+\end{itemize}
+
+\section{Topology of $\mathbb{R}^n$}
+
+Definition of open spaces: we define an open ball in $\mathbb{R}^n$ centered at $x_0$ and of radius $R$.
+
+\[
+\text{Denoted by } \quad B_R(x_0) = \{ x \in \mathbb{R}^n : \text{dist}(x, x_0) < R \}
+\]
+
+This set includes all points in $\mathbb{R}^n$ whose distance from $x_0$ is less than $R$. Open sets are the building blocks of topological spaces, and they help define concepts such as convergence, continuity, and compactness.
+
+\subsection{Open set}
+A set $A \subset \mathbb{R}^n$ is open if $\forall x \in A, \quad \exists R > 0$ such that $B_R(x) \subset A$.
+
+For example:
+\[
+(x,y) \in \mathbb{R}^2, \quad A = \{ (x,y) \in \mathbb{R}^2 : \sqrt{x^2 + y^2} < 3 \}
+\]
+
+\subsection{Closed set}
+A set $A \subset \mathbb{R}^n$ is closed if its complement is open.
+\[
+A \subset \mathbb{R}^n \text{ is closed if } \mathbb{R}^n \setminus A \text{ is open.}
+\]
+
+\subsection{Boundary of a set}
+The boundary of a set $A \subset \mathbb{R}^n$ denoted by $\partial A$:
+\[
+\partial A = \{ x \in \mathbb{R}^n : \forall R > 0, \quad B_R(x) \cap A \neq \emptyset \text{ and } B_R(x) \cap (\mathbb{R}^n \setminus A) \neq \emptyset \}
+\]
+
+Following the previous example, the boundary of $A$ is the circle of radius 3 centered at the origin:
+\[
+\partial A = \{ (x,y) \in \mathbb{R}^2 : \sqrt{x^2 + y^2} = 3 \}
+\]
+
+\subsection*{Remark}
+A set $A \subset \mathbb{R}^n$ is closed if and only if it contains its boundary.
+
+\subsection*{Example:}
+\[
+D = \{(x,y) \in \mathbb{R}^2 : \sqrt{x^2 + y^2} < 1 \text{ and } x > 0\}
+\]
+
+\[
+D^C = \{(x,y) \in \mathbb{R}^2 : \sqrt{x^2 + y^2} \geq 1 \text{ or } x \leq 0\}
+\]
+
+\[
+\partial D = \{(x,y) \in \mathbb{R}^2 : \sqrt{x^2 + y^2} = 1 \text{ and } x > 0\}
+\]
+
+$D$ is open, $D^C$ is closed, and $\partial D$ is the semicircle of radius 1 centered at the origin.
+
+\subsection*{Example:}
+\[
+S = \{x = 1 \text{ and } 1 < y \leq 2\}
+\]
+
+\[
+S^C = \{x \neq 1 \text{ or } y \leq 1 \text{ or } y > 2\}
+\]
+
+\[
+\partial S = \{x = 1 \text{ and } y = 1 \text{ or } y = 2\}
+\]
+
+$S$ is neither open nor closed, as $S^C$, and $\partial S$ is the line segment from $(1,1)$ to $(1,2)$.
+
+\subsection{Compact set}   
+A set $A \subset \mathbb{R}^n$ is compact if and only if it is closed and bounded.
+
+\subsection*{Example:}
+\[
+A = \{(x,y) \in \mathbb{R}^2 : x^2 + y^2 = 4\}
+\]
+
+$A = \partial A$ so $A$ is closed. $A$ is also bounded, as all points in $A$ are contained within the circle of radius 2 centered at the origin.
+
+$\implies A$ is compact.
+
+\subsection*{Example: (Exercise 11a)}
+\[
+A = xy-\text{plane in } \mathbb{R}^3 = \{(x,y,0) \in \mathbb{R}^3\}
+\]
+
+This set is closed, and $B_R(x, R) \cap A = \emptyset$ and $B_R(x, R) \cap (\mathbb{R}^3 \setminus A) = \emptyset$.
+
+Therefore, $A$ is will not be compact.
+
+\subsection*{Example: (Exercise 11b)}
+\[
+A = \{(x,y) \in \mathbb{R}^2 : xy \ne 0\}
+\]
+
+For any point $(x,y) \in A$, we can find an open ball $B_R(x, R) \subset B$ that does not intersect the $x$ or $y$ axes.
+\[
+R = \min\{x, y\}
+\]
+
+\subsection{Ball in $\mathbb{R}^n$}
+For a ball at any part of radius $r$ in $\mathbb{R}^n$:
+\[
+(x_1 - a_1)^2 + \dots + (x_n - a_n)^2 < r^2
+\]
+\[
+\text{dist}(x - a) = \|x - a\| = r
+\]
+
+\subsection*{Example: (Exercise 1a)}
+Sphere centered at (0,1,-1) with $r = 4$
+\[
+(x-0)^2 + (y-1)^2 + (z+1)^2 = 16
+\]
+
+Intersection with the $x,y,z$-planes:
+\[
+\text{If } z = -1, \quad x^2 + (y-1)^2 = 16
+\]
+\[
+\text{If } y = 1, \quad x^2 + (z+1)^2 = 16
+\]
+\[
+\text{If } x = 0, \quad (y-1)^2 + (z+1)^2 = 16
+\]
+
+\subsection*{Example: (Exercise 1b)}
+Sphere going through the origin and centered at $(1,2,3)$:
+\[
+(x-1)^2 + (y-2)^2 + (z-3)^2 = r^2
+\]
+\[
+\text{dist}(0, (1,2,3)) = \sqrt{1^2 + 2^2 + 3^2} = \sqrt{14}
+\]
+
+So the sphere is $(x-1)^2 + (y-2)^2 + (z-3)^2 = 14$
+
+\subsection*{Example: (Exercise 1c)}
+Find center and radius of the sphere:
+\[
+x^2 + y^2 + z^2 + 2x + 8y - 4z = 28
+\]
+\[
+(x+1)^2 + (y+4)^2 + (z-2)^2 = 49
+\]
+
+So the center is $(-1,-4,2)$ and the radius is $7$.
+
+\subsection*{Example: (Exercise 3)}
+Check if the vectors are orthogonal:
+\[
+a = (-5,3,7), \quad b = (6,-8,2)
+\]
+\[
+a \cdot b = -30 - 24 + 14 = -40 != 0
+\]
+So $a$ and $b$ are not orthogonal.
+
+\subsection*{Example: (Exercise 4a)}
+Let P be a point not on the line L that passes through the points Q and R. Show that the
+distance d from the point P to the line L is:
+\[
+d = \frac{\|a \times b\|}{\|a\|}
+\]
+
+\[
+\text{Let } a = R - Q, \quad b =  P - Q
+\]
+\[
+\text{Then } d = \frac{\|a \times b\|}{\|a\|}
+\]
+\[
+\text{Area of parallelogram} = \|a \times b\| = \|a\| \cdot d
+\]
+
+\subsection*{Example: (Exercise 4b)}
+Use the formula in part (a) to find the distance from the point $P(1, 1, 1)$ to the line through $Q(0, 6, 8)$ and $R(-1, 4, 7)$.
+
+\[
+a = R - Q = (-1, 4, 7) - (0, 6, 8) = (-1, -2, -1)
+\]
+\[
+b = P - Q = (1, 1, 1) - (0, 6, 8) = (1, -5, -7)
+\]
+
+\[
+d = \frac{\|a \times b\|}{\|a\|} = \frac{\|(a_2b_3 - a_3b_2, a_3b_1 - a_1b_3, a_1b_2 - a_2b_1)\|}{\|a\|}
+\]
+\[
+= \frac{\|(2 - 5, 1 + 1, 1 - 10)\|}{\sqrt{6}}
+\]
+\[
+= \frac{\|(3, 2, -9)\|}{\sqrt{6}} = \frac{\sqrt{94}}{\sqrt{6}}
+\]
+
+\subsection*{Example: (Exercise 5)}
+Calculate the volume of the parallelepiped with edges adjacent to $\overrightarrow{PQ}$, $\overrightarrow{PR}$, and $\overrightarrow{PS}$,
+where
+\[
+P(1, 1, 1), \quad Q(2, 0, 3), \quad R(4, 1, 7), \quad S(3, -1, -2).
+\]
+
+The volume of the parallelepiped can be calculated using the scalar triple product of the vectors $\overrightarrow{PQ}$, $\overrightarrow{PR}$, and $\overrightarrow{PS}$.
+
+\[
+\overrightarrow{PQ} = Q - P = (2 - 1, 0 - 1, 3 - 1) = (1, -1, 2)
+\]
+\[
+\overrightarrow{PR} = R - P = (4 - 1, 1 - 1, 7 - 1) = (3, 0, 6)
+\]
+\[
+\overrightarrow{PS} = S - P = (3 - 1, -1 - 1, -2 - 1) = (2, -2, -3)
+\]
+
+\[
+\overrightarrow{PR} \times \overrightarrow{PS} = \begin{vmatrix}
+\mathbf{i} & \mathbf{j} & \mathbf{k} \\
+3 & 0 & 6 \\
+2 & -2 & -3
+\end{vmatrix}
+= \mathbf{i}(0 \cdot (-3) - 6 \cdot (-2)) - \mathbf{j}(3 \cdot (-3) - 6 \cdot 2) + \mathbf{k}(3 \cdot (-2) - 0 \cdot 2)
+\]
+\[
+= \mathbf{i}(0 + 12) - \mathbf{j}(-9 - 12) + \mathbf{k}(-6 - 0)
+\]
+\[
+= 12\mathbf{i} + 21\mathbf{j} - 6\mathbf{k}
+\]
+\[
+= (12, 21, -6)
+\]
+
+\[
+\overrightarrow{PQ} \cdot (\overrightarrow{PR} \times \overrightarrow{PS}) = (1, -1, 2) \cdot (12, 21, -6)
+\]
+\[
+= 1 \cdot 12 + (-1) \cdot 21 + 2 \cdot (-6)
+\]
+\[
+= 12 - 21 - 12
+\]
+\[
+= -21
+\]
+
+The volume of the parallelepiped is the absolute value of this scalar triple product:
+\[
+\text{Volume} = | -21 | = 21
+\]
+
+\subsection*{Example: (Exercise 6)}
+Use the scalar product to check if the following vectors are coplanar:
+$a = 2i + 3j + k, b = i - j$ and $c = 7i + 3j + 2k$.
+
+The vectors are coplanar if the scalar triple product of the vectors is zero.
+
+\[
+a \cdot (b \times c) = 2i + 3j + k \cdot ((i - j) \times (7i + 3j + 2k))
+\]
+\[
+= 2i + 3j + k \cdot \begin{vmatrix}
+\mathbf{i} & \mathbf{j} & \mathbf{k} \\
+1 & -1 & 0 \\
+7 & 3 & 2
+\end{vmatrix}
+\]
+\[
+= 2i + 3j + k \cdot \mathbf{i}(0 \cdot 3 - 2 \cdot (-1)) - \mathbf{j}(1 \cdot 3 - 2 \cdot 7) + \mathbf{k}(1 \cdot (-1) - (-1) \cdot 3)
+\]
+\[
+= 2i + 3j + k \cdot \mathbf{i}(0 + 2) - \mathbf{j}(3 - 14) + \mathbf{k}(-1 + 3)
+\]
+\[
+= 2i + 3j + k \cdot 2\mathbf{i} + 11\mathbf{j} + 2\mathbf{k}
+\]
+\[
+= 2 \cdot 2 + 3 \cdot 11 + 1 \cdot 2
+\]
+\[
+= 4 + 33 + 2 = 39
+\]
+
+Since the scalar triple product is not zero, the vectors are not coplanar.
+
+\section{Functions of several variables}
+A function $f : A \rightarrow B$ is a correspondence between two sets $A$ and $B$ such that each element in $A$ is associated with exactly one element in $B$.
+
+\subsection*{Example:}
+\[
+f(x,y) = x^2 + y^2 \quad \text{, where }
+\]
+\[
+f : \mathbb{R}^2 \rightarrow \mathbb{R}
+\]
+\[
+(x,y) \rightarrow f(x,y) = x^2 + y^2
+\]
+
+The formula for that function:
+\[
+z = x^2 + y^2
+\]
+
+The graph results in a paraboloid (surface).
+
+\subsection{Domain for a function $f$}
+The domain is the set of points where the function is well defined.
+
+\subsection{Image of a function $f$}
+The image is the set of points in $B$ that are associated with points in $A$.
+
+\subsection*{Example: (Exercise 8)}
+\begin{itemize}
+    \item The function \[ x^2 + 2z^2 = 1 \] is a cylinder with an elipse section.
+    \item The function \[ x^2 - y^2 + z^2 = 1 \]
+    \begin{itemize}
+        \item If $y = k$, then $x^2 + z^2 = 1 + k^2$ is a circle.
+        \item If $z = 0$, then $x^2 - y^2 = 1$ is a hyperbola.
+        \item If $x = 0$, then $z^2 - y^2 = 1$ is a hyperbola.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Types of functions}
+\begin{itemize}
+    \item Scalar functions: $f : \mathbb{R}^n \rightarrow \mathbb{R}$, \quad $f(x_1, \dots , x_n) \in \mathbb{R}$.
+    \item Vector functions: $f : \mathbb{R}^n \rightarrow \mathbb{R}^m$, \quad $f(x_1, \dots , x_n) \in \mathbb{R}^m$. \\
+                         If $f : \mathbb{R}^n \rightarrow \mathbb{R}^n$, then $f$ is a vector field.
+\end{itemize}
+
+\subsection*{Example:}
+Paramatric equations for a line in $\mathbb{R}^3$:
+\[
+\begin{cases}
+x = x_0 + at \\
+y = y_0 + bt \\
+z = z_0 + ct
+\end{cases}
+\]
+
+\subsection{Level curves}
+The level curves of a function $f : \mathbb{R}^N \rightarrow \mathbb{R}$ are the curves in the domain of $f$ where $f(x,y) = k$ for some constant $k$.
+
+\[
+(x_1, \dots , x_N) \rightarrow f(x_1, \dots , x_N) \in \mathbb{R}
+\]
+\[
+f(x,y) = c, \quad c \in \mathbb{R}
+\]
+
+The graph of a scalar function $f : \mathbb{R}^2 \rightarrow \mathbb{R}$ is a surface in $\mathbb{R}^3$.
+
+\subsection*{Example:}
+\[
+f(x,y) = x^2 + y^2
+\]
+\[
+x^2 + y^2 = c, \quad c \in \mathbb{R}
+\]
+
+The level curves are circles centered at the origin.
+They can be seen as the projection of the surface onto the $xy$-plane (from above).
+
+\subsection{Remark}
+In $\mathbb{R}^3$, the level curves of a function $f : \mathbb{R}^3 \rightarrow \mathbb{R}$ are the curves in the domain of $f$ where $f(x,y,z) = c$ for some constant $c \in \mathbb{R}$.
+
+They allow us to visualize a 3D graph of a function in 2D.
+
+If the level curves are very close to each other, then the function is steep.
+
+Two level curves never touch.
+
+\subsection*{Example:}
+Find the level curves of the function $f(x,y) = xy$.
+
+\[
+xy = c, \quad c = 1, -1, 2.
+\]
+
+\begin{center}
+    \tikzsetnextfilename{graph1}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = $x$,
+            ylabel = $y$,
+            xmin = -3, xmax = 3,
+            ymin = -3, ymax = 3,
+            width=10cm,
+            height=10cm,
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=100
+        ]
+        \addplot[
+            domain=-3:3,
+            samples=100,
+            color=red
+        ]
+        {1/x};
+        \addplot[
+            domain=-3:3,
+            samples=100,
+            color=blue
+        ]
+        {-1/x};
+        \addplot[
+            domain=-3:3,
+            samples=100,
+            color=green
+        ]
+        {2/x};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+The level curves are a family of hyperbolas.
+
+\subsection*{Example:}
+Find the level curves of the function $f(x,y) = log(x - y)$.
+
+\[
+log(x - y) = c, \quad c = 1, -1, 0.
+\]
+
+\begin{center}
+    \tikzsetnextfilename{graph2}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = $x$,
+            ylabel = $y$,
+            xmin = -3, xmax = 3,
+            ymin = -3, ymax = 3,
+            width=10cm,
+            height=10cm,
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=100
+        ]
+        \addplot[
+            domain=-3:3,
+            samples=100,
+            color=red
+        ]
+        {x - exp(1)};
+        \addplot[
+            domain=-3:3,
+            samples=100,
+            color=blue
+        ]
+        {x - 1/exp(1)};
+        \addplot[
+            domain=-3:3,
+            samples=100,
+            color=green
+        ]
+        {x - 1};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+The level curves are a family of straight lines.
+
+\subsection*{Example:}
+Find the level curves of the functions
+\[ f(x,y,z) = x^2 + y^2 + z^2 \quad \text{ and } \quad g(x,y,z) = \frac{x^2}{25} + \frac{y^2}{16} + \frac{z^2}{9} \]
+
+The level curves for $f$ are spheres centered at the origin.
+
+The level curves for $g$ are ellipsoids centered at the origin.
+
+\begin{center}
+    \tikzsetnextfilename{model1}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = $x$,
+            ylabel = $y$,
+            zlabel = $z$,
+            xmin = -3, xmax = 3,
+            ymin = -3, ymax = 3,
+            zmin = -3, zmax = 3,
+            width=10cm,
+            height=10cm,
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=50,
+            colormap/cool,
+        ]
+        \addplot3[
+            domain=-3:3,
+            samples=50,
+            surf,
+            opacity=0.5
+        ]
+        {sqrt{1 - x^2 - y^2}};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\begin{center}
+    \tikzsetnextfilename{model2}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = $x$,
+            ylabel = $y$,
+            zlabel = $z$,
+            xmin = -3, xmax = 3,
+            ymin = -3, ymax = 3,
+            zmin = -3, zmax = 3,
+            width=10cm,
+            height=10cm,
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=50,
+            colormap/cool
+        ]
+        \addplot3[
+            domain=-3:3,
+            samples=50,
+            surf,
+            opacity=0.5
+        ]
+        {- sqrt{x^2/25 + y^2/16 - 1}};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\subsection{Graph of a function}
+\[
+\{(x, f(x)), x \in Dom(f)\}, \quad \text{where } f = 9y^2 + 4z^2 = x^2 + 36
+\]
+
+Intersection with the $x,y,z$-planes:
+
+\[
+\text{If } z = 0, \quad 9y^2 - x^2 = 36 \rightarrow \text{Hyperbola}
+\]
+\[
+\text{If } y = 0, \quad 4z^2 - x^2 = 36 \rightarrow \text{Hyperbola}
+\]
+\[
+\text{If } x = 0, \quad 9y^2 + 4z^2 = 36 \rightarrow \text{Ellipse}
+\]
+
+\subsection*{Example:}
+Plot the function $f = x^2 + 4y^2 = z^2$.
+
+\[
+\text{If } z = 0, \quad x^2 + 4y^2 = 0 \rightarrow x = 0, y = 0
+\]
+\[
+\text{If } y = 0, \quad x^2 = z^2 \rightarrow x = z, x = -z
+\]
+\[
+\text{If } x = 0, \quad 4y^2 = z^2 \rightarrow y = z/2, y = -z/2
+\]
+\[
+\text{If } z = k, \quad x^2 + 4y^2 = k^2 \rightarrow \text{Ellipses}
+\]
+
+\begin{center}
+    \tikzsetnextfilename{model3}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = $x$,
+            ylabel = $y$,
+            zlabel = $z$,
+            xmin = -5, xmax = 5,
+            ymin = -5, ymax = 5,
+            zmin = -5, zmax = 5,
+            width=10cm,
+            height=10cm,
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=50,
+            colormap/cool,
+            view={60}{30}
+        ]
+        \addplot3[
+            domain=-5:5,
+            samples=50,
+            surf,
+            opacity=0.5
+        ]
+        {sqrt(x^2 + y^2)};
+        \addplot3[
+            domain=-5:5,
+            samples=50,
+            surf,
+            opacity=0.5
+        ]
+        {-sqrt(x^2 + y^2)};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+The graph is a cone.
+
+\subsection*{Problem 8}
+\[
+x^2 + y^2 + 9z^2 = 1 \rightarrow \text{Ellipsoid}
+\]
+\[
+x^2 - y^2 + z^2 = 1 \rightarrow \text{Hyperboloid of one sheet}
+\]
+\[
+y = 2x^2 + z^2 \rightarrow \text{Paraboloid}
+\]
+
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[axis lines = middle, xlabel = $x$, ylabel = $y$, zlabel = $z$, xmin = -7.5, xmax = 7.5, ymin = -7.5, ymax = 7.5, zmin = -7.5, zmax = 7.5, width=10cm, height=10cm, grid = major, grid style = {dashed, gray!30}, samples=50, samples y=50, colormap/cool, view={60}{30}]
+        % Ellipsoid
+        \addplot3[domain=0:pi, y domain=0:2*pi, surf, opacity=0.3]
+        ({sin(deg(x))*cos(deg(y))}, {sin(deg(x))*sin(deg(y))}, {cos(deg(x))/3});
+        % Hyperboloid of one sheet
+        \addplot3[domain=-2:2, y domain=0:2*pi, surf, opacity=0.3]
+        ({cosh(x)*cos(deg(y))}, {cosh(x)*sin(deg(y))}, {sinh(x)});
+        % Paraboloid
+        \addplot3[domain=-2:2, y domain=-2:2, surf, opacity=0.3]
+        ({x}, {y}, {2*x^2 + y^2});
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\subsection*{Example:}
+
+\[
+- x^2 + y^2 - z^2 = 1 \rightarrow \text{Hyperboloid}
+\]
+\[
+\text{If } z = 0, \quad - x^2 + y^2 = 1 \rightarrow \text{Hyperbola}
+\]
+\[
+\text{If } y = 0, \quad - x^2 - z^2 = 1 \rightarrow \text{No solution}
+\]
+\[
+\text{If } x = 0, \quad y^2 - z^2 = 1 \rightarrow \text{Hyperbola}
+\]
+
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = {$x$},
+            ylabel = {$y$},
+            zlabel = {$z$},
+            xmin = -3, xmax = 3,
+            ymin = -3, ymax = 3,
+            zmin = -3, zmax = 3,
+            width=10cm,
+            height=10cm,
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=50,
+            samples y=50,
+            colormap/cool,
+            view={60}{30}
+        ]
+        % Upper sheet
+        \addplot3[
+            domain=1:3, % r starts from 1
+            y domain=0:360,
+            surf,
+            opacity=0.5
+        ]
+        ({x*cos(y)}, {x*sin(y)}, {sqrt(x^2 - 1)});
+
+        % Lower sheet
+        \addplot3[
+            domain=1:3,
+            y domain=0:360,
+            surf,
+            opacity=0.5
+        ]
+        ({x*cos(y)}, {x*sin(y)}, {-sqrt(x^2 - 1)});
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\subsection*{Example:}
+
+\[
+z = x^2 - y^2 \rightarrow \text{Paraboloid}
+\]
+
+\[
+\text{If } z = 0, \quad x^2 - y^2 = 0 \rightarrow \text{Hyperbola}
+\]
+\[
+\text{If } z = k, \quad x^2 = y^2 + k \rightarrow \text{Hyperbola}
+\]
+\[
+\text{If } y = 0, \quad z = x^2 \rightarrow \text{Parabola}
+\]
+\[
+\text{If } x = 0, \quad z = -y^2 \rightarrow \text{Parabola}
+\]
+
+\begin{center}
+    \tikzsetnextfilename{model8}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = $x$,
+            ylabel = $y$,
+            zlabel = $z$,
+            xmin = -3, xmax = 3,
+            ymin = -3, ymax = 3,
+            zmin = -3, zmax = 3.5,
+            width=10cm,
+            height=10cm,
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=50,
+            colormap/cool,
+            view={60}{30}
+        ]
+        \addplot3[
+            domain=-2:2,
+            y domain=-2:2,
+            surf,
+            opacity=0.5
+        ]
+        {x^2 - y^2};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\subsection*{Example:}
+Plot the function $x^2 + y^2 = 1$.
+
+\begin{center}
+    \tikzsetnextfilename{model10}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = $x$,
+            ylabel = $y$,
+            zlabel = $z$,
+            xmin = -2, xmax = 2,
+            ymin = -2, ymax = 2,
+            zmin = -2, zmax = 2,
+            width=10cm,
+            height=10cm,
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=50,
+            colormap/cool,
+            view={60}{30}
+        ]
+        \addplot3[
+            domain=-2:2,
+            y domain=0:2*pi,
+            surf,
+            opacity=0.5
+        ]
+        ({cos(deg(y))}, {sin(deg(y))}, x);
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\section{Cartesian coordinates in $\mathbb{R}^N$}
+In $\mathbb{R}^2$, the Cartesian coordinates are $(x,y)$.
+
+In $\mathbb{R}^3$, the Cartesian coordinates are $(x,y,z)$.
+
+\subsection{Polar coordinates in $\mathbb{R}^2$}
+\[
+x = r \cos(\theta), \quad y = r \sin(\theta), \quad r \geq 0, \quad 0 \leq \theta < 2\pi
+\]
+
+Inverse transformation:
+\[
+r = \sqrt{x^2 + y^2}, \quad \theta = \arctan\left(\frac{y}{x}\right)
+\]
+
+\paragraph{Lemma}
+Let $A = (0, \inf) \times (0, 2\pi)$. 
+
+The function $g : A \rightarrow \mathbb{R}^2$ defined by $g(r, \theta) = (r \cos(\theta), r \sin(\theta))$ is a bijection, \\
+continuous in a ball $B(0, \alpha)$ such that $\{g(r, \theta), 0 < r < \alpha, 0 -leq \theta < 2\pi\}$ is a subset of $B(0, \alpha)$.
+
+To see if the function is one-to-one, assume that $g(r_1, \theta_1) = f(r_2, \theta_2)$ for $r_1, r_2 \geq 0$ and $0 \leq \theta_1, \theta_2 < 2\pi$.
+
+Then $r_1 \cos(\theta_1) = r_2 \cos(\theta_2)$ and $r_1 \sin(\theta_1) = r_2 \sin(\theta_2)$. This implies that $r_1 = r_2$, since $r_1 \geq 0$ and $0 \leq \theta_1, \theta_2 < 2\pi$.
+
+As a consequence $\theta_1 = \theta_2$ so that $g$ is one-to-one.
+
+Now taking $(x,y) \in B(0, \alpha)$, and $r = \sqrt{x^2 + y^2} > 0$.
+
+Then, the part $(\frac{x}{2}, \frac{y}{2})$ is in $B(0, 1)$.
+
+Therefore, there exists $\theta \in \left[0, 2\pi\right)$ such that $\cos(\theta) = \frac{x}{r}$ and $\sin(\theta) = \frac{y}{r}$.
+
+Which implies that $x = r \cos(\theta)$ and $y = r \sin(\theta)$. So $g$ is onto.
+
+\subsection{Cylindrical coordinates in $\mathbb{R}^3$}
+\[
+x = r \cos(\theta), \quad y = r \sin(\theta), \quad z = z
+\]
+
+\begin{center}
+    \tikzsetnextfilename{model11}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = $x$,
+            ylabel = $y$,
+            zlabel = $z$,
+            xmin = -5, xmax = 5,
+            ymin = -5, ymax = 5,
+            zmin = -5, zmax = 5,
+            width=10cm,
+            height=10cm,
+            view={60}{30},
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=50,
+            colormap/cool,
+        ]
+        \addplot3[domain=0:2*pi, y domain=0:5, surf, opacity=0.3]
+        ({3*cos(deg(x))}, {3*sin(deg(x))}, y);
+        
+        \draw[thick,->] (axis cs:0,0,0) -- (axis cs:5,0,0) node[anchor=north east] {$x$};
+        \draw[thick,->] (axis cs:0,0,0) -- (axis cs:0,5,0) node[anchor=north west] {$y$};
+        \draw[thick,->] (axis cs:0,0,0) -- (axis cs:0,0,5) node[anchor=south] {$z$};
+        
+        \addplot3[mark=*, color=red] coordinates {(3, 3, 4)};
+        \node at (axis cs:3, 3, 4) [anchor=south west] {$P(r, \theta, z)$};
+        
+        \draw[dashed] (axis cs:0,0,0) -- (axis cs:3, 3, 0) node[midway, anchor=north east] {$r$};
+        
+        \draw[thick,->] (axis cs:3,0,0) arc[start angle=0, end angle=45, radius=3] node[midway, anchor=south] {$\theta$};
+        
+        \draw[dashed] (axis cs:3, 3, 0) -- (axis cs:3, 3, 4) node[midway, anchor=east] {$z$};
+        
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\subsection*{Example:}
+Transform into cartesian coordinates:
+\[
+(3, \frac{\pi}{2}, 1) = (3 \cos(\frac{\pi}{2}), 3 \sin(\frac{\pi}{2}), 1) = (0, 3, 1)
+\]
+
+\subsection*{Example:}
+Transform into cartesian coordinates:
+\[
+(4, - \frac{\pi}{3}, 5) = (4 \cos(-\frac{\pi}{3}), 4 \sin(-\frac{\pi}{3}), 5) = (2, -2\sqrt{3}, 5)
+\]
+
+\subsection{Spherical coordinates in $\mathbb{R}^3$}
+\[
+x = \rho \sin(\phi) \cos(\theta), \quad y = \rho \sin(\phi) \sin(\theta), \quad z = \rho \cos(\phi), \quad \rho \geq 0, \quad 0 \leq \phi \leq \pi, \quad 0 \leq \theta < 2\pi
+\]
+
+$\rho$ is the distance from the origin, $\phi$ is the angle from the $z$-axis, and $\theta$ is the angle from the $x$-axis.
+
+\begin{center}
+    \tikzsetnextfilename{model12}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = $x$,
+            ylabel = $y$,
+            zlabel = $z$,
+            xmin = -1, xmax = 1,
+            ymin = -1, ymax = 1,
+            zmin = -1, zmax = 1,
+            width=10cm,
+            height=11cm,
+            view={60}{30},
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=50,
+            colormap/cool,
+        ]
+        \addplot3[
+            domain=0:pi,
+            y domain=0:2*pi,
+            surf,
+            opacity=0.3,
+        ]
+        ({sin(deg(x))*cos(deg(y))}, {sin(deg(x))*sin(deg(y))}, {cos(deg(x))});
+        
+        \draw[thick,->] (axis cs:0,0,0) -- (axis cs:1,0,0) node[anchor=north east] {$x$};
+        \draw[thick,->] (axis cs:0,0,0) -- (axis cs:0,1,0) node[anchor=north west] {$y$};
+        \draw[thick,->] (axis cs:0,0,0) -- (axis cs:0,0,1) node[anchor=south] {$z$};
+        
+        \addplot3[mark=*, color=red] coordinates {(0.5, 0.5, 0.707)};
+        \node at (axis cs:0.5, 0.5, 0.707) [anchor=south west] {$P(\rho, \theta, \phi)$};
+        
+        \draw[dashed] (axis cs:0,0,0) -- (axis cs:0.5, 0.5, 0.707) node[midway, anchor=north east] {$\rho$};
+        
+        \draw[thick,->] (axis cs:0.5,0,0) arc[start angle=0, end angle=45, radius=0.5] node[midway, anchor=south] {$\theta$};
+        
+        \draw[thick,->] (axis cs:0,0,1) arc[start angle=90, end angle=45, radius=1] node[midway, anchor=east] {$\phi$};
+        
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\subsection*{Example: (Problem 6)}
+Transform into spherical coordinates:
+\[
+(1,0,0) = (1 \sin(\phi) \cos(\theta), 1 \sin(\phi) \sin(\theta), 1 \cos(\phi)) = (0,0,1)
+\]
+
+\[
+(2,\frac{\pi}{3},\frac{\pi}{4}) = (2 \sin(\frac{\pi}{4}) \cos(\frac{\pi}{3}), 2 \sin(\frac{\pi}{4}) \sin(\frac{\pi}{3}), 2 \cos(\frac{\pi}{4})) = (\sqrt{3}, 1, \sqrt{2})
+\]
+
+\subsection{Parametric equation of a line in $\mathbb{R}^3$}
+Having two points $P_1(x_1, y_1, z_1)$ and $P_2(x_2, y_2, z_2)$, the parametric equation of the line passing through $P_1$ and $P_2$ is:
+\[
+\begin{cases}
+x = x_1 + t(x_2 - x_1) \\
+y = y_1 + t(y_2 - y_1) \\
+z = z_1 + t(z_2 - z_1)
+\end{cases}
+\]
+
+\subsection*{Example: (Problem 14)}
+Find the parametric equation of the line passing through $P(1,0,1)$ and $Q(2,3, 1)$.
+
+\[
+\begin{cases}
+x = 1 + t(2 - 1) = 1 + t \\
+y = 0 + t(3 - 0) = 3t \\
+z = 1 + t(1 - 1) = 1
+\end{cases}
+\]
+
+\subsection{Parametric equation of a plane in $\mathbb{R}^3$}
+For a plane in parametric form:
+\[
+\begin{cases}
+x = x_0 + a_1 t + a_2 s \\
+y = y_0 + b_1 t + b_2 s \\
+z = z_0 + c_1 t + c_2 s
+\end{cases}
+\]
+
+\paragraph{Remark}
+A line in $\mathbb{R}^3$ is a manifold of dimension 1. \\
+A plane in $\mathbb{R}^3$ is a manifold of dimension 2.
+
+\subsection*{Example: (Problem 9)}
+$\text{Write } x^2 + y^2 + z^2 = 4 \text{ (Sphere)} \text{ in parametric form}$.
+
+\[
+\begin{cases}
+    x = \lambda \\
+    y = \mu \\
+    z = \sqrt{4 - \lambda^2 - \mu^2}
+\end{cases}
+\quad \text{where } \lambda^2 + \mu^2 \leq 4
+\]
+
+Using spherical coordinates:
+\[
+\begin{cases}
+    x = \rho \sin(\phi) \cos(\theta) \\
+    y = \rho \sin(\phi) \sin(\theta) \\
+    z = \rho \cos(\phi)
+\end{cases}
+\quad \text{where } 0 \leq \phi \leq \pi, \quad 0 \leq \theta < 2\pi, \quad \rho = 2
+\]
+\[
+\rho^2\cos^2(\theta)\sin^2(\phi) + \rho^2\sin^2(\theta)\sin^2(\phi) + \rho^2\cos^2(\phi) = 4
+\]
+\[
+\rho^2\sin^2(\phi)(\cos^2(\theta) + \sin^2(\theta)) + \rho^2\cos^2(\phi) = 4
+\]
+\[
+\rho^2\sin^2(\phi) + \rho^2\cos^2(\phi) = 4
+\]
+\[
+\rho^2 = 4 \rightarrow \rho = 2
+\]
+
+\subsection*{Example: (Problem 11)}
+A solid above the cone $z = \sqrt{x^2 + y^2}$ and below the sphere $x^2 + y^2 + z^2 = z$.
+
+\[
+\text{Becase the solid is inside the cone, we have } z \geq \sqrt{x^2 + y^2}
+\]
+\[
+\text{Because the solid is below the sphere, we have } x^2 + y^2 + z^2 \leq z
+\]
+
+\[
+\begin{cases}
+    x = \rho \sin(\phi) \cos(\theta) \\
+    y = \rho \sin(\phi) \sin(\theta) \\
+    z = \rho \cos(\phi)
+\end{cases}
+\quad \text{where } 0 \leq \phi \leq \pi, \quad 0 \leq \theta < 2\pi
+\]
+
+\[
+\sqrt{\rho^2\cos^2(\theta)\sin^2(\phi) + \rho^2\sin^2(\theta)\sin^2(\phi)} \leq \rho\cos(\phi)
+\]
+\[
+\rho\sin(\phi) \leq \rho\cos(\phi) \rightarrow \tan(\phi) \leq 1 \rightarrow \phi \leq \frac{\pi}{4}
+\]
+
+\[
+\rho^2\sin^2(\phi)(\cos^2(\theta) + \sin^2(\theta)) + \rho^2\cos^2(\phi) \leq \rho\cos(\phi)
+\]
+\[
+\rho^2\sin^2(\phi) + \rho^2\cos^2(\phi) \leq \rho\cos(\phi)
+\]
+\[  
+\rho^2 \leq \rho\cos(\phi) \rightarrow \rho \leq \cos(\phi)
+\]
+
+\begin{center}
+    \tikzsetnextfilename{solid}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = $x$,
+            ylabel = $y$,
+            zlabel = $z$,
+            xmin = -2, xmax = 2,
+            ymin = -2, ymax = 2,
+            zmin = 0, zmax = 2,
+            width=12cm,
+            height=9cm,
+            view={60}{30},
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=50,
+            colormap/cool,
+        ]
+        % Cone
+        \addplot3[domain=0:2*pi, y domain=0:1.5, surf, opacity=0.3]
+        ({y*cos(deg(x))}, {y*sin(deg(x))}, y);
+        
+        % Sphere
+        \addplot3[domain=0:pi/2, y domain=0:2*pi, surf, opacity=0.3]
+        ({cos(deg(x))*cos(deg(y))}, {cos(deg(x))*sin(deg(y))}, {sin(deg(x))});
+        
+        % Labels
+        \node at (axis cs:1.5, 1.5, 1.5) [anchor=south west] {$\rho$};
+        \node at (axis cs:1.5, 0, 0) [anchor=south] {$\theta$};
+        \node at (axis cs:0, 0, 1.5) [anchor=east] {$\phi$};
+        
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+Solid in cartesian coordinates:
+\[
+\begin{cases}
+    z \geq \sqrt{x^2 + y^2} \\
+    x^2 + y^2 + z^2 \leq z
+\end{cases}
+\]
+
+In spherical coordinates:
+\[
+\begin{cases}
+    \rho \leq \cos(\phi) \\
+    \phi \leq \frac{\pi}{4} \\ 
+    \theta \in [0, 2\pi)
+\end{cases}
+\]
+
+\subsection{Intersection of two bodies}
+The intersection of two bodies gives (in general) a curve.
+
+\subsection*{Example: (Problem 12)}
+Parametrize the intersection (a curve $\gamma(t) = (\gamma_1(t), \gamma_2(t), \gamma_3(t))$) of the two bodies:
+\[
+\begin{cases}
+    \text{Cylinder: } x^2 + y^2 = 4 \\
+    \text{Surface: } z = xy
+\end{cases}
+\]
+
+\[
+\begin{cases}
+    x = 2\cos(t) = \gamma_1(t) \\
+    y = 2\sin(t) = \gamma_2(t) \\
+    z = 2\cos(t)\sin(t) = \gamma_3(t)
+\end{cases}
+\text{ where } t \in [0, 2\pi)
+\]
+
+\begin{center}
+    \tikzsetnextfilename{cylinder_surface}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = $x$,
+            ylabel = $y$,
+            zlabel = $z$,
+            xmin = -4, xmax = 4,
+            ymin = -4, ymax = 4,
+            zmin = -4, zmax = 4,
+            width=10cm,
+            height=10cm,
+            view={60}{30},
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=50,
+            colormap/cool,
+        ]
+        % Cylinder
+        \addplot3[domain=0:2*pi, y domain=-3:3, surf, opacity=0.3]
+        ({2*cos(deg(x))}, {2*sin(deg(x))}, y);
+        
+        % Surface
+        \addplot3[domain=-2:2, y domain=-2:2, surf, opacity=0.3]
+        (x, y, {x*y});
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\[
+\begin{cases}
+    \text{Paraboloid: } z = 4x^2 + y \\
+    \text{Cylinder: } y = x^2
+\end{cases}
+\implies 
+\begin{cases}
+    x = t \\
+    y = t^2 \\
+    z = 4t^2 + t^4
+\end{cases}
+\]
+
+\begin{center}
+    \tikzsetnextfilename{paraboloid_cylinder}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = $x$,
+            ylabel = $y$,
+            zlabel = $z$,
+            xmin = -2, xmax = 2,
+            ymin = -2, ymax = 2,
+            zmin = 0, zmax = 10,
+            width=10cm,
+            height=10cm,
+            view={60}{30},
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=50,
+            colormap/cool,
+        ]
+        % Paraboloid
+        \addplot3[
+            domain=-1.3:1.3,
+            y domain=-1.3:1.3,
+            samples=50,
+            surf,
+            opacity=0.3
+        ]
+        {4*x^2 + y};
+        
+        % Cylinder
+        \addplot3[
+            domain=-2:2,
+            y domain=-2:2,
+            samples=50,
+            surf,
+            opacity=0.3
+        ]
+        {x^2};        
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\end{document}
