@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2025.2.4)  12 FEB 2025 10:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2025.2.4)  12 FEB 2025 11:16
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -591,75 +591,75 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \openout3 = `notes.mw'.
 
 
-===== Image 'graph1' is up-to-date. ======
-===== Image 'graph2' is up-to-date. ======
+===== Image 'cached_models/graph1' is up-to-date. ======
+===== Image 'cached_models/graph2' is up-to-date. ======
 \openout3 = `notes.mw'.
 
-[10 <./graph1.pdf>] (./notes.mw)
-\openout3 = `notes.mw'.
-
-
-===== Image 'model1' is up-to-date. ======
-===== Image 'model2' is up-to-date. ======
-\openout3 = `notes.mw'.
-
-[11 <./graph2.pdf> <./model1.pdf>] (./notes.mw)
+[10 <./cached_models/graph1.pdf>] (./notes.mw)
 \openout3 = `notes.mw'.
 
 
-===== Image 'model3' is up-to-date. ======
+===== Image 'cached_models/model1' is up-to-date. ======
+===== Image 'cached_models/model2' is up-to-date. ======
 \openout3 = `notes.mw'.
 
-[12 <./model2.pdf> <./model3.pdf>] (./notes.mw)
-\openout3 = `notes.mw'.
-
-
-===== Image 'notes-figure0' is up-to-date. ======
-===== Image 'notes-figure1' is up-to-date. ======
-\openout3 = `notes.mw'.
-
-[13 <./notes-figure0.pdf> <./notes-figure1.pdf>] (./notes.mw)
+[11 <./cached_models/graph2.pdf> <./cached_models/model1.pdf>] (./notes.mw)
 \openout3 = `notes.mw'.
 
 
-===== Image 'model8' is up-to-date. ======
-===== Image 'model10' is up-to-date. ======
+===== Image 'cached_models/model3' is up-to-date. ======
 \openout3 = `notes.mw'.
 
-[14 <./model8.pdf> <./model10.pdf>] (./notes.mw)
-\openout3 = `notes.mw'.
-
-
-===== Image 'model11' is up-to-date. ======
-===== Image 'model12' is up-to-date. ======
-\openout3 = `notes.mw'.
-
-[15 <./model11.pdf>] (./notes.mw)
-\openout3 = `notes.mw'.
-
-\openout3 = `notes.mw'.
-
- [16 <./model12.pdf>] (./notes.mw)
+[12 <./cached_models/model2.pdf> <./cached_models/model3.pdf>] (./notes.mw)
 \openout3 = `notes.mw'.
 
 
-===== Image 'solid' is up-to-date. ======
+===== Image 'cached_models/notes-figure0' is up-to-date. ======
+===== Image 'cached_models/notes-figure1' is up-to-date. ======
 \openout3 = `notes.mw'.
 
-[17 <./solid.pdf>] (./notes.mw)
+[13 <./cached_models/notes-figure0.pdf> <./cached_models/notes-figure1.pdf>] (./notes.mw)
 \openout3 = `notes.mw'.
 
 
-===== Image 'cylinder_surface' is up-to-date. ======
-===== Image 'paraboloid_cylinder' is up-to-date. ======
+===== Image 'cached_models/model8' is up-to-date. ======
+===== Image 'cached_models/model10' is up-to-date. ======
 \openout3 = `notes.mw'.
 
-[18 <./cylinder_surface.pdf>] (./notes.mw)
+[14 <./cached_models/model8.pdf> <./cached_models/model10.pdf>] (./notes.mw)
+\openout3 = `notes.mw'.
+
+
+===== Image 'cached_models/model11' is up-to-date. ======
+===== Image 'cached_models/model12' is up-to-date. ======
+\openout3 = `notes.mw'.
+
+[15 <./cached_models/model11.pdf>] (./notes.mw)
 \openout3 = `notes.mw'.
 
 \openout3 = `notes.mw'.
 
- [19 <./paraboloid_cylinder.pdf>] (./notes.mw)
+ [16 <./cached_models/model12.pdf>] (./notes.mw)
+\openout3 = `notes.mw'.
+
+
+===== Image 'cached_models/solid' is up-to-date. ======
+\openout3 = `notes.mw'.
+
+[17 <./cached_models/solid.pdf>] (./notes.mw)
+\openout3 = `notes.mw'.
+
+
+===== Image 'cached_models/cylinder_surface' is up-to-date. ======
+===== Image 'cached_models/paraboloid_cylinder' is up-to-date. ======
+\openout3 = `notes.mw'.
+
+[18 <./cached_models/cylinder_surface.pdf>] (./notes.mw)
+\openout3 = `notes.mw'.
+
+\openout3 = `notes.mw'.
+
+ [19 <./cached_models/paraboloid_cylinder.pdf>] (./notes.mw)
 \openout3 = `notes.mw'.
 
 \openout3 = `notes.mw'.
@@ -753,15 +753,15 @@ epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 
  ) 
 Here is how much of TeX's memory you used:
- 24852 strings out of 476076
- 635592 string characters out of 5793776
+ 24853 strings out of 476076
+ 635606 string characters out of 5793776
  1944187 words of memory out of 5000000
  46407 multiletter control sequences out of 15000+600000
  569969 words of font info for 81 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  99i,14n,107p,767b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/nuno/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on notes.pdf (23 pages, 1376325 bytes).
+Output written on notes.pdf (23 pages, 1376523 bytes).
 PDF statistics:
  347 PDF objects out of 1000 (max. 8388607)
  238 compressed objects within 3 object streams
