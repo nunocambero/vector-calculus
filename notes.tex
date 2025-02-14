@@ -1745,14 +1745,14 @@ Prove the continuity:
 \[
 f(x,y) = 
 \begin{cases}
-    \frac{x^2y^3}{2x^2 + y^2} & \text{if } (x,y) \neq (0,0) \\
+    \dfrac{x^2y^3}{2x^2 + y^2} & \text{if } (x,y) \neq (0,0) \\
     1 & \text{if } (x,y) = (0,0)
 \end{cases}
 \]
 
 If $(x,y) \neq (0,0)$, then $f(x,y)$ is a composition of continuous functions. So that 
 \[
-\text{for any } (x_0,y_0) \neq (0,0), \quad \lim_{(x,y) \to (0,0)} f(x,y) = f(x_0,y_0) = \frac{x_0^2y_0^3}{2x_0^2 + y_0^2}
+\text{for any } (x_0,y_0) \neq (0,0), \quad \lim_{(x,y) \to (0,0)} f(x,y) = f(x_0,y_0) = \dfrac{x_0^2y_0^3}{2x_0^2 + y_0^2}
 \]
 
 At $(0,0)$, the function is well defined: $f(0,0) = 1$, so we must check that the limit exists.
@@ -1763,17 +1763,328 @@ At $(0,0)$, the function is well defined: $f(0,0) = 1$, so we must check that th
 Using polar coordinates:
 \[
 \begin{cases}
-    x = \frac{1}{\sqrt{2}}r \cos(\theta) \\
+    x = \dfrac{1}{\sqrt{2}}r \cos(\theta) \\
     y = r \sin(\theta)
 \end{cases}
 \]
 
 \[
-= \lim_{r \to 0} \frac{\frac{1}{2} r^3 \cos^2(\theta) \sin^3(\theta)}{r^2} = \lim_{r \to 0} \frac{1}{2} r \cos^2(\theta) \sin^3(\theta) = 0
+= \lim_{r \to 0} \dfrac{\frac{1}{2} r^3 \cos^2(\theta) \sin^3(\theta)}{r^2} = \lim_{r \to 0} \frac{1}{2} r \cos^2(\theta) \sin^3(\theta) = 0
 \]
 
 The limit exists and is equal to 0. However, $f(0,0) = 1 \neq 0$. Therefore, the function is not continuous at $(0,0)$.
 
+\subsection*{Problem 3}
+\[
+f(x,y) = 
+\begin{cases}
+    0 & \text{if } y \leq 0 \text{ or } y \geq x^4 \\
+    1 & \text{if } 0 < y < x^4
+\end{cases}
+\]
 
+a) $lim_{(x,y) \to (0,0)} f(x,y) = 0$ along any path going through $y = mx^\alpha$. \quad $0 < \alpha < 4$
+
+\begin{center}
+    \tikzsetnextfilename{plot_fxy_3d}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = {$x$},
+            ylabel = {$y$},
+            zlabel = {$f(x,y)$},
+            xmin = -2, xmax = 2,
+            ymin = -2, ymax = 2,
+            zmin = -0.5, zmax = 1.5,
+            width=10cm,
+            height=10cm,
+            view={120}{30},
+            samples=200,
+            colormap/cool,
+        ]
+        \addplot3[
+            domain=-2:2,
+            y domain=-2:2,
+            surf,
+            opacity=0.5
+        ]
+        {y <= 0 ? 0 : (y >= x^4 ? 0 : 1)};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+Let $\alpha = 1$: $y = mx$. Then
+\[
+\lim_{(x,y) \to (0,0)} f(x,y) = \lim_{x \to 0} f(x,mx) = \lim_{x \to 0} f(x,mx) = 0
+\]
+
+In this case, the limit exists and is equal to 0.
+\vskip 0.5cm
+b) Despite (a), prove that the function is not continuous.
+
+Take any point $(a,0), \quad a \in \mathbb{R}$. Then:
+\[
+\lim_{(x,y) \to (a,0)} f(x,y) = 
+\begin{cases}
+    0 & \text{if } y \to 0^- \\
+    1 & \text{if } y \to 0^+
+\end{cases}
+\]
+
+The limit depends on the direction of approach. Therefore, the function is not continuous.
+\vskip 0.5cm
+c) $f$ discontinuous on two entire curves:
+$\begin{cases}
+    y = x^4 \\
+    y = 0
+\end{cases}$
+
+Take any point $(a,a^4)$ on $y = x^4, \quad a \in \mathbb{R}$. Then:
+\[
+lim_{(x,y) \to (a,a^4)} f(x,y) = 
+\]
+\[
+||(x,y) - (a,a^4)|| < \delta \implies
+\begin{cases}
+    0 < |f(x,y)| = 1 < \epsilon & \text{if } y < x^4 \\
+    0 < |f(x,y)| = 0 < \epsilon & \text{if } y > x^4
+\end{cases}
+\]
+
+The limit depends on the direction of approach. Therefore, the function is not continuous.
+
+\subsection*{Example:}
+Consider the function:
+\[
+f(x,y) =
+\begin{cases}
+    \dfrac{x^3y}{x^6 + y^2} & \text{if } (x,y) \neq (0,0) \\
+    0 & \text{if } (x,y) = (0,0)
+\end{cases}
+\]
+
+Let $y = \lambda x, \quad \lambda \in \mathbb{R}$. Then
+\[
+a) \lim_{(x,y) \to (0,0)} \frac{x^3y}{x^6 + y^2} = \lim_{x \to 0} \frac{x^3 \lambda x}{x^6 + \lambda^2 x^2} = \lim_{x \to 0} \frac{\lambda x^2}{x^4 + \lambda^2} = 0
+\]
+
+Now taking $y = x^3$:
+\[
+b) \lim_{(x,y) \to (0,0)} \frac{x^3y}{x^6 + y^2} = \lim_{x \to 0} \frac{x^3 x^3}{x^6 + x^6} = \lim_{x \to 0} \frac{x^6}{2x^6} = \frac{1}{2}
+\]
+
+Therefore the function is not continuous at $(0,0)$, since the limit depends on the direction of approach.
+
+\section{Differentiability of functions}
+In 1D when we consider a function $f : \mathbb{R} \rightarrow \mathbb{R}$, the derivative of $f$ at $a \in \mathbb{R}$ describes the ratio of the change of the function $f$ at $x = a$ and is denoted by:
+\[
+f'(a) = \lim_{t \to 0} \frac{f(a + t) - f(a)}{t} = \frac{df(a)}{dt}
+\]
+
+Geometrically, the derivative of a function at a point is the slope of the tangent line to the curve at that point. And this tangent line is defined as:
+\[
+y = f(a) + f'(a)(x - a)
+\]
+
+\begin{center}
+    \tikzsetnextfilename{tangent_line}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = $x$,
+            ylabel = $y$,
+            xmin = -2, xmax = 2,
+            ymin = -2, ymax = 2,
+            width=10cm,
+            height=10cm,
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=100
+        ]
+        % Plot of the function
+        \addplot[
+            domain=-2:2,
+            samples=100,
+            color=blue,
+            thick
+        ]
+        {x^3 - x};
+        
+        % Plot of the tangent line at x = 1.2
+        \addplot[
+            domain=-2:2,
+            samples=100,
+            color=red,
+            thick,
+            dashed
+        ]
+        {(1.2)^3 - 1.2 + 3*(x - 1.2)};
+        
+        % Mark the point of tangency
+        \addplot[
+            only marks,
+            mark=*,
+            color=black
+        ]
+        coordinates {(1.2, 1.2^3 - 2*1.2 + 1.2)};
+        
+        % Labels
+        \node at (axis cs:1.2, 1.2^3 - 2*1.2 + 1.2) [anchor=south west] {$(a, f(a))$};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+A way of seeing this is written by the Taylor polynomial:
+\[
+f(x) = f(a) + M(x - a) + r(|x - a|)
+\]
+
+Where $M = f'(a)$ is the slope of the tangent line and $r(|x - a|)$ is the remainder.
+
+If $x \to a$, then $r(|x - a|) \to 0$ but this only guarantees that the function is continuous at $a$.
+
+However, if
+\[
+\lim_{x \to a} \frac{r(|x - a|)}{|x - a|} = 0
+\]
+
+we actually find the existence of the tangent line at $a$.
+\[
+\frac{f(x) - f(a)}{x - a} = f'(a) + \frac{r(|x - a|)}{x - a}
+\]
+
+\subsection{Generalizing to several variables}
+\[
+z = f(x,y)
+\]
+We would like to understand the derivative with respect to each variable.
+
+To do so, we use the knowledge of derivatives in 1 variable.
+
+\subsection{Partial derivatives}
+Let $f : A \subset \mathbb{R}^N \rightarrow \mathbb{R}$ be a scalar function. And let $x_0 \in A$. The partial derivative of $f$ with respect to the variable $x_i$ at $x_0$ is defined as:
+\[
+\frac{\partial f}{\partial x_i}(x_0) = \lim_{t \to 0} \frac{f(x_0 + t e_i) - f(x_0)}{t}
+\]
+
+Where $e_i$ is the unit vector in the direction of $x_i$.
+
+Somehow, we are computing the ratio of the change of the function $f$ in the direction of $x_i$, in other words, of the vector $e_i$.
+\[
+e_i = (0, \ldots, 0, 1, 0, \ldots, 0)
+\]
+\[
+B = \{e_1, e_2, \ldots, e_N\} \quad \text{is the standard basis of } \mathbb{R}^N
+\]
+
+If $F : \mathbb{R}^N \rightarrow \mathbb{R}^M$ is a vector function, then the partial derivative of $F$ with respect to the variable $x_i$ at the point $x$ is defined as:
+\[
+\frac{\partial F(x)}{\partial x_i} = \left(\frac{\partial f_1}{\partial x_i}, \frac{\partial f_2}{\partial x_i}, \ldots, \frac{\partial f_M}{\partial x_i}\right)
+\]
+
+\subsection*{Example:}
+\[
+f(x,y) = xy +x - y \quad \text{at } (0,0)
+\]
+
+\[
+\frac{\partial f}{\partial x}(0,0) = \lim_{t \to 0} \frac{f(0 + t e_1) - f(0,0)}{t} = \lim_{t \to 0} \frac{f(t,0) - f(0,0)}{t} = \lim_{t \to 0} \frac{t \cdot 0 + t - 0}{t} = 1
+\]
+
+Where $t$ is the norm of the vector $t e_1$:
+\[
+t = t ||e_1|| = t \cdot 1 = t
+\]
+
+Now, 
+\[
+\frac{\partial f}{\partial y}(0,0) = \lim_{k \to 0} \frac{f(0,k) - f(0,0)}{t} = \lim_{k \to 0} \frac{0 \cdot k + 0 - k}{k} = -1
+\]
+
+\subsection{Geometrical interpretation of the partial derivative}
+The partial derivative of a function $f : \mathbb{R}^2 \rightarrow \mathbb{R}$ at a point $(x_0, y_0)$ is the slope of the tangent line to the curve $z = f(x,y)$ at the point $(x_0, y_0)$ in the direction of the variable $x_i$.
+\[
+\frac{\partial f}{\partial x}(x_0, y_0) = \text{slope of the tangent line in the direction of } x
+\]
+\[
+\frac{\partial f}{\partial y}(x_0, y_0) = \text{slope of the tangent line in the direction of } y
+\]
+
+\begin{center}
+    \tikzsetnextfilename{surface_tangent_lines}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = $x$,
+            ylabel = $y$,
+            zlabel = {$z = f(x,y)$},
+            xmin = -2, xmax = 2,
+            ymin = -2, ymax = 2,
+            zmin = -2, zmax = 2,
+            width=10cm,
+            height=10cm,
+            view={60}{30},
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=50,
+            colormap/cool,
+        ]
+        % Surface
+        \addplot3[
+            domain=-2:2,
+            y domain=-2:2,
+            surf,
+            opacity=0.5
+        ]
+        {- (x^2)/5 - (y^2)/5 + 0.5};
+
+        % Point P
+        \addplot3[mark=*, color=black] coordinates {(0, 0, 0.5)};
+
+        % Intersection of x = 0 and z = 0
+        \addplot3[
+            color=red,
+            thick
+        ]
+        coordinates {(0, -2, 0.5) (0, 2, 0.5)};
+
+        % Intersection of y = 0 and z = 0
+        \addplot3[
+            color=blue,
+            thick
+        ]
+        coordinates {(-2, 0, 0.5) (2, 0, 0.5)};
+        
+        % Labels
+        \node at (axis cs:0, 0, 0.5) [anchor=south west] {$(0, 0, 0.5)$};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+Obviously, we can apply the rules for derivatives:
+\[
+\frac{\partial f}{\partial x}(x,y) = y + 1, \quad \frac{\partial f}{\partial y}(x,y) = x - 1
+\]
+
+\subsection{Directional derivative}
+Let $f : \mathbb{R}^N \rightarrow \mathbb{R}$ be a scalar function and $P \in A \subset \mathbb{R}^N$ and $v \in \mathbb{R}^N$ be a vector. The directional derivative of $f$ at $P$ in the direction of $v$ is defined as:
+\[
+D_v f(P) = \lim_{t \to 0} \frac{f(P + t v) - f(P)}{t||v||} = \frac{df(P + tv)}{dt} 
+\]
+
+\subsection*{Example:}
+\[
+f(x,y) = \sqrt{|xy|} \quad \text{at } (0,0) \quad \text{in the direction of } v = (1,1)
+\]
+
+\[
+D_{(1,1)} f(0,0) = \lim_{t \to 0} \frac{f(0 + t, 0 + t) - f(0,0)}{t||(1,1)||} = \lim_{t \to 0} \frac{\sqrt{|t^2|} - 0}{t||(1,1)||} = \lim_{t \to 0} \frac{|t|}{t\sqrt{2}} = 
+\begin{cases}
+    \dfrac{1}{\sqrt{2}} & \text{if } t \to 0^+ \\
+    -\dfrac{1}{\sqrt{2}} & \text{if } t \to 0^-
+\end{cases}
+\]
+
+Therefore, the directional derivative does not exist.
 
 \end{document}
