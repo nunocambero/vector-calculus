@@ -2087,4 +2087,286 @@ D_{(1,1)} f(0,0) = \lim_{t \to 0} \frac{f(0 + t, 0 + t) - f(0,0)}{t||(1,1)||} = 
 
 Therefore, the directional derivative does not exist.
 
+\subsection{Remark}
+Existence of all directional derivatives at a point $P$ does not guarantee the continuity of the function at $P$.
+\[
+\text{For example: } f(x,y) =
+\begin{cases}
+    1 & \text{if } x = 0 \text{ or } y = 0 \\
+    0 & \text{otherwise}
+\end{cases}
+\]
+
+\[
+\frac{\partial f}{\partial x}(0,0) = 0 = \frac{\partial f}{\partial y}(0,0)
+\]
+\[
+\lim_{(x,y) \to (0,0)} f(x,y) \text{ does not exist.}
+\]
+
+\subsection*{Example:}
+\[
+f(x,y) = x^{1/3}y^{1/3} \quad \text{at } (0,0)
+\]
+
+\[
+\frac{\partial f}{\partial x}(0,0) = \lim_{t \to 0} \frac{f(t,0) - f(0,0)}{t} = \lim_{t \to 0} \frac{t^{1/3} \cdot 0^{1/3} - 0}{t} = 0
+\]
+
+\[
+\frac{\partial f}{\partial y}(0,0) = \lim_{t \to 0} \frac{f(0,t) - f(0,0)}{t} = \lim_{t \to 0} \frac{0 \cdot t^{1/3} - 0}{t} = 0
+\]
+
+Derivatives exist and the function is also continuous at $(0,0)$. However, there is no tangent plane at $(0,0)$.
+
+\subsection{Differentiability}
+Heuristically it means the construction of a tangent plane.
+
+Let $A \subset \mathbb{R}^2$ be an open subset in $\mathbb{R}^2$ such that $(x,y) \in A$, with $f : A \rightarrow \mathbb{R}$ a scalar function. We say that $f$ is differentiable at $(x_0, y_0)$ if: 
+\begin{enumerate}
+    \item $\dfrac{\partial f}{\partial x}(x_0, y_0)$ and $\dfrac{\partial f}{\partial y}(x_0, y_0)$ exist.
+    \item $\lim_{(x,y) \to (x_0, y_0)} \dfrac{f(x,y) - f(x_0, y_0) - \dfrac{\partial f}{\partial x}(x_0, y_0)(x - x_0) - \dfrac{\partial f}{\partial y}(x_0, y_0)(y - y_0)}{\sqrt{(x - x_0)^2 + (y - y_0)^2}} = 0$
+\end{enumerate}
+
+To be differentiable we say that there exists a tangent plane at $(x_0, y_0)$:
+\[
+z = f(x_0, y_0) + A(x - x_0) + B(y - y_0)
+\]
+Following similar ideas to the 1D case, we can write:
+\[
+f(x,y) = f(x_0, y_0) + A(x - x_0) + B(y - y_0) + r(\|(x, y) - (x_0,y_0)\|)
+\]
+
+If $\|(x, y) - (x_0,y_0)\| \to 0$ then $r(\|(x, y) - (x_0,y_0)\|) \to 0$, and the function is continuous at $(x_0, y_0)$.
+
+However if we have:
+\[
+\frac{f(x,y) - f(x_0, y_0) - A(x - x_0) - B(y - y_0)}{\|(x - x_0) + (y - y_0)}\| = \frac{r(\|(x, y) - (x_0,y_0)\|)}{\|(x - x_0) + (y - y_0)\|} \to 0
+\]
+
+Then the function is differentiable at $(x_0, y_0)$ if:
+\[
+A = \frac{\partial f}{\partial x}(x_0, y_0), \quad B = \frac{\partial f}{\partial y}(x_0, y_0)
+\]
+
+\paragraph{Remark}
+Taylor's polynomial around $(x_0, y_0)$ of degree 1 is:
+\[
+f(x,y) = f(x_0, y_0) + \frac{\partial f}{\partial x}(x_0, y_0)(x - x_0) + \frac{\partial f}{\partial y}(x_0, y_0)(y - y_0) + r(\|(x, y) - (x_0,y_0)\|)
+\]
+Where $\dfrac{\partial f}{\partial x}(x_0, y_0)$ and $\dfrac{\partial f}{\partial y}(x_0, y_0)$ form $L\left((x - x_0), (y - y_0)\right)$, the linearity function.
+\[
+\|f(x,y) - L\left((x - x_0), (y - y_0)\right)\| < \varepsilon \text{ as } \|(x, y) - (x_0, y_0)\| < \delta
+\]
+
+We can write $L$ in terms of the dericative of the scalar function $f$:
+\[
+f : \mathbb{R}^2 \rightarrow \mathbb{R} 
+\]
+
+We define such a derivative as the gradient of $f$:
+\[
+D(f(x,y)) = \nabla f(x,y) = \left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}\right)
+\]
+
+The gradient provides us with the direction of the maximum increase of the function $f$ at $(x,y)$.
+
+\subsection*{Problem 4a}
+\[
+f(x,y) = xy, \quad \frac{\partial f}{\partial x} = y, \quad \frac{\partial f}{\partial y} = x
+\]
+
+\subsection*{Problem 4c}
+\[
+f(x,y) = \sqrt{^2 + y^2}, \quad \frac{\partial f}{\partial x} = \frac{x}{\sqrt{x^2 + y^2}}, \quad \frac{\partial f}{\partial y} = \frac{y}{\sqrt{x^2 + y^2}}
+\]
+
+\subsection*{Problem 5a}
+\[
+f(x,y,z) = (x + z) e^{x - y}, \quad \text{gradient at } (1,1,1)
+\]
+\[
+\nabla f(x,y,z) = \left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}\right) = \left(e^{x - y} + (x + z)e^{x - y}, -(x + z)e^{x - y}, e^{x - y}\right)
+\]
+\[
+\nabla f(1,1,1) = (e^0 + 2e^0, -2e^0, e^0) = (3, -2, 1)
+\]
+
+\section{Differentiability in $\mathbb{R}^N$}
+\[
+A \subset \mathbb{R}^N, \quad x_0 \in A, \quad f : A \rightarrow \mathbb{R}^M
+\] 
+We say that $f$ is differentiable at $x_0$ if:
+\begin{enumerate}
+    \item $\dfrac{\partial f_i}{\partial x_j}(x_0)$ exists for $i = 1, 2, \ldots, M$ and $j = 1, 2, \ldots, N$.
+    \item $\lim_{x \to x_0} \dfrac{f(x) - f(x_0) - Jf(x_0)(x - x_0)}{||x - x_0||} = 0$
+\end{enumerate}
+    
+Where $Jf(x_0)$ is the Jacobian matrix of $f$ at $x_0$:
+\[
+Jf(x_0) = Df(x_0) =
+\begin{pmatrix}
+    \dfrac{\partial f_1}{\partial x_1} & \dfrac{\partial f_1}{\partial x_2} & \ldots & \dfrac{\partial f_1}{\partial x_N} \\
+    \dfrac{\partial f_2}{\partial x_1} & \dfrac{\partial f_2}{\partial x_2} & \ldots & \dfrac{\partial f_2}{\partial x_N} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    \dfrac{\partial f_M}{\partial x_1} & \dfrac{\partial f_M}{\partial x_2} & \ldots & \dfrac{\partial f_M}{\partial x_N}
+\end{pmatrix}
+\]
+
+\subsection*{Problem 6a}
+Compute the jacobian matrix:
+\[
+F(x,y) = (y,x,xy,y^2 - x^2), \quad F : \mathbb{R}^2 \rightarrow \mathbb{R}^4
+\]
+
+\[
+JF(x,y) =
+\begin{pmatrix}
+    \dfrac{\partial y}{\partial x} & \dfrac{\partial y}{\partial y} \\
+    \dfrac{\partial x}{\partial x} & \dfrac{\partial x}{\partial y} \\
+    \dfrac{\partial xy}{\partial x} & \dfrac{\partial xy}{\partial y} \\
+    \dfrac{\partial y^2 - x^2}{\partial x} & \dfrac{\partial y^2 - x^2}{\partial y}
+\end{pmatrix} =
+\begin{pmatrix}
+    0 & 1 \\
+    1 & 0 \\
+    y & x \\
+    -2x & 2y
+\end{pmatrix}
+\]
+Now at $(1,2)$:
+\[
+JF(1,2) =
+\begin{pmatrix}
+    0 & 1 \\
+    1 & 0 \\
+    2 & 1 \\
+    -2 & 4
+\end{pmatrix}
+\]
+
+\subsection*{Problem 6c}
+\[
+F(x,y,z) = z^2 e^x \cos(y), \text{ at } (0, \frac{\pi}{2}, -1) \quad F : \mathbb{R}^3 \rightarrow \mathbb{R}
+\]
+
+\[
+JF(x,y,z) =
+\begin{pmatrix}
+    \dfrac{\partial z^2 e^x \cos(y)}{\partial x} & \dfrac{\partial z^2 e^x \cos(y)}{\partial y} & \dfrac{\partial z^2 e^x \cos(y)}{\partial z}
+\end{pmatrix} =
+\]
+\[
+= 
+\begin{pmatrix}
+    z^2 e^x \cos(y) & -z^2 e^x \sin(y) & 2z e^x \cos(y)
+\end{pmatrix}
+\]
+
+\[
+JF(0, \frac{\pi}{2}, -1) =
+\begin{pmatrix}
+    0 & -1 & 0
+\end{pmatrix}
+\]
+
+\subsection*{Example:}
+\[
+f(x,y) = 
+\begin{cases}
+    \dfrac{2xy}{\sqrt{x^2 + y^2}} & \text{if } (x,y) \neq (0,0) \\
+    0 & \text{if } (x,y) = (0,0)
+\end{cases}
+\]
+
+$f$ is not differentiable at $(0,0)$, the partial derivatives exist at $(0,0)$.
+\[
+\frac{\partial f}{\partial x}(0,0) = \lim_{t \to 0} \frac{f(t,0) - f(0,0)}{t} = \lim_{t \to 0} \frac{2t \cdot 0}{t \cdot 0} = 0
+\]
+\[
+\frac{\partial f}{\partial y}(0,0) = \lim_{t \to 0} \frac{f(0,t) - f(0,0)}{t} = \lim_{t \to 0} \frac{2 \cdot 0 \cdot t}{t \cdot 0} = 0
+\]
+
+However, the limit of the difference quotient does not exist:
+\[
+\lim_{(x,y) \to (0,0)} \frac{f(x,y) - f(0,0) - \frac{\partial f}{\partial x}(0,0)x - \frac{\partial f}{\partial y}(0,0)y}{\sqrt{x^2 + y^2}} =
+\]
+\[
+= \lim_{(x,y) \to (0,0)} \frac{\frac{2xy}{\sqrt{x^2 + y^2}} - 0 - 0 \cdot x - 0 \cdot y}{\sqrt{x^2 + y^2}} = \lim_{(x,y) \to (0,0)} \frac{2xy}{\sqrt{x^2 + y^2} \cdot \sqrt{x^2 + y^2}} = \lim_{(x,y) \to (0,0)} \frac{2xy}{x^2 + y^2}
+\]
+
+If we use polar coordinates:
+\[
+\begin{cases}
+    x = r \cos(\theta) \\
+    y = r \sin(\theta)
+\end{cases}
+\]
+
+\[
+= \lim_{r \to 0} \frac{2r^2 \cos(\theta) \sin(\theta)}{r^2} = \lim_{r \to 0} 2 \cos(\theta) \sin(\theta) = 2 \cos(\theta) \sin(\theta)
+\]
+
+The limit depends on $\theta$. Therefore, the function is not differentiable at $(0,0)$.
+
+\subsection*{Problem 7}
+\[
+f(x,y) = 
+\begin{cases}
+    \dfrac{xy^2}{x^2 + y^4} & \text{if } x \neq 0 \\
+    0 & \text{if } x = 0
+\end{cases}
+\]
+
+The partial derivatives exist at $(0,0)$:
+\[
+\frac{\partial f}{\partial x}(0,0) = \lim_{t \to 0} \frac{f(t,0) - f(0,0)}{t} = \lim_{t \to 0} \frac{0 - 0}{t} = 0
+\]
+\[
+\frac{\partial f}{\partial y}(0,0) = \lim_{t \to 0} \frac{f(0,t) - f(0,0)}{t} = \lim_{t \to 0} \frac{0 - 0}{t} = 0
+\]
+
+Take he limit:
+\[
+\lim_{(x,y) \to (0,0)} f(x,y) = \lim_{(x,y) \to (0,0)} \frac{xy^2}{x^2 + y^4} = lim_{r \to 0} \frac{r^3 \cos(\theta) \sin^2(\theta)}{r^2 \cos^2(\theta) + r^4 \sin^4(\theta)}
+\]
+
+The limit does not exist, therefore the function is not continuous at $(0,0)$. The function is not differentiable at $(0,0)$, due to it not being continuous at that point.
+
+Direction of any vector at $(0,0)$:
+\[
+D_(u,v) f(0,0) = \lim_{t \to 0} \frac{f(tu, tv) - f(0,0)}{t \|(u,v)\|}
+\]
+
+Assume $\|(u,v)\| = 1$:
+\[
+= \lim_{t \to 0} \frac{f(tu, tv)}{t} = \lim_{t \to 0} \frac{t^3 u v^2}{t(t^2 u^2 + t^4 v^4)} = \lim_{t \to 0} \frac{u v^2}{u^2 + t^2 v^4} = \frac{v^2}{u}
+\]
+
+Where $\frac{v^2}{u}$ is the slope of the tangent line in the direction of $(u,v)$.
+
+\subsection{Proposition:}
+\[
+A \subset \mathbb{R}^N, \quad x_0 \in A, \quad f : A \rightarrow \mathbb{R}
+\]
+
+$f$ is a scalar function, differentiable at $x_0$ and $v \in \mathbb{R}^N \backslash 0$ a vector. Then:
+\[
+D_v f(x_0) = \inner{\nabla f(x_0)}{v}
+\]
+
+\paragraph{Remark}
+\[
+\inner{\nabla f(x_0)}{\alpha v} = \alpha \inner{\nabla f(x_0)}{v} \neq \inner{\nabla f(x_0)}{v}
+\]
+
+Using the properties of the scalar product: 
+\[
+D_v f(x_0) = \inner{\nabla f(x_0)}{v} = ||\nabla f(x_0)|| \cdot ||v|| \cdot \cos(\theta) = ||\nabla f(x_0)|| \cdot \cos(\theta)
+\]
+
+Where $\theta$ is the angle between $\nabla f(x_0)$ and $v$, and we assume $\|v\| = 1$.
+
+The directional derivative is maximum in the direction of $\nabla f(x_0)$ and minimum in the direction of $-\nabla f(x_0)$.
+
 \end{document}

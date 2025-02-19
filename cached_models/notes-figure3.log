@@ -454,7 +454,7 @@ File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count330
 \l__pdf_internal_box=\box275
 )
-No file cached_models/notes-figure2.aux.
+No file cached_models/notes-figure3.aux.
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
 LaTeX Font Info:    ... okay on input line 39.
 LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
@@ -549,21 +549,21 @@ A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to di
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to disable this.
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to disable this.
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to disable this.
-\openout3 = `cached_models/notes-figure2.dpth'.
+A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to disable this.
+\openout3 = `cached_models/notes-figure3.dpth'.
 
 Missing character: There is no . in font nullfont!
 Missing character: There is no 0 in font nullfont!
 Missing character: There is no 1 in font nullfont!
 Missing character: There is no p in font nullfont!
 Missing character: There is no t in font nullfont!
-\openout3 = `cached_models/notes-figure2.mw'.
+\openout3 = `cached_models/notes-figure3.mw'.
 
 [22
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./cached_models/notes-figure2.mw)
-\openout3 = `cached_models/notes-figure2.mw'.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./cached_models/notes-figure3.mw)
+\openout3 = `cached_models/notes-figure3.mw'.
 
-A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to disable this.
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -632,19 +632,19 @@ epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
     umsb.fd    2013/01/14 v3.01 AMS symbols B
  ***********
 
-\openout3 = `cached_models/notes-figure2.dpth'.
+\openout3 = `cached_models/notes-figure3.dpth'.
 
  ) 
 Here is how much of TeX's memory you used:
- 25380 strings out of 476076
- 652494 string characters out of 5793776
- 3466359 words of memory out of 5000000
- 47065 multiletter control sequences out of 15000+600000
+ 25385 strings out of 476076
+ 652562 string characters out of 5793776
+ 2763787 words of memory out of 5000000
+ 47070 multiletter control sequences out of 15000+600000
  570270 words of font info for 82 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 103i,14n,110p,753b,2784s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 103i,14n,110p,753b,2524s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on cached_models/notes-figure2.pdf (1 page, 154167 bytes).
+Output written on cached_models/notes-figure3.pdf (1 page, 110466 bytes).
 PDF statistics:
  26 PDF objects out of 1000 (max. 8388607)
  16 compressed objects within 1 object stream
