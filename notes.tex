@@ -4,6 +4,7 @@
 \usepackage{etex}
 \reserveinserts{1000}
 \usepackage{morewrites}
+\usepackage{multicol}
 \usepackage{pgfplots}
 \usepackage{tikz}
 \usetikzlibrary{external}
@@ -2239,7 +2240,7 @@ Where $\dfrac{\partial f}{\partial x}(x_0, y_0)$ and $\dfrac{\partial f}{\partia
 \|f(x,y) - L\left((x - x_0), (y - y_0)\right)\| < \varepsilon \text{ as } \|(x, y) - (x_0, y_0)\| < \delta
 \]
 
-We can write $L$ in terms of the dericative of the scalar function $f$:
+We can write $L$ in terms of the derivative of the scalar function $f$:
 \[
 f : \mathbb{R}^2 \rightarrow \mathbb{R} 
 \]
@@ -2371,8 +2372,9 @@ However, the limit of the difference quotient does not exist:
 \[
 \lim_{(x,y) \to (0,0)} \frac{f(x,y) - f(0,0) - \frac{\partial f}{\partial x}(0,0)x - \frac{\partial f}{\partial y}(0,0)y}{\sqrt{x^2 + y^2}} =
 \]
+
 \[
-= \lim_{(x,y) \to (0,0)} \frac{\frac{2xy}{\sqrt{x^2 + y^2}} - 0 - 0 \cdot x - 0 \cdot y}{\sqrt{x^2 + y^2}} = \lim_{(x,y) \to (0,0)} \frac{2xy}{\sqrt{x^2 + y^2} \cdot \sqrt{x^2 + y^2}} = \lim_{(x,y) \to (0,0)} \frac{2xy}{x^2 + y^2}
+= \lim_{(x,y) \to (0,0)} \dfrac{\dfrac{2xy}{\sqrt{x^2 + y^2}} - 0 - 0 \cdot x - 0 \cdot y}{\sqrt{x^2 + y^2}} = \lim_{(x,y) \to (0,0)} \frac{2xy}{x^2 + y^2}
 \]
 
 If we use polar coordinates:
@@ -2406,7 +2408,7 @@ The partial derivatives exist at $(0,0)$:
 \frac{\partial f}{\partial y}(0,0) = \lim_{t \to 0} \frac{f(0,t) - f(0,0)}{t} = \lim_{t \to 0} \frac{0 - 0}{t} = 0
 \]
 
-Take he limit:
+Take the limit:
 \[
 \lim_{(x,y) \to (0,0)} f(x,y) = \lim_{(x,y) \to (0,0)} \frac{xy^2}{x^2 + y^4} = lim_{r \to 0} \frac{r^3 \cos(\theta) \sin^2(\theta)}{r^2 \cos^2(\theta) + r^4 \sin^4(\theta)}
 \]
@@ -2449,4 +2451,285 @@ Where $\theta$ is the angle between $\nabla f(x_0)$ and $v$, and we assume $\|v\
 
 The directional derivative is maximum in the direction of $\nabla f(x_0)$ and minimum in the direction of $-\nabla f(x_0)$.
 
+\subsection{Proposition:}
+Let \( f: \mathbb{R}^3 \rightarrow \mathbb{R} \) be a scalar function and let \((x_0, y_0, z_0) \in \mathbb{R}^3\) be a point on the level surface \(\{ f(x, y, z) = k \in \mathbb{R} \} = S\).
+
+Then, \( \nabla f(x_0, y_0, z_0) \perp v = 0 \) where \(v\) is the tangent vector to the trajectory \(c(t)\) at \(t = 0\) over the surface \(S\).
+
+\subsection*{Proof}
+Since \(c(t) \subset S\), we have \(f(c(t)) = k\).
+
+By construction, \(v = c'(0)\).
+
+Now, applying the chain rule, we get:
+\[
+\frac{d}{dt} f(c(t)) \bigg|_{t=0} = \nabla f(c(0)) \cdot c'(0) = \nabla f(c(0)) \cdot v = 0
+\]
+
+This proves the orthogonality between \(\nabla f\) and the tangent vector to the curve (to the level curve).
+
+\subsection*{Remark}
+Take \(P^* (p_1, p_2, p_3)\) as a point and \((x, y, z)\) as any point on the tangent plane.
+
+Then,
+\[
+n \cdot (x - p_1, y - p_2, z - p_3) = 0
+\]
+
+where \(n = \nabla f(P^*)\).
+
+\subsection{Tangent Plane to a Surface}
+
+The tangent plane to \( f(x, y, z) = k \) at \( p_0 \) is given by
+
+\[
+\nabla f(p_0) \cdot
+\begin{pmatrix}
+x - p_1 \\
+y - p_2 \\
+z - p_3
+\end{pmatrix}
+= 0
+\]
+
+\begin{multicols}{2}
+    \subsection*{Example}
+    \textbf{Tangent plane of \( 3xy + z^2 = 4 \) at \((1, 1, 1)\):}
+    \begin{itemize}
+        \item \textbf{Gradient:} \\
+        \( \nabla f(x, y, z) = (3x, 3y, 2z) \)
+        \item \textbf{Gradient at (1, 1, 1):} \\
+        \( \nabla f(1, 1, 1) = (3, 3, 2) \)
+        \item \textbf{Tangent Plane:} \\
+        \( \nabla f(1, 1, 1) \cdot \begin{pmatrix}
+        x - 1 \\
+        y - 1 \\
+        z - 1
+        \end{pmatrix} = 0 \)
+        \item \textbf{Equation:} \\
+        \( 3(x - 1) + 3(y - 1) + 2(z - 1) = 0 \) \\
+        \( 3x + 3y + 2z = 8 \)
+    \end{itemize}
+\columnbreak
+    \subsection*{Problem 11c}
+    \textbf{Find the tangent plane of \( z = \dfrac{x}{y^2} \) at \((-2, 2, 1)\):}
+    \begin{itemize}
+        \item \textbf{Gradient:} \\
+        \( \nabla f(x, y, z) = \left(\dfrac{1}{y^2}, -\dfrac{2x}{y^3}, -1\right) \)
+        \item \textbf{Gradient at (-2, 2, 1):} \\
+        \( \nabla f(-2, 2, 1) = \left(\dfrac{1}{4}, -\dfrac{1}{2}, -1\right) \)
+        \item \textbf{Tangent Plane:} \\
+        \( \nabla f(-2, 2, 1) \cdot \begin{pmatrix}
+        x + 2 \\
+        y - 2 \\
+        z - 1
+        \end{pmatrix} = 0 \)
+        \item \textbf{Equation:} \\
+        \( \dfrac{1}{4}(x + 2) - \dfrac{1}{2}(y - 2) - (z - 1) = 0 \) \\
+        \( \dfrac{1}{4}x - \dfrac{1}{2}y - z = -\dfrac{1}{2} \)
+    \end{itemize}
+\end{multicols}
+
+\subsection{Theorems}
+Let \( A \subseteq \mathbb{R}^n \), \( x_0 \in A \), and \( f: A \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^m \). If \( f \) is differentiable at \( x_0 \), \( f \) is continuous at \( x_0 \).
+
+
+Let \( A \subseteq \mathbb{R}^n \), \( x_0 \in A \), and \( f: A \subseteq \mathbb{R}^n \rightarrow \mathbb{R} \). For \( x = (x_1, \ldots, x_n) \):
+\begin{itemize}
+    \item[a)] \( \dfrac{\partial f}{\partial x_i} \) exists for any \( i \).
+    \item[b)] \( \dfrac{\partial f}{\partial x_i} \) is continuous at \( x_0 \) for any \( i \).
+\end{itemize}
+Then, \( f \) is differentiable at \( x_0 \).
+
+\subsection*{Problem 9}
+Given \( f(x,y) = e^{\left(\dfrac{1}{x^2 + y^2}\right)} \) for \( (x,y) \neq (0,0) \) and \( f(0,0) = 0 \):
+\begin{itemize}
+    \item[a)] Show that \( f \) is differentiable at \( (0,0) \).
+    \item[b)] Prove the existence of the tangent plane at \( (0,0) \).
+\end{itemize}
+
+To show \( f \) is differentiable at \( (0,0) \), we need to check the limit:
+\[
+\lim_{(x,y) \to (0,0)} \frac{f(x,y) - f(0,0) - \frac{\partial f}{\partial x}(0,0)x - \frac{\partial f}{\partial y}(0,0)y}{\sqrt{x^2 + y^2}} = 0
+\]
+
+\[
+\dfrac{\partial f}{\partial x} (0,0) = \lim_{t \to 0} \frac{f(t,0) - f(0,0)}{t} = \lim_{t \to 0} \frac{e^{\left(\dfrac{-1}{t^2}\right)}}{t} = 0 = \frac{\partial f}{\partial y} (0,0)
+\]
+
+Thus, \( f \) is differentiable at \( (0,0) \).
+
+\subsection{Properties}
+
+Let \( A, B \subseteq \mathbb{R}^n \), \( x_0 \in A \), and \( f, g : A \subseteq \mathbb{R}^n \rightarrow \mathbb{R}^m \) be differentiable functions.
+
+\begin{enumerate}
+    \item \( \lambda f(x) \) is differentiable at \( x_0 \), where \( \lambda \in \mathbb{R} \). The derivative is given by:
+    
+    \[
+    D(\lambda f(x_0)) = \lambda D(f(x_0))
+    \]
+
+    \item \( f(x) + g(x) \) is differentiable at \( x_0 \). The derivative is given by:
+
+    \[
+    D(f(x_0) + g(x_0)) = D(f(x_0)) + D(g(x_0))
+    \]
+
+    \item \( f(x) \cdot g(x) \) is differentiable at \( x_0 \). The derivative is given by:
+    
+    \[
+    D(f(x_0) \cdot g(x_0)) = D(f(x_0)) \cdot g(x_0) + f(x_0) \cdot D(g(x_0))
+    \]
+
+    \item \( \dfrac{f(x)}{g(x)} \) is differentiable at \( x_0 \), provided \( g(x_0) \neq 0 \). The derivative is given by:
+    
+    \[
+    D\left( \frac{f(x_0)}{g(x_0)} \right) = \frac{D(f(x_0)) \cdot g(x_0) - f(x_0) \cdot D(g(x_0))}{(g(x_0))^2}
+    \]
+
+\end{enumerate}
+
+\subsection{Chain Rule}
+
+Let \( f : \mathbb{R}^m \rightarrow \mathbb{R}^n \) and \( g : \mathbb{R}^n \rightarrow \mathbb{R}^k \). If \( x_0 \in \mathbb{R}^m \) and \( f(x_0) \in \mathbb{R}^n \), then \( (g \circ f)(x) = g(f(x)) \) is differentiable at \( x_0 \). The derivative is given by:
+\[
+D(g \circ f)(x_0) = Dg(f(x_0)) \cdot Df(x_0)
+\]
+
+\subsection{Example}
+Given \( g(x, y) = (x^2 + y, y^2) \) and \( F(u, v) = (u + v, u, v^2) \), find \( D(F \circ g)(1, 1) \).
+
+\begin{align*}
+g : & \mathbb{R}^2 \rightarrow \mathbb{R}^2 \\
+f : & \mathbb{R}^2 \rightarrow \mathbb{R}^3
+\end{align*}
+
+\[
+g(x, y) = (x^2 + 1, y^2)
+\]
+\[
+f(x, y) = (u + v, u, v^2)
+\]
+
+\[
+(x, y) \rightarrow \left(g_1(x,y), g_2(x,y)\right) \rightarrow \left(f_1(g_1, g_2), f_2(g_1, g_2), f_3(g_1, g_2)\right)
+\]
+
+\[
+f(g_1(x,y), g_2(x,y)) = (x^2 + 1 + y^2, x^2 + 1, y^4) \rightarrow Df(x, y) = Jf(x, y)
+\]
+
+\[
+Dg(x, y) = Jg(x, y) = \begin{pmatrix}
+2x & 0 \\
+0 & 2y
+\end{pmatrix}
+\]
+
+\[
+Df(u, v) = Jf(u, v) = \begin{pmatrix}
+1 & 1 \\
+1 & 0 \\
+0 & 2v
+\end{pmatrix}
+\]
+
+\[
+D(f \circ g)(x, y) = D(f(g(x, y))) \cdot Dg(x, y) = \begin{pmatrix}
+1 & 1 \\
+1 & 0 \\
+0 & 2v
+\end{pmatrix} \cdot \begin{pmatrix}
+2x & 0 \\
+0 & 2y
+\end{pmatrix}
+\]
+
+\[
+D(F \circ g)(1, 1) = \begin{pmatrix}
+1 & 1 \\
+1 & 0 \\
+0 & 2
+\end{pmatrix} \cdot \begin{pmatrix}
+2 & 0 \\
+0 & 2
+\end{pmatrix}
+\]
+
+\[
+D(F \circ g)(1, 1) = \begin{pmatrix}
+2 & 2 \\
+2 & 0 \\
+0 & 4
+\end{pmatrix}
+\]
+
+\subsection*{Example}
+\( f(x,y) = \left( \tan \dfrac{y}{x} - x + y, \log \dfrac{y+1}{x} \right) \), \( g(s,t) = \left( t \cdot \cos s, e^t, s - 2t \right) \) and \( h(u, v, w) = uv^2 \cdot e^w \)
+
+\[
+F = h \circ g \circ f
+\]
+\[
+DF(x, y) = D(h(g(f)(x, y))) \cdot D(g(f(x, y))) \cdot D(f(x, y))
+\]
+
+\[
+Df(x, y) = \begin{pmatrix}
+-\dfrac{sec^2 \dfrac{y}{x} \cdot y}{x^2} - 1 & \dfrac{sec^2 \dfrac{y}{x}}{x} + 1 \\
+-\dfrac{1}{x} & \dfrac{1}{y+1}
+\end{pmatrix}
+\]
+
+\[
+Dg(s, t) = \begin{pmatrix}
+-t \cdot \sin s & \cos s \\
+0 & e^t \\
+1 & -2
+\end{pmatrix}
+\]
+
+\[
+Dh(u, v, w) = \begin{pmatrix}
+v^2 \cdot e^w & 2uv \cdot e^w & uv^2 \cdot e^w
+\end{pmatrix}
+\]
+
+\subsection*{Example}
+
+Particle of mass $m$ following a trajectory $s(t) \in \mathbb{R}^3$
+
+According to Newton's law, the field force satisfies
+\[ F = -\nabla V \quad \text{with} \quad V = \text{potential function} \]
+
+Prove that the total energy is constant $E(t) = E_k + E_p = c$
+
+Following $s(t)$ we find $F(s(t)) = -\nabla V(s(t))$
+
+Taking the arbitrary times $t_1, t_2$
+\[ \int_{t_1}^{t_2} F(s(t)) \cdot d(s(t)) = -\int_{t_1}^{t_2} \nabla V(s(t)) \cdot s'(t) \, dt \quad \text{(chain rule)} \]
+
+\[ -\left( V(s(t_2)) - V(s(t_1)) \right) \]
+
+Thanks to Newton's second law
+\[ F = m \, s''(t) \]
+
+\[ \int_{t_1}^{t_2} F(s(t)) \cdot s'(t) \, dt = \int_{t_1}^{t_2} m \, s''(t) \cdot s'(t) \, dt = \left[ \frac{m \| s'(t) \|^2}{2} \right]_{t_1}^{t_2} \]
+
+\[ = \frac{m \| s'(t_2) \|^2}{2} - \frac{m \| s'(t_1) \|^2}{2} \]
+
+\[ E(t) = \frac{m \| s'(t) \|^2}{2} + V(s(t)) \]
+
+\subsection*{Example}
+$$ f(x,y) = \begin{cases} \dfrac{2xy}{2x^2 + y^2} & (x,y) \neq (0,0) \\ 0 & (x,y) = (0,0) \end{cases} $$
+
+Partial Derivatives: $$ \frac{\partial f(x,y)}{\partial x} = \lim_{t \to 0} \frac{f(t,0) - f(0,0)}{t} = 0 $$ $$ \frac{\partial f(x,y)}{\partial y} = \lim_{k \to 0} \frac{f(0,k) - f(0,0)}{k} = 0 $$
+
+Differentiability at (0,0): $$ \lim_{(x,y) \to (0,0)} \frac{\dfrac{2xy}{2x^2 + y^2}}{\sqrt{x^2 + y^2}} = \lim_{(x,y) \to (0,0)} \frac{2xy}{\sqrt{x^2 + y^2} \left(2x^2 + y^2\right)} $$ $$ \begin{cases}x = r \cos \theta \\ y = r \sin \theta \end{cases}$$ $$ \lim_{r \to 0} \frac{2 \cos \theta \sin \theta}{r \left(2 \cos^2 \theta + \sin^2 \theta\right)} = \infty \quad f \text{ is not differentiable at } (0,0) $$
+
+Directional derivative following $v = \left(\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\right)$:
+
+$$ \text{Using } D_v f(0, 0) = \inner{\nabla f(0, 0)}{v} = \inner{\left(0, 0\right)}{\left(\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\right)} = 0 $$
+$$ D_v f(0, 0) = \lim_{t \to 0} \frac{f(0, 0) + tv) - f(0, 0)}{t} = \lim_{t \to 0} \frac{f(tv) - f(0, 0)}{t} = \lim_{t \to 0} \frac{\dfrac{2t^2}{2}}{\dfrac{2t^2}{2} + \dfrac{t^2}{2}} = \frac{2}{3} $$
 \end{document}
