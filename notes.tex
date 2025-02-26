@@ -2597,7 +2597,7 @@ Let \( f : \mathbb{R}^m \rightarrow \mathbb{R}^n \) and \( g : \mathbb{R}^n \rig
 D(g \circ f)(x_0) = Dg(f(x_0)) \cdot Df(x_0)
 \]
 
-\subsection{Example}
+\subsection*{Example}
 Given \( g(x, y) = (x^2 + y, y^2) \) and \( F(u, v) = (u + v, u, v^2) \), find \( D(F \circ g)(1, 1) \).
 
 \begin{align*}
@@ -2732,4 +2732,257 @@ Directional derivative following $v = \left(\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2
 
 $$ \text{Using } D_v f(0, 0) = \inner{\nabla f(0, 0)}{v} = \inner{\left(0, 0\right)}{\left(\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\right)} = 0 $$
 $$ D_v f(0, 0) = \lim_{t \to 0} \frac{f(0, 0) + tv) - f(0, 0)}{t} = \lim_{t \to 0} \frac{f(tv) - f(0, 0)}{t} = \lim_{t \to 0} \frac{\dfrac{2t^2}{2}}{\dfrac{2t^2}{2} + \dfrac{t^2}{2}} = \frac{2}{3} $$
+
+
+\subsection*{Problem 17}
+Use a tree diagram to write out the Chain Rule for the given case. Assume all functions
+are differentiable.
+\[
+\mathbf{a)} \quad u = f(x, y), \quad x = x(r, s, t), \quad y = y(r, s, t)
+\]
+\[
+(r, s, t) \rightarrow (x(r, s, t), y(r, s, t)) \rightarrow f(x(r, s, t), y(r, s, t))
+\]
+\[
+\mathbb{R}^3 \rightarrow \mathbb{R}^2 \rightarrow \mathbb{R}
+\]
+
+\[
+D(f \circ g)(r, s, t) = D(f(g(r, s, t))) \cdot Dg(r, s, t)
+\]
+\[
+D(f \circ g)(r, s, t) = Df(x(r, s, t), y(r, s, t)) \cdot \begin{pmatrix}
+    \dfrac{\partial x}{\partial r} & \dfrac{\partial x}{\partial s} & \dfrac{\partial x}{\partial t} \\
+    \dfrac{\partial y}{\partial r} & \dfrac{\partial y}{\partial s} & \dfrac{\partial y}{\partial t}
+\end{pmatrix}
+\]
+\[
+D(f \circ g)(r, s, t) = \begin{pmatrix}
+    \dfrac{\partial f}{\partial x} & \dfrac{\partial f}{\partial y}
+\end{pmatrix} \cdot \begin{pmatrix}
+    \dfrac{\partial x}{\partial r} & \dfrac{\partial x}{\partial s} & \dfrac{\partial x}{\partial t} \\
+    \dfrac{\partial y}{\partial r} & \dfrac{\partial y}{\partial s} & \dfrac{\partial y}{\partial t}
+\end{pmatrix}
+\]
+\[
+D(f \circ g)(r, s, t) = \begin{pmatrix}
+    \dfrac{\partial f}{\partial x} \cdot \dfrac{\partial x}{\partial r} + \dfrac{\partial f}{\partial y} \cdot \dfrac{\partial y}{\partial r} & \dfrac{\partial f}{\partial x} \cdot \dfrac{\partial x}{\partial s} + \dfrac{\partial f}{\partial y} \cdot \dfrac{\partial y}{\partial s} & \dfrac{\partial f}{\partial x} \cdot \dfrac{\partial x}{\partial t} + \dfrac{\partial f}{\partial y} \cdot \dfrac{\partial y}{\partial t}
+\end{pmatrix}
+\]
+
+\[ \mathbf{b)} \quad w = f(x, y, z), \quad x = x(u, v), \quad y = y(u, v), \quad z = z(u, v) \]
+\[ (u, v) \rightarrow (x(u, v), y(u, v), z(u, v)) \rightarrow f(x(u, v), y(u, v), z(u, v)) \]
+\[ \mathbb{R}^2 \rightarrow \mathbb{R}^3 \rightarrow \mathbb{R} \]
+
+\[ D(f \circ g)(u, v) = D(f(g(u, v))) \cdot Dg(u, v) \]
+\[ D(f \circ g)(u, v) = Df(x(u, v), y(u, v), z(u, v)) \cdot \begin{pmatrix}
+    \dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v} \\
+    \dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v} \\
+    \dfrac{\partial z}{\partial u} & \dfrac{\partial z}{\partial v}
+\end{pmatrix} \]
+\[ D(f \circ g)(u, v) = \begin{pmatrix}
+    \dfrac{\partial f}{\partial x} & \dfrac{\partial f}{\partial y} & \dfrac{\partial f}{\partial z}
+\end{pmatrix} \cdot \begin{pmatrix}
+    \dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v} \\
+    \dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v} \\
+    \dfrac{\partial z}{\partial u} & \dfrac{\partial z}{\partial v}
+\end{pmatrix} \]
+\[ D(f \circ g)(u, v) = \begin{pmatrix}
+    \dfrac{\partial f}{\partial x} \big|_{g(u, v)} \cdot \dfrac{\partial x}{\partial u} + \dfrac{\partial f}{\partial y} \big|_{g(u, v)} \cdot \dfrac{\partial y}{\partial u} + \dfrac{\partial f}{\partial z} \big|_{g(u, v)} \cdot \dfrac{\partial z}{\partial u} \\
+    \dfrac{\partial f}{\partial x} \big|_{g(u, v)} \cdot \dfrac{\partial x}{\partial v} + \dfrac{\partial f}{\partial y} \big|_{g(u, v)} \cdot \dfrac{\partial y}{\partial v} + \dfrac{\partial f}{\partial z} \big|_{g(u, v)} \cdot \dfrac{\partial z}{\partial v}
+\end{pmatrix}^t \]
+
+\subsection*{Problem 12}
+
+Let \( f : \mathbb{R}^3 \rightarrow \mathbb{R} \) be differentiable. Making the transformation to spherical coordinates, compute \(\frac{\partial f}{\partial \rho}\), \(\frac{\partial f}{\partial \theta}\), and \(\frac{\partial f}{\partial \phi}\) in terms of \(\frac{\partial f}{\partial x}\), \(\frac{\partial f}{\partial y}\), and \(\frac{\partial f}{\partial z}\).
+
+The transformation to spherical coordinates is given by:
+\[
+\begin{cases}
+x = \rho \sin(\phi) \cos(\theta) \\
+y = \rho \sin(\phi) \sin(\theta) \\
+z = \rho \cos(\phi)
+\end{cases}
+\]
+
+\[
+(\rho, \theta, \phi) \rightarrow (x(\rho, \theta, \phi), y(\rho, \theta, \phi), z(\rho, \theta, \phi)) \rightarrow f(x(\rho, \theta, \phi), y(\rho, \theta, \phi), z(\rho, \theta, \phi))
+\]
+
+\[
+\frac{\partial f}{\partial \rho} = \frac{\partial f}{\partial x} \cdot \frac{\partial x}{\partial \rho} + \frac{\partial f}{\partial y} \cdot \frac{\partial y}{\partial \rho} + \frac{\partial f}{\partial z} \cdot \frac{\partial z}{\partial \rho} = \frac{\partial f}{\partial x} \cdot \sin(\phi) \cos(\theta) + \frac{\partial f}{\partial y} \cdot \sin(\phi) \sin(\theta) + \frac{\partial f}{\partial z} \cdot \cos(\phi)
+\]
+\[
+\frac{\partial f}{\partial \theta} = \frac{\partial f}{\partial x} \cdot \frac{\partial x}{\partial \theta} + \frac{\partial f}{\partial y} \cdot \frac{\partial y}{\partial \theta} + \frac{\partial f}{\partial z} \cdot \frac{\partial z}{\partial \theta} = -\frac{\partial f}{\partial x} \cdot \rho \sin(\phi) \sin(\theta) + \frac{\partial f}{\partial y} \cdot \rho \sin(\phi) \cos(\theta)
+\]
+\[
+\frac{\partial f}{\partial \phi} = \frac{\partial f}{\partial x} \cdot \frac{\partial x}{\partial \phi} + \frac{\partial f}{\partial y} \cdot \frac{\partial y}{\partial \phi} + \frac{\partial f}{\partial z} \cdot \frac{\partial z}{\partial \phi} = \frac{\partial f}{\partial x} \cdot \rho \cos(\phi) \cos(\theta) + \frac{\partial f}{\partial y} \cdot \rho \cos(\phi) \sin(\theta) - \frac{\partial f}{\partial z} \cdot \rho \sin(\phi)
+\]
+
+\section{Linearization}
+\[
+\text{Recall:   if } \exists \hspace{0.3cm} \frac{\partial f}{\partial x}, \quad \text{then } \exists \hspace{0.3cm} \frac{\partial f}{\partial y}
+\]
+
+\[
+\lim_{(h_1,h_2) \to (x_0, y_0)} \frac{f(x,y) - f(x_0, y_0) - \frac{\partial f}{\partial x} \big|_{(x_0, y_0)} h_1 - \frac{\partial f}{\partial y} \big|_{(x_0, y_0)} h_2}{\sqrt{h_1^2 + h_2^2}} = 0
+\]
+
+With \( h_1 = x - x_0 \) and \( h_2 = y - y_0 \), we have:
+\[
+\lim_{(x,y) \to (x_0, y_0)} \frac{f(x,y) - f(x_0, y_0) - \frac{\partial f}{\partial x} \big|_{(x_0, y_0)} (x - x_0) - \frac{\partial f}{\partial y} \big|_{(x_0, y_0)} (y - y_0)}{\sqrt{(x - x_0)^2 + (y - y_0)^2}} = 0
+\]
+
+\[
+f : \mathbb{R}^n \rightarrow \mathbb{R}^m \quad \text{is differentiable at } x_0 \in \mathbb{R}^n
+\]
+
+\[
+\lim_{h \to 0} \frac{f(x_0 + h) - f(x_0) - Df\big|_{x_0} \cdot h}{\| h \|} = 0
+\]
+
+With $h \in \mathbb{R}^n$, $\quad h = t \cdot v$, $t \to 0 \implies h \to 0$
+\[
+\lim_{t \to 0} \frac{f(x_0 + t \cdot v) - f(x_0) - Df\big|_{x_0} \cdot t \cdot v}{t} = 0
+\]
+
+With $\|v\| = 1$ and $\|h\| = t$
+
+\subsection{Proposition}
+If $f : U \subset \mathbb{R}^n \rightarrow \mathbb{R}^m$, $U$ open in $\mathbb{R}^n$ is differentiable at $x_0 \in U$, then $f$ is continuous at $x_0$, then all the directional derivatives exist at $x_0$.
+\[
+D_v f(x_0) = Df \cdot v = Jf \cdot v
+\]
+
+\paragraph{Proof}
+\[
+v \in \mathbb{R}^n, \quad D_v f = \lim_{t \to 0} \frac{f(x_0 + t \cdot v) - f(x_0)}{t} = \lim_{t \to 0} \frac{Df \big|_{x_0} \cdot t \cdot v}{t} = Df \big|_{x_0} \cdot v
+\]
+
+\subsection{Special cases}
+\[
+f : \mathbb{R}^n \rightarrow \mathbb{R}, \quad \text{differentiable at } x_0, \text{ scalar function}
+\]
+\[
+D_v f = \nabla f = \begin{pmatrix}
+    \dfrac{\partial f}{\partial x_1} \\
+    \vdots \\
+    \dfrac{\partial f}{\partial x_n}
+\end{pmatrix}^t \cdot \begin{pmatrix}
+    v_1 \\
+    \vdots \\
+    v_n
+\end{pmatrix} = \dfrac{\partial f}{\partial x_1} \cdot v_1 + \ldots + \dfrac{\partial f}{\partial x_n} \cdot v_n
+= \inner{\nabla f}{v}
+\]
+
+\[
+f : \mathbb{R}^2 \rightarrow \mathbb{R}
+\]
+\[
+D_{(1,0)} f = \begin{pmatrix}
+    \dfrac{\partial f}{\partial x} \\
+    \dfrac{\partial f}{\partial y}
+\end{pmatrix}^t \cdot \begin{pmatrix}
+    1 \\
+    0
+\end{pmatrix} = \dfrac{\partial f}{\partial x}
+\]
+
+\[
+D_{(0,1)} f = \begin{pmatrix}
+    \dfrac{\partial f}{\partial x} \\
+    \dfrac{\partial f}{\partial y}
+\end{pmatrix}^t \cdot \begin{pmatrix}
+    0 \\
+    1
+\end{pmatrix} = \dfrac{\partial f}{\partial y}
+\]
+
+\[
+D_{v_1, v_2} f = \begin{pmatrix}
+    \dfrac{\partial f}{\partial x} \\
+    \dfrac{\partial f}{\partial y}
+\end{pmatrix}^t \cdot \begin{pmatrix}
+    v_1 \\
+    v_2
+\end{pmatrix} = \dfrac{\partial f}{\partial x} \cdot v_1 + \dfrac{\partial f}{\partial y} \cdot v_2
+\]
+\[ v_1 + v_2 = 1 \]
+
+\[
+f : \mathbb{R}^n \rightarrow \mathbb{R}^m
+\]
+\[
+D_{(1,0, \ldots, 0)} f = \begin{pmatrix}
+    \dfrac{\partial f_1}{\partial x_1} \\
+    \vdots \\
+    \dfrac{\partial f_m}{\partial x_1}
+\end{pmatrix}^t \cdot \begin{pmatrix}
+    1 \\
+    0 \\
+    \vdots \\
+    0
+\end{pmatrix} = \begin{pmatrix}
+    \dfrac{\partial f_1}{\partial x_1} \\
+    \vdots \\
+    \dfrac{\partial f_m}{\partial x_1}
+\end{pmatrix}
+\]
+
+\[
+D_{(0,1, \ldots, 0)} f = \begin{pmatrix}
+    \dfrac{\partial f_1}{\partial x_1} \\
+    \vdots \\
+    \dfrac{\partial f_m}{\partial x_1}
+\end{pmatrix}^t \cdot \begin{pmatrix}
+    0 \\
+    1 \\
+    \vdots \\
+    0
+\end{pmatrix} = \begin{pmatrix}
+    \dfrac{\partial f_1}{\partial x_2} \\
+    \vdots \\
+    \dfrac{\partial f_m}{\partial x_2}
+\end{pmatrix}
+\]
+
+\subsection{Mean Value Theorem}
+\[
+f(b) - f(a) = f'(c) \cdot (b - a)
+\]
+
+In vectorial calculus, the mean value theorem is only for scalar functions.
+
+\paragraph{Theorem}
+Let $U \subset \mathbb{R}^n$ be open, $f : U \rightarrow \mathbb{R}$ be differentiable, and $[a,b] \subset U$. Then, $\forall x \in (a,b)$, $\exists c \in (a,b)$ such that
+\[
+f(b) - f(a) = Df \big|_c \cdot (b - a) = \nabla f \big|_c \cdot (b - a)
+\]
+
+\paragraph{Proof}
+We need to use the chain rule:
+\[
+(1 - t) \cdot a + t \cdot b, \quad t \in [0,1], \quad [0,1] \rightarrow U
+\]
+\[
+g(t) = f((1 - t) \cdot a + t \cdot b)
+\]
+
+We apply the mean value theorem for one variable in $[0,1]$:
+\[
+g(1) - g(0) = g'(t_0) \cdot (1 - 0)
+\]
+
+\[
+g'(c) = Df \big|_{(1 - t_0) \cdot a + t_0 \cdot b} \cdot (b - a)
+\]
+
+Let $c = (1 - t_0) \cdot a + t_0 \cdot b$, then:
+\[
+f(b) - f(a) = Df \big|_c \cdot (b - a) = \nabla f \big|_c \cdot (b - a)
+\]
+
+\subsection{Theorem}
+If $U \subset \mathbb{R}^n$ is open, $f : U \rightarrow \mathbb{R}^m$ and all the partial derivatives exist and are continuous on a point $a$, then $f$ is differentiable at $a$ and $Df \big|_a = Jf \big|_a$.
 \end{document}
