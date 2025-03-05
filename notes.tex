@@ -2985,4 +2985,366 @@ f(b) - f(a) = Df \big|_c \cdot (b - a) = \nabla f \big|_c \cdot (b - a)
 
 \subsection{Theorem}
 If $U \subset \mathbb{R}^n$ is open, $f : U \rightarrow \mathbb{R}^m$ and all the partial derivatives exist and are continuous on a point $a$, then $f$ is differentiable at $a$ and $Df \big|_a = Jf \big|_a$.
+
+\subsection*{Example}
+\[
+f(x,y) = 
+\begin{cases}
+    (x^4 + y^4) \cdot \sin \left( \dfrac{1}{x^4 + y^4} \right) & (x,y) \neq (0,0) \\
+    0 & (x,y) = (0,0)
+\end{cases}
+\]
+Is $f$ continuous at $(0,0)$?
+
+\[
+\left| sin \left( \dfrac{1}{x^4 + y^4} \right) \right| \leq 1, \quad \text{is bounded}
+\]
+
+\[
+\implies \exists \hspace{0.3cm} \lim_{(x,y) \to (0,0)} (x^4 + y^4) \cdot \sin \left( \dfrac{1}{x^4 + y^4} \right) = 0
+\]
+
+\[
+\frac{\partial f}{\partial x} \big|_{(0,0)} = \lim_{h \to 0} \frac{f(h,0) - f(0,0)}{h} = \lim_{h \to 0} \frac{h^4 \cdot \sin \left( \dfrac{1}{h^4} \right)}{h} = 0
+\]
+
+\[
+\frac{\partial f}{\partial y} \big|_{(0,0)} = \lim_{k \to 0} \frac{f(0,k) - f(0,0)}{k} = \lim_{k \to 0} \frac{k^4 \cdot \sin \left( \dfrac{1}{k^4} \right)}{k} = 0
+\]
+
+\[
+\implies f \text{ is continuous at } (0,0)
+\]
+
+Is $f$ differentiable at $(0,0)$?
+
+\[
+\lim_{(x,y) \to (0,0)} \frac{f(x,y) - f(0,0) - \frac{\partial f}{\partial x} \big|_{(0,0)} x - \frac{\partial f}{\partial y} \big|_{(0,0)} y}{\sqrt{x^2 + y^2}} = 
+\]
+\[
+= \lim_{(x,y) \to (0,0)} \frac{(x^4 + y^4) \cdot \sin \left( \dfrac{1}{x^4 + y^4} \right) - 0 - 0 \cdot x - 0 \cdot y}{\sqrt{x^2 + y^2}}, \quad \text{where } \sin \left( \dfrac{1}{x^4 + y^4} \right) \text{ is bounded}
+\]
+
+\[
+\lim_{(x,y) \to (0,0)} \frac{(x^4 + y^4)}{\sqrt{x^2 + y^2}} = \lim_{(x,y) \to (0,0)} \frac{x^4 + y^4}{\sqrt{x^2 + y^2}} = \lim_{(x,y) \to (0,0)} \frac{x^4}{\sqrt{x^2 + y^2}} + \lim_{(x,y) \to (0,0)} \frac{y^4}{\sqrt{x^2 + y^2}}
+\]
+
+\[
+\frac{x^4}{\sqrt{x^2 + y^2}} = \frac{x}{\sqrt{x^2 + y^2}} \cdot x^3 = 0, \quad \text{because } \left| \frac{x}{\sqrt{x^2 + y^2}} \right| \leq 1
+\]
+
+\[
+\frac{y^4}{\sqrt{x^2 + y^2}} = \frac{y}{\sqrt{x^2 + y^2}} \cdot y^3 = 0, \quad \text{because } \left| \frac{y}{\sqrt{x^2 + y^2}} \right| \leq 1
+\]
+
+\[
+\implies \lim_{(x,y) \to (0,0)} \frac{(x^4 + y^4)}{\sqrt{x^2 + y^2}} = 0
+\implies f \text{ is differentiable at } (0,0)
+\]
+
+\subsection{Higher Order Partial Derivatives}
+Let $f : U \subset \mathbb{R}^n \rightarrow \mathbb{R}$, then:
+\begin{center}
+    \begin{tikzpicture}[
+        level 1/.style={sibling distance=40mm},
+        level 2/.style={sibling distance=20mm},
+        edge from parent/.style={draw, -latex}
+    ]
+    \node {f(x,y)}
+        child {node {$\frac{\partial f}{\partial x} (x,y)$}
+            child {node {$\frac{\partial^2 f}{\partial x^2} = f_{xx}$}}
+            child {node {$\frac{\partial^2 f}{\partial x \partial y} = f_{xy}$}}
+        }
+        child {node {$\frac{\partial f}{\partial y} (x,y)$}
+            child {node {$\frac{\partial^2 f}{\partial y \partial x} = f_{yx}$}}
+            child {node {$\frac{\partial^2 f}{\partial y^2} = f_{yy}$}}
+        };
+    \end{tikzpicture}
+\end{center}
+
+\[
+\nabla f = \begin{pmatrix}
+    \dfrac{\partial f}{\partial x} &
+    \dfrac{\partial f}{\partial y}
+\end{pmatrix}
+\]
+
+\subsection*{Hessian Matrix}
+\[
+H = \begin{pmatrix}
+    f_{xx} & f_{xy} \\
+    f_{yx} & f_{yy}
+\end{pmatrix}
+\]
+
+\subsection{Partial Differential Equations (PDEs)}
+\subsection*{Problem 2}
+\[
+u(x,y,z) = \frac{1}{\sqrt{x^2 + y^2 + z^2}}, \quad (x,y,z) \neq (0,0,0)
+\]
+Where $u$ satisfies the PDE:
+\[
+u_{xx} + u_{yy} + u_{zz} = 0, \quad \text{which is } \Delta u = 0, \quad \textbf{Laplace's equation}
+\]
+
+\[
+u = (x^2 + y^2 + z^2)^{-\frac{1}{2}}
+\]
+\[
+u_x = -\frac{1}{2} \cdot (x^2 + y^2 + z^2)^{-\frac{3}{2}} \cdot 2x 
+\]
+\[
+u_{xx} = \frac{3}{4} \cdot (x^2 + y^2 + z^2)^{-\frac{5}{2}} \cdot 2x^2 - \frac{1}{2} \cdot (x^2 + y^2 + z^2)^{-\frac{3}{2}}
+\]
+\[
+u_{yy} = \frac{3}{4} \cdot (x^2 + y^2 + z^2)^{-\frac{5}{2}} \cdot 2y^2 - \frac{1}{2} \cdot (x^2 + y^2 + z^2)^{-\frac{3}{2}}
+\]
+\[
+u_{zz} = \frac{3}{4} \cdot (x^2 + y^2 + z^2)^{-\frac{5}{2}} \cdot 2z^2 - \frac{1}{2} \cdot (x^2 + y^2 + z^2)^{-\frac{3}{2}}
+\]
+
+\[
+u_{xx} + u_{yy} + u_{zz} = \frac{6}{4} \left(3(x^2 + y^2 + z^2)^{-5} - (x^2 + y^2 + z^2)^{-\frac{3}{2}} \right) = 0
+\]
+
+\subsection*{Problem 1}
+\[
+u_t = \alpha^2 u_{xx}, \quad \text{where } \alpha^2 \text{ is known as the diffusion coefficient in the } \textbf{heat equation}
+\]
+
+\[
+u(x,t) = e^{-\alpha k^2 t} \cdot \sin(kx)
+\]
+\[
+u_t = -\alpha k^2 e^{-\alpha k^2 t} \cdot \sin(kx)  
+\]
+\[
+u_{x} = e^{-\alpha k^2 t} \cdot k \cdot \cos(kx)
+\]
+\[
+u_{xx} = -e^{-\alpha k^2 t} \cdot k^2 \cdot \sin(kx)
+\]
+
+\subsection*{Problem 4c}
+\[
+u(x,t) = (x - at)^6 + (x + at)^6
+\]
+\[
+u_{tt} = a^2 u_{xx} \quad \text{is known as the } \textbf{Wave equation}
+\]
+
+\subsection{Cross Derivatives}
+\[
+\text{When it is true that } \frac{\partial^2 f}{\partial x \partial y} = \frac{\partial^2 f}{\partial y \partial x}
+\]
+
+\paragraph{Theorem:} \textbf{Equality of Crossed Partial Derivatives} \\
+Let $f : U \subset \mathbb{R}^n \rightarrow \mathbb{R}$ be defined on an open set $U$ and such that the partial derivatives $\frac{\partial f}{\partial x_i}$ and $\frac{\partial f}{\partial x_j}$ exist and are differentiable at $a \in U$. Then, $\forall x_i, x_j \in U$, it is true that:
+\[
+\frac{\partial^2 f}{\partial x_i \partial x_j} = \frac{\partial^2 f}{\partial x_j \partial x_i}, \quad \text{at } a
+\]
+
+\paragraph{Example}
+\[ f(x,y) = 
+\begin{cases}
+    xy \cdot \dfrac{x^2 - y^2}{x^2 + y^2} & (x,y) \neq (0,0) \\
+    0 & (x,y) = (0,0)
+\end{cases}
+\]
+
+\[
+\frac{\partial}{\partial x} \left(\frac{\partial}{\partial y} f\right) \big|_{(0,0)} \neq \frac{\partial}{\partial y} \left(\frac{\partial}{\partial x} f\right) \big|_{(0,0)}
+\]
+
+\[
+\frac{\partial f}{\partial x} = 
+\begin{cases}
+    \dfrac{4x^2y^3 + x^4y - y^5}{(x^2 + y^2)^2} & (x,y) \neq (0,0) \\
+    \lim_{t \to 0} \dfrac{f(t,0) - f(0,0)}{t} = 0 & (x,y) = (0,0)
+\end{cases}
+\]
+
+\[
+\frac{\partial f}{\partial y} =
+\begin{cases}
+    \dfrac{x^5 - 4x^3y^2 - xy^4}{(x^2 + y^2)^2} & (x,y) \neq (0,0) \\
+    \lim_{t \to 0} \dfrac{f(0,t) - f(0,0)}{t} = 0 & (x,y) = (0,0)
+\end{cases}
+\]
+
+\[
+\frac{\partial^2 f}{\partial x \partial y} \big|_{(0,0)} = \lim_{t \to 0} \dfrac{\dfrac{\partial f}{\partial x}(0,t) - \dfrac{\partial f}{\partial x}(0,0)}{t} = \lim_{t \to 0} \dfrac{\dfrac{h^5}{h^4} - 0}{h} = 1   
+\]
+
+\[
+\frac{\partial^2 f}{\partial y \partial x} \big|_{(0,0)} = \lim_{t \to 0} \dfrac{\dfrac{\partial f}{\partial y}(0,t) - \dfrac{\partial f}{\partial y}(0,0)}{t} = \lim_{t \to 0} \dfrac{-\dfrac{h^5}{h^4} - 0}{h} = -1   
+\]
+
+\subsection{Theorem}
+Let $f : U \subset \mathbb{R}^n \rightarrow \mathbb{R}$ be defined on an open set $U$ and such that all the partial derivatives exist and are continuous at $a \in U$. Then, $f$ is differentiable at $a$ and its differential is given by the Jacobian matrix $Jf \big|_a$.
+
+\paragraph{Proof}
+\[
+\lim_{h \to 0} \frac{f(a + h) - f(a) - Jf \big|_a \cdot h}{\| h \|} = 0
+\]
+
+\[
+a = \begin{pmatrix}
+    a_1 \\
+    a_2 \\
+    \vdots \\
+    a_n
+\end{pmatrix}, \quad h = \begin{pmatrix}
+    h_1 \\
+    h_2 \\
+    \vdots \\
+    h_n
+\end{pmatrix}
+\]
+
+\[
+a + h = \begin{pmatrix}
+    a_1 + h_1 \\
+    a_2 + h_2 \\
+    \vdots \\
+    a_n + h_n
+\end{pmatrix} - \begin{pmatrix}
+    a_1 \\
+    a_2 + h_2\\
+    \vdots \\
+    a_n + h_n
+\end{pmatrix} + \begin{pmatrix}
+    a_1 \\
+    a_2 + h_2 \\
+    \vdots \\
+    a_n + h_n
+\end{pmatrix} + \ldots - \begin{pmatrix}
+    a_1 \\
+    a_2 \\
+    \vdots \\
+    a_n + h_n
+\end{pmatrix} + \begin{pmatrix}
+    a_1 \\
+    a_2 \\
+    \vdots \\
+    a_n + h_n
+\end{pmatrix}
+\]
+
+\[
+f(a + h) = f\begin{pmatrix}
+    a_1 + h_1 \\
+    a_2 + h_2 \\
+    \vdots \\
+    a_n + h_n
+\end{pmatrix} - f\begin{pmatrix}
+    a_1 \\
+    a_2 + h_2\\
+    \vdots \\
+    a_n + h_n
+\end{pmatrix} + f\begin{pmatrix}
+    a_1 \\
+    a_2 + h_2 \\
+    \vdots \\
+    a_n + h_n
+\end{pmatrix} + \ldots - f\begin{pmatrix}
+    a_1 \\
+    a_2 \\
+    \vdots \\
+    a_n + h_n
+\end{pmatrix} + f\begin{pmatrix}
+    a_1 \\
+    a_2 \\
+    \vdots \\
+    a_n + h_n
+\end{pmatrix}
+\]
+
+\[
+f(a + h) - f(a) = f\begin{pmatrix}
+    a_1 + h_1 \\
+    a_2 + h_2 \\
+    \vdots \\
+    a_n + h_n
+\end{pmatrix} - f\begin{pmatrix}
+    a_1 \\
+    a_2 + h_2\\
+    \vdots \\
+    a_n + h_n
+\end{pmatrix} + f\begin{pmatrix}
+    a_1 \\
+    a_2 + h_2 \\
+    \vdots \\
+    a_n + h_n
+\end{pmatrix} + \ldots - f\begin{pmatrix}
+    a_1 \\
+    a_2 \\
+    \vdots \\
+    a_n + h_n
+\end{pmatrix} + f\begin{pmatrix}
+    a_1 \\
+    a_2 \\
+    \vdots \\
+    a_n + h_n
+\end{pmatrix} - f\begin{pmatrix}
+    a_1 \\
+    a_2 \\
+    \vdots \\
+    a_n
+\end{pmatrix}
+\]
+
+\[
+f(a + h) - f(a) = D_{v_1} f \cdot h_1 + D_{v_2} f \cdot h_2 + \ldots + D_{v_n} f \cdot h_n
+\]
+
+\[
+\text{Where } v_i = \begin{pmatrix}
+    0 \\
+    \vdots \\
+    1 \\
+    \vdots \\
+    0
+\end{pmatrix} \text{ is the } i \text{th unit vector}
+\]
+
+\[
+f(a + h) - f(a) = \begin{pmatrix}
+    \dfrac{\partial f_1}{\partial x_1} \\
+    \vdots \\
+    \dfrac{\partial f_m}{\partial x_1}
+\end{pmatrix} \cdot h_1 + \begin{pmatrix}
+    \dfrac{\partial f_1}{\partial x_2} \\
+    \vdots \\
+    \dfrac{\partial f_m}{\partial x_2}
+\end{pmatrix} \cdot h_2 + \ldots + \begin{pmatrix}
+    \dfrac{\partial f_1}{\partial x_n} \\
+    \vdots \\
+    \dfrac{\partial f_m}{\partial x_n}
+\end{pmatrix} \cdot h_n
+\]
+
+So:
+\[
+\begin{pmatrix}
+    \dfrac{\partial f_1}{\partial x_1} \big|_{x_1} & \dfrac{\partial f_1}{\partial x_2} \big|_{x_2} & \ldots & \dfrac{\partial f_1}{\partial x_n} \big|_{x_n} \\
+    \dfrac{\partial f_2}{\partial x_1} \big|_{x_1} & \dfrac{\partial f_2}{\partial x_2} \big|_{x_2} & \ldots & \dfrac{\partial f_2}{\partial x_n} \big|_{x_n} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    \dfrac{\partial f_m}{\partial x_1} \big|_{x_1} & \dfrac{\partial f_m}{\partial x_2} \big|_{x_2} & \ldots & \dfrac{\partial f_m}{\partial x_n} \big|_{x_n}
+\end{pmatrix} \begin{pmatrix}
+    h_1 \\
+    h_2 \\
+    \vdots \\
+    h_n
+\end{pmatrix}
+\]
+
+Finally:
+\[
+\lim_{h \to 0} \frac{f(a + h) - f(a) - Jf \big|_a \cdot h}{\| h \|} = \frac{Jf h - Jf \big|_a h}{\| h \|} = \frac{(Jf - Jf \big|_a) \cdot h}{\| h \|} = 0
+\]
+\[
+Jf \big| \to Jf \big|_a \quad \text{as } h \to 0
+\]
+
 \end{document}
