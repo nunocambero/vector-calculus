@@ -2,7 +2,6 @@
 
 % Increase main memory size
 \usepackage{etex}
-\reserveinserts{1000}
 \usepackage{morewrites}
 \usepackage{multicol}
 \usepackage{pgfplots}
@@ -11,7 +10,6 @@
 \tikzexternalize[prefix=cached_models/]
 
 \usepackage{etex}
-\reserveinserts{1000}
 \usepackage{morewrites}
 
 \listfiles
@@ -2517,7 +2515,7 @@ z - p_3
         \item \textbf{Gradient:} \\
         \( \nabla f(x, y, z) = \left(\dfrac{1}{y^2}, -\dfrac{2x}{y^3}, -1\right) \)
         \item \textbf{Gradient at (-2, 2, 1):} \\
-        \( \nabla f(-2, 2, 1) = \left(\dfrac{1}{4}, -\dfrac{1}{2}, -1\right) \)
+        \( \nabla f(-2, 2, 1) = \left(\dfrac{1}{4}, \dfrac{1}{2}, -1\right) \)
         \item \textbf{Tangent Plane:} \\
         \( \nabla f(-2, 2, 1) \cdot \begin{pmatrix}
         x + 2 \\
@@ -3173,7 +3171,7 @@ Let $f : U \subset \mathbb{R}^n \rightarrow \mathbb{R}$ be defined on an open se
 \]
 
 \[
-\frac{\partial^2 f}{\partial x \partial y} \big|_{(0,0)} = \lim_{t \to 0} \dfrac{\dfrac{\partial f}{\partial x}(0,t) - \dfrac{\partial f}{\partial x}(0,0)}{t} = \lim_{t \to 0} \dfrac{\dfrac{h^5}{h^4} - 0}{h} = 1   
+\frac{\partial^2 f}{\partial x \partial y} \big|_{(0,0)} = \lim_{t \to 0} \dfrac{\dfrac{\partial f}{\partial x}(t,0) - \dfrac{\partial f}{\partial x}(0,0)}{t} = \lim_{t \to 0} \dfrac{\dfrac{h^5}{h^4} - 0}{h} = 1   
 \]
 
 \[
@@ -3345,6 +3343,151 @@ Finally:
 \]
 \[
 Jf \big| \to Jf \big|_a \quad \text{as } h \to 0
+\]
+
+\subsection{Proof of the Chain Rule}
+
+Let \( U \subseteq \mathbb{R}^m, V \subseteq \mathbb{R}^n \) be open sets. Let \( g: U \to V \) and \( f: V \to \mathbb{R}^p \) be mappings, and let \( a \) be a point in \( U \). If \( g \) is differentiable at \( a \) and \( f \) is differentiable at \( g(a) \), then \( f \circ g \) is differentiable at \( a \) and
+\[
+D(f \circ g)(a) = Df(g(a)) \cdot Dg(a).
+\]
+
+We define two "remainder" functions, \( r \) and \( s \):
+\begin{itemize}
+    \item \( r \): difference between the increment to \( g \) and its linear approximation at \( a \),
+    \item \( s \): difference between the increment to \( f \) and its linear approximation at \( g(a) \).
+\end{itemize}
+
+We know that \( g \) is differentiable at \( a \):
+\[
+g(a+h) = g(a) + Dg|_a \, h + r(h),
+\]
+where
+\[
+r(h) = g(a+h) - g(a) - Dg|_a \, h.
+\]
+
+This represents the increase to \( g \) relative to its linear approximation at \( a \). Then,
+\[
+\lim_{h \to 0} \frac{r(h)}{\|h\|} = 0.
+\]
+
+We know that \( f \) is differentiable at \( g(a) \):
+\[
+f(g(a) + k) = f(g(a)) + Df|_{g(a)} \, k + s(k),
+\]
+
+where
+\[
+s(k) = f(g(a) + k) - f(g(a)) - Df|_{g(a)} \, k.
+\]
+
+This represents the increase to \( f \) relative to its linear approximation at \( g(a) \). Then,
+\[
+\lim_{k \to 0} \frac{s(k)}{\|k\|} = 0,
+\]
+
+we have:
+\[
+f(g(a+h)) = f(g(a) + Dg|_a h + r(h)),
+\]
+
+where we treat \( Dg|_a h + r(h) \) as \( k \).
+
+Expanding further:
+\[
+f(g(a+h)) = f(g(a)) + Df|_{g(a)} [Dg|_a h + r(h)] + s(Dg|_a h + r(h)),
+\]
+\[
+= f(g(a)) + Df|_{g(a)} Dg|_a h + [Df|_{g(a)} r(h) + s(Dg|_a h + r(h))].
+\]
+
+Subtract \( f(g(a)) \):
+\[
+f(g(a+h)) - f(g(a)) = Df|_{g(a)} Dg|_a h + \text{remainder}.
+\]
+
+Thus, the linear approximation of the composition is:
+\[
+Df|_{g(a)} Dg|_a h,
+\]
+
+with the remainder terms:
+\[
+Df|_{g(a)} r(h) + s(Dg|_a h + r(h)).
+\]
+
+Now, we need to prove that:
+\[
+\lim_{h \to 0} \frac{f(g(a+h)) - f(g(a)) - Df|_{g(a)} Dg|_a h}{\|h\|} = 0,
+\]
+
+since:
+\[
+\lim_{h \to 0} \frac{Df|_{g(a)} r(h) + s(Dg|_a h + r(h))}{\|h\|} = 0.
+\]
+
+For the first term:
+\[
+\|Df|_{g(a)} r(h)\| \leq \|Df|_{g(a)}\| \|r(h)\|,
+\]
+
+and:
+\[
+\lim_{h \to 0} \frac{\|Df|_{g(a)} r(h)\|}{\|h\|} \leq \|Df|_{g(a)}\| \lim_{h \to 0} \frac{\|r(h)\|}{\|h\|} = 0.
+\]
+
+For the second part:
+\[
+\lim_{h \to 0} \frac{s(Dg|_a h + r(h))}{\|h\|} = 0.
+\]
+
+There exists \( \delta > 0 \) such that \( \|r(h)\| \leq \|h\| \) when \( \|h\| \leq \delta \). Thus:
+\[
+\|Dg|_a h + r(h)\| \leq \|Dg|_a h\| + \|r(h)\| \leq (\|Dg|_a\| + 1) \|h\|.
+\]
+
+Also, for any \( \epsilon > 0 \), there exists \( 0 < \delta' \leq \delta \) such that when \( \|k\| \leq \delta' \):
+\[
+\frac{\|s(h)\|}{\|k\|} \leq \epsilon.
+\]
+\[
+\| Dg|_{a} h + r(h) \| \leq \delta'
+\]
+
+Substitute for \( \| k \| \) in the equation:
+\[
+\| s(k) \| \leq \epsilon \| k \|
+\]
+\[
+\| s(Dg|_{a} h + r(h)) \| \leq \epsilon \| Dg|_{a} h + r(h) \|
+\]
+
+where $\|s(Dg|_{a} h + r(h))\| = s(k)$ 
+\[
+s(k) \leq \epsilon \left( \| Dg|_{a} \| + 1 \right) \| h \|
+\]
+
+Divide by $\| h \|$:
+\[
+\frac{\| s(Dg|_{a} h + r(h)) \|}{\| h \|} \leq \epsilon \left( \| Dg|_{a} \| + 1 \right)
+\]
+
+since this is true for all $\epsilon > 0$, we have:
+\[
+\lim_{h \to 0} \frac{\| s(Dg|_{a} h + r(h)) \|}{\| h \|} = 0
+\]
+
+\[
+\lim_{h \to 0} \frac{Df|_{g(a)} r(h) + s(Dg|_{a} h + r(h))}{\| h \|} = 0
+\]
+
+\[
+\lim_{h \to 0} \frac{f(g(a+h)) - f(g(a)) - Df|_{g(a)} Dg|_{a} h}{\| h \|} = 0
+\]
+
+\[
+Df|_{g(a)} Dg|_{a} = D(f \circ g)|_{a}
 \]
 
 \end{document}
