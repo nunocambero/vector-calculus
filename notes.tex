@@ -394,7 +394,7 @@ A = xy-\text{plane in } \mathbb{R}^3 = \{(x,y,0) \in \mathbb{R}^3\}
 
 This set is closed, and $B_R(x, R) \cap A = \emptyset$ and $B_R(x, R) \cap (\mathbb{R}^3 \setminus A) = \emptyset$.
 
-Therefore, $A$ is will not be compact.
+Therefore, $A$ is not compact.
 
 \subsection*{Example: (Exercise 11b)}
 \[
@@ -460,7 +460,7 @@ Check if the vectors are orthogonal:
 a = (-5,3,7), \quad b = (6,-8,2)
 \]
 \[
-a \cdot b = -30 - 24 + 14 = -40 != 0
+a \cdot b = -30 - 24 + 14 = -40 \neq 0
 \]
 So $a$ and $b$ are not orthogonal.
 
@@ -1099,7 +1099,7 @@ r = \sqrt{x^2 + y^2}, \quad \theta = \arctan\left(\frac{y}{x}\right)
 \]
 
 \paragraph{Lemma}
-Let $A = (0, \inf) \times (0, 2\pi)$. 
+Let $A = (0, \infty) \times (0, 2\pi)$. 
 
 The function $g : A \rightarrow \mathbb{R}^2$ defined by $g(r, \theta) = (r \cos(\theta), r \sin(\theta))$ is a bijection, \\
 continuous in a ball $B(0, \alpha)$ such that $\{g(r, \theta), 0 < r < \alpha, 0 -leq \theta < 2\pi\}$ is a subset of $B(0, \alpha)$.
@@ -1226,11 +1226,10 @@ $\rho$ is the distance from the origin, $\phi$ is the angle from the $z$-axis, a
 \end{center}
 
 \subsection*{Example: (Problem 6)}
-Transform into spherical coordinates:
+Transform from spherical coordinates to cartesian coordinates:
 \[
-(1,0,0) = (1 \sin(\phi) \cos(\theta), 1 \sin(\phi) \sin(\theta), 1 \cos(\phi)) = (0,0,1)
+(1,0,0) = (1 \sin(0) \cos(0), 1 \sin(0) \sin(0), 1 \cos(0)) = (0,0,1)
 \]
-
 \[
 (2,\frac{\pi}{3},\frac{\pi}{4}) = (2 \sin(\frac{\pi}{4}) \cos(\frac{\pi}{3}), 2 \sin(\frac{\pi}{4}) \sin(\frac{\pi}{3}), 2 \cos(\frac{\pi}{4})) = (\sqrt{3}, 1, \sqrt{2})
 \]
@@ -1409,7 +1408,7 @@ Parametrize the intersection (a curve $\gamma(t) = (\gamma_1(t), \gamma_2(t), \g
 \begin{cases}
     x = 2\cos(t) = \gamma_1(t) \\
     y = 2\sin(t) = \gamma_2(t) \\
-    z = 2\cos(t)\sin(t) = \gamma_3(t)
+    z = 4\cos(t)\sin(t) = \gamma_3(t)
 \end{cases}
 \text{ where } t \in [0, 2\pi)
 \]
@@ -1453,7 +1452,7 @@ Parametrize the intersection (a curve $\gamma(t) = (\gamma_1(t), \gamma_2(t), \g
 \begin{cases}
     x = t \\
     y = t^2 \\
-    z = 4t^2 + t^4
+    z = 4t^2 + t^2 = 5t^2
 \end{cases}
 \]
 
@@ -1573,7 +1572,7 @@ Prove that
 \]
 
 \[
-\text{Let } \epsilon > 0, \quad \text{we must find } \delta > 0 \text{ such taht } \left|\sqrt{x^2 + y^2} \sin\left(\frac{1}{x^2 + y^2}\right)\right| < \epsilon
+\text{Let } \epsilon > 0, \quad \text{we must find } \delta > 0 \text{ such that } \left|\sqrt{x^2 + y^2} \sin\left(\frac{1}{x^2 + y^2}\right)\right| < \epsilon
 \]
 
 \[
@@ -1800,10 +1799,15 @@ a) $lim_{(x,y) \to (0,0)} f(x,y) = 0$ along any path going through $y = mx^\alph
             view={120}{30},
             samples=200,
             colormap/cool,
-        ]
-        \addplot3[
+            grid=both,
+            minor tick num=1,
+            major grid style={line width=.2pt,draw=gray!50},
+            minor grid style={line width=.1pt,draw=gray!30},
             domain=-2:2,
             y domain=-2:2,
+            shader=interp
+        ]
+        \addplot3[
             surf,
             opacity=0.5
         ]
