@@ -1506,9 +1506,9 @@ We say that the limit of $f(x)$ as $x$ approaches $x_0$ is $L$ and we denote it 
 \]
 
 \subsection{Definition of the limit}
-We say that $\lim_{x \to x_0} f(x) = L$ if for every $\epsilon > 0$ there exists $\delta > 0$ such that:
+We say that $\lim_{x \to x_0} f(x) = L$ if for every $\varepsilon > 0$ there exists $\delta > 0$ such that:
 \[
-\forall x \in \mathbb{R}^N, \quad 0 < ||x - x_0|| < \delta \implies |f(x) - L| < \epsilon
+\forall x \in \mathbb{R}^N, \quad 0 < ||x - x_0|| < \delta \implies |f(x) - L| < \varepsilon
 \]
 
 \paragraph{Theorem}
@@ -1524,17 +1524,17 @@ B(L_1, r_1) \cap B(L_2, r_2) = \emptyset
 
 Where $B(L_1, r_1)$ is the ball of radius $r_1$ centered at $L_1$ and $B(L_2, r_2)$ is the ball of radius $r_2$ centered at $L_2$.
 \[
-\lim_{x \to x_0} f(x) = L_1, \quad \text{for any } \epsilon_1 > 0, \quad \exists \delta_1 > 0 \text{ such that } |f(x) - L_1| < \epsilon_1 \text{ for } 0 < ||x - x_0|| < \delta_1
+\lim_{x \to x_0} f(x) = L_1, \quad \text{for any } \varepsilon_1 > 0, \quad \exists \delta_1 > 0 \text{ such that } |f(x) - L_1| < \varepsilon_1 \text{ for } 0 < ||x - x_0|| < \delta_1
 \]
 \[
-\lim_{x \to x_0} f(x) = L_2, \quad \text{for any } \epsilon_2 > 0, \quad \exists \delta_2 > 0 \text{ such that } |f(x) - L_2| < \epsilon_2 \text{ for } 0 < ||x - x_0|| < \delta_2
+\lim_{x \to x_0} f(x) = L_2, \quad \text{for any } \varepsilon_2 > 0, \quad \exists \delta_2 > 0 \text{ such that } |f(x) - L_2| < \varepsilon_2 \text{ for } 0 < ||x - x_0|| < \delta_2
 \]
 
 Indeed, 
 \[
 \begin{cases}
-    |f(x) - L_1| < r_1 = \epsilon_1 \\
-    |f(x) - L_2| < r_2 = \epsilon_2
+    |f(x) - L_1| < r_1 = \varepsilon_1 \\
+    |f(x) - L_2| < r_2 = \varepsilon_2
 \end{cases}
 \implies \text{However, taking } \delta = \min(\delta_1, \delta_2) \text{ so that } ||x - x_0|| < \delta
 \]
@@ -1560,10 +1560,10 @@ Using the definition of the limit, we can compute the limit of a function $f(x)$
 
 Then:
 \[
-0 < \sqrt{(x - x_0)^2 + (y - y_0)^2} < \delta \implies |f(x,y) - L| < \epsilon
+0 < \sqrt{(x - x_0)^2 + (y - y_0)^2} < \delta \implies |f(x,y) - L| < \varepsilon
 \]
 
-Hence, we must find $\delta \cong \delta(\epsilon)$.
+Hence, we must find $\delta \cong \delta(\varepsilon)$.
 
 \subsection*{Example:}
 Prove that 
@@ -1572,7 +1572,7 @@ Prove that
 \]
 
 \[
-\text{Let } \epsilon > 0, \quad \text{we must find } \delta > 0 \text{ such that } \left|\sqrt{x^2 + y^2} \sin\left(\frac{1}{x^2 + y^2}\right)\right| < \epsilon
+\text{Let } \varepsilon > 0, \quad \text{we must find } \delta > 0 \text{ such that } \left|\sqrt{x^2 + y^2} \sin\left(\frac{1}{x^2 + y^2}\right)\right| < \varepsilon
 \]
 
 \[
@@ -1580,11 +1580,11 @@ Prove that
 \]
 
 \[
-\text{We have } \left|\sqrt{x^2 + y^2} \sin\left(\frac{1}{x^2 + y^2}\right)\right| \leq \sqrt{x^2 + y^2} < \epsilon
+\text{We have } \left|\sqrt{x^2 + y^2} \sin\left(\frac{1}{x^2 + y^2}\right)\right| \leq \sqrt{x^2 + y^2} < \varepsilon
 \]
 
 \[
-\text{Therefore, we can choose } \delta = \epsilon
+\text{Therefore, we can choose } \delta = \varepsilon
 \]
 
 \subsection*{Example:}
@@ -1594,7 +1594,7 @@ Prove that
 \]
 
 \[
-\text{Let } \epsilon > 0, \quad \text{we must find } \delta > 0 \text{ such that } ||f(x) - b|| = |y - b| < \epsilon
+\text{Let } \varepsilon > 0, \quad \text{we must find } \delta > 0 \text{ such that } ||f(x) - b|| = |y - b| < \varepsilon
 \]
 \[
 \text{when } ||(x,y) - (a,b)|| = \sqrt{(x-a)^2 + (y-b)^2} < \delta
@@ -1604,7 +1604,7 @@ Prove that
 \text{We start from } |y - b| \leq \sqrt{(x-a)^2 + (y-b)^2} < \delta
 \]
 \[
-\text{Therefore, we can choose } \delta = \epsilon
+\text{Therefore, we can choose } \delta = \varepsilon
 \]
 
 \subsection{Iterative limits}
@@ -1849,8 +1849,8 @@ lim_{(x,y) \to (a,a^4)} f(x,y) =
 \[
 ||(x,y) - (a,a^4)|| < \delta \implies
 \begin{cases}
-    0 < |f(x,y)| = 1 < \epsilon & \text{if } y < x^4 \\
-    0 < |f(x,y)| = 0 < \epsilon & \text{if } y > x^4
+    0 < |f(x,y)| = 1 < \varepsilon & \text{if } y < x^4 \\
+    0 < |f(x,y)| = 0 < \varepsilon & \text{if } y > x^4
 \end{cases}
 \]
 
@@ -2208,10 +2208,10 @@ Heuristically it means the construction of a tangent plane.
 Let $A \subset \mathbb{R}^2$ be an open subset in $\mathbb{R}^2$ such that $(x,y) \in A$, with $f : A \rightarrow \mathbb{R}$ a scalar function. We say that $f$ is differentiable at $(x_0, y_0)$ if: 
 \begin{enumerate}
     \item $\dfrac{\partial f}{\partial x}(x_0, y_0)$ and $\dfrac{\partial f}{\partial y}(x_0, y_0)$ exist.
-    \item $\lim_{(x,y) \to (x_0, y_0)} \dfrac{f(x,y) - f(x_0, y_0) - \dfrac{\partial f}{\partial x}(x_0, y_0)(x - x_0) - \dfrac{\partial f}{\partial y}(x_0, y_0)(y - y_0)}{\sqrt{(x - x_0)^2 + (y - y_0)^2}} = 0$
+    \item $\lim_{(x,y) \to (x_0, y_0)} \dfrac{f(x,y) - f(x_0, y_0) - \dfrac{\partial f}{\partial x}\big|_{(x_0, y_0)}(x - x_0) - \dfrac{\partial f}{\partial y}\big|_{(x_0, y_0)}(y - y_0)}{\sqrt{(x - x_0)^2 + (y - y_0)^2}} = 0$
 \end{enumerate}
 
-To be differentiable we say that there exists a tangent plane at $(x_0, y_0)$:
+For a function to be differentiable we say that there exists a tangent plane at $(x_0, y_0)$:
 \[
 z = f(x_0, y_0) + A(x - x_0) + B(y - y_0)
 \]
@@ -2261,7 +2261,7 @@ f(x,y) = xy, \quad \frac{\partial f}{\partial x} = y, \quad \frac{\partial f}{\p
 
 \subsection*{Problem 4c}
 \[
-f(x,y) = \sqrt{^2 + y^2}, \quad \frac{\partial f}{\partial x} = \frac{x}{\sqrt{x^2 + y^2}}, \quad \frac{\partial f}{\partial y} = \frac{y}{\sqrt{x^2 + y^2}}
+f(x,y) = \sqrt{x^2 + y^2}, \quad \frac{\partial f}{\partial x} = \frac{x}{\sqrt{x^2 + y^2}}, \quad \frac{\partial f}{\partial y} = \frac{y}{\sqrt{x^2 + y^2}}
 \]
 
 \subsection*{Problem 5a}
@@ -2307,8 +2307,8 @@ JF(x,y) =
 \begin{pmatrix}
     \dfrac{\partial y}{\partial x} & \dfrac{\partial y}{\partial y} \\
     \dfrac{\partial x}{\partial x} & \dfrac{\partial x}{\partial y} \\
-    \dfrac{\partial xy}{\partial x} & \dfrac{\partial xy}{\partial y} \\
-    \dfrac{\partial y^2 - x^2}{\partial x} & \dfrac{\partial y^2 - x^2}{\partial y}
+    \dfrac{\partial (xy)}{\partial x} & \dfrac{\partial (xy)}{\partial y} \\
+    \dfrac{\partial (y^2 - x^2)}{\partial x} & \dfrac{\partial (y^2 - x^2)}{\partial y}
 \end{pmatrix} =
 \begin{pmatrix}
     0 & 1 \\
@@ -2419,7 +2419,7 @@ The limit does not exist, therefore the function is not continuous at $(0,0)$. T
 
 Direction of any vector at $(0,0)$:
 \[
-D_(u,v) f(0,0) = \lim_{t \to 0} \frac{f(tu, tv) - f(0,0)}{t \|(u,v)\|}
+D_{(u,v)} f(0,0) = \lim_{t \to 0} \frac{f(tu, tv) - f(0,0)}{t \|(u,v)\|}
 \]
 
 Assume $\|(u,v)\| = 1$:
@@ -2527,8 +2527,8 @@ z - p_3
         z - 1
         \end{pmatrix} = 0 \)
         \item \textbf{Equation:} \\
-        \( \dfrac{1}{4}(x + 2) - \dfrac{1}{2}(y - 2) - (z - 1) = 0 \) \\
-        \( \dfrac{1}{4}x - \dfrac{1}{2}y - z = -\dfrac{1}{2} \)
+        \( \dfrac{1}{4}(x + 2) + \dfrac{1}{2}(y - 2) - (z - 1) = 0 \) \\
+        \( \dfrac{1}{4}x + \dfrac{1}{2}y - z = 0 \)
     \end{itemize}
 \end{multicols}
 
@@ -2544,7 +2544,7 @@ Let \( A \subseteq \mathbb{R}^n \), \( x_0 \in A \), and \( f: A \subseteq \math
 Then, \( f \) is differentiable at \( x_0 \).
 
 \subsection*{Problem 9}
-Given \( f(x,y) = e^{\left(\dfrac{1}{x^2 + y^2}\right)} \) for \( (x,y) \neq (0,0) \) and \( f(0,0) = 0 \):
+Given \( f(x,y) = e^{\left(\frac{1}{x^2 + y^2}\right)} \) for \( (x,y) \neq (0,0) \) and \( f(0,0) = 0 \):
 \begin{itemize}
     \item[a)] Show that \( f \) is differentiable at \( (0,0) \).
     \item[b)] Prove the existence of the tangent plane at \( (0,0) \).
@@ -2600,7 +2600,7 @@ D(g \circ f)(x_0) = Dg(f(x_0)) \cdot Df(x_0)
 \]
 
 \subsection*{Example}
-Given \( g(x, y) = (x^2 + y, y^2) \) and \( F(u, v) = (u + v, u, v^2) \), find \( D(F \circ g)(1, 1) \).
+Given \( g(x, y) = (x^2 + y, y^2) \) and \( F(u, v) = (u + v, u, v^2) \), find \( D(F \circ g)\big|_{(1, 1)} \).
 
 \begin{align*}
 g : & \mathbb{R}^2 \rightarrow \mathbb{R}^2 \\
@@ -2638,7 +2638,7 @@ Df(u, v) = Jf(u, v) = \begin{pmatrix}
 \]
 
 \[
-D(f \circ g)(x, y) = D(f(g(x, y))) \cdot Dg(x, y) = \begin{pmatrix}
+D(f \circ g)\big|_{(x, y)} = D(f(g(x, y))) \cdot Dg(x, y) = \begin{pmatrix}
 1 & 1 \\
 1 & 0 \\
 0 & 2v
@@ -2649,7 +2649,7 @@ D(f \circ g)(x, y) = D(f(g(x, y))) \cdot Dg(x, y) = \begin{pmatrix}
 \]
 
 \[
-D(F \circ g)(1, 1) = \begin{pmatrix}
+D(F \circ g)\big|_{(1, 1)} = \begin{pmatrix}
 1 & 1 \\
 1 & 0 \\
 0 & 2
@@ -2660,7 +2660,7 @@ D(F \circ g)(1, 1) = \begin{pmatrix}
 \]
 
 \[
-D(F \circ g)(1, 1) = \begin{pmatrix}
+D(F \circ g)\big|_{(1, 1)} = \begin{pmatrix}
 2 & 2 \\
 2 & 0 \\
 0 & 4
@@ -2674,7 +2674,7 @@ D(F \circ g)(1, 1) = \begin{pmatrix}
 F = h \circ g \circ f
 \]
 \[
-DF(x, y) = D(h(g(f)(x, y))) \cdot D(g(f(x, y))) \cdot D(f(x, y))
+DF(x, y) = D(h(g(f(x, y)))) \cdot D(g(f(x, y))) \cdot D(f(x, y))
 \]
 
 \[
@@ -3451,9 +3451,9 @@ There exists \( \delta > 0 \) such that \( \|r(h)\| \leq \|h\| \) when \( \|h\| 
 \|Dg|_a h + r(h)\| \leq \|Dg|_a h\| + \|r(h)\| \leq (\|Dg|_a\| + 1) \|h\|.
 \]
 
-Also, for any \( \epsilon > 0 \), there exists \( 0 < \delta' \leq \delta \) such that when \( \|k\| \leq \delta' \):
+Also, for any \( \varepsilon > 0 \), there exists \( 0 < \delta' \leq \delta \) such that when \( \|k\| \leq \delta' \):
 \[
-\frac{\|s(h)\|}{\|k\|} \leq \epsilon.
+\frac{\|s(h)\|}{\|k\|} \leq \varepsilon.
 \]
 \[
 \| Dg|_{a} h + r(h) \| \leq \delta'
@@ -3461,23 +3461,23 @@ Also, for any \( \epsilon > 0 \), there exists \( 0 < \delta' \leq \delta \) suc
 
 Substitute for \( \| k \| \) in the equation:
 \[
-\| s(k) \| \leq \epsilon \| k \|
+\| s(k) \| \leq \varepsilon \| k \|
 \]
 \[
-\| s(Dg|_{a} h + r(h)) \| \leq \epsilon \| Dg|_{a} h + r(h) \|
+\| s(Dg|_{a} h + r(h)) \| \leq \varepsilon \| Dg|_{a} h + r(h) \|
 \]
 
 where $\|s(Dg|_{a} h + r(h))\| = s(k)$ 
 \[
-s(k) \leq \epsilon \left( \| Dg|_{a} \| + 1 \right) \| h \|
+s(k) \leq \varepsilon \left( \| Dg|_{a} \| + 1 \right) \| h \|
 \]
 
 Divide by $\| h \|$:
 \[
-\frac{\| s(Dg|_{a} h + r(h)) \|}{\| h \|} \leq \epsilon \left( \| Dg|_{a} \| + 1 \right)
+\frac{\| s(Dg|_{a} h + r(h)) \|}{\| h \|} \leq \varepsilon \left( \| Dg|_{a} \| + 1 \right)
 \]
 
-since this is true for all $\epsilon > 0$, we have:
+since this is true for all $\varepsilon > 0$, we have:
 \[
 \lim_{h \to 0} \frac{\| s(Dg|_{a} h + r(h)) \|}{\| h \|} = 0
 \]
