@@ -3490,4 +3490,350 @@ since this is true for all $\epsilon > 0$, we have:
 Df|_{g(a)} Dg|_{a} = D(f \circ g)|_{a}
 \]
 
+\subsection{Induced Norm}
+A matrix $A$ is a linear operator, because
+\[
+A(x + \alpha y) = A(x) + \alpha A(y)
+\]
+
+The induced norm of a matrix $A$ is defined as:
+\[
+\| A \| = \sup_{\|x\| = 1} \| A(x) \|
+\]
+\[
+\|x\| = \left(\sum_{i=1}^{n} x_i^2 \right)^{\frac{1}{2}} \implies \|A\| = \rho (AA^t)
+\]
+
+\subsection{Inverse Function Theorem for One Variable}
+Let $f : [a,b] \rightarrow [c,d]$ be a continuous function. $f(a) = c$ and $f(b) = d$. If $f$ is strictly increasing or decreasing in $[a,b]$, then $f$ is invertible and there exists g : [c,d] $\rightarrow$ [a,b] such that $g(f(x)) = x$ and $f(g(y)) = y$.
+
+If $f$ is differentiable at $x_0 \in (a,b)$ and $f'(x_0) \neq 0$, then $f$ is invertible in a neighborhood of $x_0$ and the inverse function $f^{-1}$ is differentiable at $f(x_0)$:
+\[
+(f^{-1})'(y) = \frac{1}{f'(x)} \quad \text{where } y = f(x)
+\]
+
+\subsection{Inverse Function Theorem for Higher Dimensions}
+\subsubsection{Preliminary Definitions}
+\paragraph{Lipschitz Condition}
+A function $f : U \subset \mathbb{R}^n \rightarrow \mathbb{R}^m$ differentiable in $U$ satisfies the Lipschitz condition in a subset $V \subset U$ if there exists a constant known as the Lipschitz ratio $M > 0$ for all $x,y \in V$:
+\[
+\forall x,y \in V, \quad \exists M > 0 \text{ such that } \| Df(x) - Df(y) \| \leq M \| x - y \|
+\]
+
+\subsection*{Example}
+\[
+f(x,y) = \begin{pmatrix}
+    x - y^2 & x^2 + y
+\end{pmatrix}
+\]
+
+\[
+Df = \begin{pmatrix}
+    1 & -2y \\
+    2x & 1
+\end{pmatrix}
+\]
+
+\[
+Df \begin{pmatrix}
+    x_1 \\
+    y_1
+\end{pmatrix} - Df \begin{pmatrix}
+    x_2 \\
+    y_2
+\end{pmatrix} = \begin{pmatrix}
+    1 & -2y_1 \\
+    2x_1 & 1
+\end{pmatrix} - \begin{pmatrix}
+    1 & -2y_2 \\
+    2x_2 & 1
+\end{pmatrix} = \begin{pmatrix}
+    0 & -2(y_1 - y_2) \\
+    2(x_1 - x_2) & 0
+\end{pmatrix}
+\]
+\[
+A_{ij}\big|_{1 \leq j \leq m}^{1 \leq i \leq n}, \quad |A| = \left(\sum_{i=1}^{n} \sum_{j=1}^{m} A_{ij}^2 \right)^{\frac{1}{2}}
+\]
+\[
+\left|Df \begin{pmatrix}
+    x_1 \\
+    y_1
+\end{pmatrix} - Df \begin{pmatrix}
+    x_2 \\
+    y_2
+\end{pmatrix}\right| = 2 \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2} = 2 \begin{pmatrix}
+    x_1 \\
+    y_1
+\end{pmatrix} - \begin{pmatrix}
+    x_2 \\
+    y_2
+\end{pmatrix}  = 2  x - y 
+\]
+
+\subsection*{Example}
+\[
+f(x,y) = \begin{pmatrix}
+    x - y^3 \\
+    x^3 - y
+\end{pmatrix}
+\]
+
+\[
+Df = \begin{pmatrix}
+    1 & -3y^2 \\
+    3x^2 & -1
+\end{pmatrix}
+\]
+
+\[
+Df \begin{pmatrix}
+    x_1 \\
+    y_1
+\end{pmatrix} - Df \begin{pmatrix}
+    x_2 \\
+    y_2
+\end{pmatrix} = \begin{pmatrix}
+    1 & -3y_1^2 \\
+    3x_1^2 & -1
+\end{pmatrix} - \begin{pmatrix}
+    1 & -3y_2^2 \\
+    3x_2^2 & -1
+\end{pmatrix} = \begin{pmatrix}
+    0 & -3(y_1^2 - y_2^2) \\
+    3(x_1^2 - x_2^2) & 0
+\end{pmatrix}
+\]
+\[
+\left|Df \begin{pmatrix}
+    x_1 \\
+    y_1
+\end{pmatrix} - Df \begin{pmatrix}
+    x_2 \\
+    y_2
+\end{pmatrix}\right| = 3 \sqrt{(x_1^2 - x_2^2)^2 + (y_1^2 - y_2^2)^2}
+\]
+
+If $(y_1 y_2)^2 \leq A^2$ and $(x_1 + x_2)^2 \leq A^2$, then: $M = 3A$.
+
+\paragraph{Best Constant for the Lipschitz Condition}
+The best constant for the Lipschitz condition $M^*$ is defined as:
+\[
+M^* = \inf M
+\]
+
+If we pick $x \in U \subset V$, $y \in U \subset V \implies x,y \in V$.
+\[
+\| Df(x) - Df(y) \| \leq M_V \| x - y \| \implies M_U < M_V
+\]
+
+\[
+B_{R_1}(x_0,x_1) \subset B_{R_2}(x_0,x_1) \implies M_{R_1} < M_{R_2}
+\]
+
+\subsubsection{Inverse Function Theorem for Higher Dimensions}
+Given a function $f : U \subset \mathbb{R}^n \rightarrow \mathbb{R}^n$ and an image $y$, we need to obtain an $x$ such that $f(x) = y$.
+
+If $y$ is fixed, then we say $x$ is a root of the function $f_y(x) = f(x) - y = 0$.
+
+\paragraph{Theorem}
+If $f$ is continuously differentiable in an open set $U \subset \mathbb{R}^n$ and $Df(x)$ is invertible in $x_0 \in U$, then $f$ is locally invertible, with differentiable inverse in some neighborhood of $f(x_0)$.
+\[
+Df \big|_{x_0}, \quad \exists (Df \big|_{x_0})^{-1}
+\]
+\[
+D(f^{-1}) = (Df)^{-1}
+\]
+
+\subsection*{Example}
+\[
+f(x,y) = \begin{pmatrix}
+    \sin (x + y) & x^2 - y^2
+\end{pmatrix}
+\]
+\[
+Df = \begin{pmatrix}
+    \cos (x + y) & \cos (x + y) \\
+    2x & -2y
+\end{pmatrix}
+\]
+
+If $det(Df)\big|_{(x_0,y_0)} \neq 0$, then $f$ is invertible at $(x_0,y_0)$ and there exists $(Df \big|_{(x_0,y_0)})^{-1}$
+\[
+det(Df \big|_{(x_0,y_0)}) = \cos (x_0 + y_0) \cdot (-2y_0) - 2x_0 \cdot \cos (x_0 + y_0) = -2 \cos (x_0 + y_0) (x_0 + y_0) \neq 0
+\]
+\[
+\implies x_0 + y_0 \neq \frac{\pi}{2} + k \pi, \quad k \in \mathbb{Z}
+\]
+\[
+x_0 + y_0 \neq 0
+\]
+
+\begin{center}
+    \tikzsetnextfilename{plot_xy}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = $x$,
+            ylabel = $y$,
+            xmin = -5, xmax = 5,
+            ymin = -5, ymax = 5,
+            width=10cm,
+            height=10cm,
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=100
+        ]
+        \addplot[
+            domain=-5:5,
+            samples=100,
+            color=red,
+            thick
+        ]
+        {-x};
+        \addplot[
+            domain=-5:5,
+            samples=100,
+            color=red,
+            thick
+        ]
+        {-x + 1};
+        \addplot[
+            domain=-5:5,
+            samples=100,
+            color=red,
+            thick
+        ]
+        {-x + 2};
+        \addplot[
+            domain=-5:5,
+            samples=100,
+            color=red,
+            thick
+        ]
+        {-x + 3};
+        \addplot[
+            domain=-5:5,
+            samples=100,
+            color=red,
+            thick
+        ]
+        {-x + 4};
+        \addplot[
+            domain=-5:5,
+            samples=100,
+            color=red,
+            thick
+        ]
+        {-x + 5};
+        \addplot[
+            domain=-5:5,
+            samples=100,
+            color=red,
+            thick
+        ]
+        {-x - 1};
+        \addplot[
+            domain=-5:5,
+            samples=100,
+            color=red,
+            thick
+        ]
+        {-x - 2};
+        \addplot[
+            domain=-5:5,
+            samples=100,
+            color=red,
+            thick
+        ]
+        {-x - 3};
+        \addplot[
+            domain=-5:5,
+            samples=100,
+            color=red,
+            thick
+        ]
+        {-x - 4};
+        \addplot[
+            domain=-5:5,
+            samples=100,
+            color=red,
+            thick
+        ]
+        {-x - 5};
+        \addplot[
+            domain=-5:5,
+            samples=100,
+            color=red,
+            thick
+        ]
+        {-x + 6};
+        \addplot[
+            domain=-5:5,
+            samples=100,
+            color=red,
+            thick
+        ]
+        {-x - 6};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+The function $f$ is invertible in the region $x + y \neq \frac{\pi}{2} + k \pi, k \in \mathbb{Z}$, $x + y \neq 0$, anywhere outside the red lines.
+
+\subsection{Newton Method}
+\[
+x_{n+1} = x_n - (Df\big|_{x_n})^{-1} f(x_n)
+\]
+\[
+x_n \rightarrow \alpha, \quad f(\alpha) = 0, \quad \text{where } \alpha \text{ is the solution of the application}
+\]
+
+\subsection{Theorem (Kontorovich, Nobel Prize Economics 1975)}
+Let $a_0$ be a point in $\mathbb{R}^n$, $\tilde{U}$ be an open neighborhood of $a_0$, and $f : \tilde{U} \rightarrow \mathbb{R}^n$ be a continuously differentiable function with its derivative $Df\big|_{a_0}$ invertible. Define 
+\[
+h_0 = - (Df\big|_{a_0})^{-1} f(a_0), \quad a_1 = a_0 + h_0
+\]
+
+Let $U_0 = B(a_1)$. If $U_0 \subset U$, and the derivative $Df$ satisfies the Lipschitz condition: 
+\[
+\| Df(u_1) - Df(u_2) \| \leq M \| u_1 - u_2 \|, \quad \forall u_1, u_2 \in U
+\]
+
+and
+\[
+\|f(a_0)\| \cdot \| (Df\big|_{a_0})^{-1} \| \cdot M < \frac{1}{2}
+\]
+
+is satisfied, the equation $f(x) = 0$ has a unique solution in $U$.
+
+\subsection{Inverse Function Theorem}
+Let $W \subset \mathbb{R}^n$ be an open neighborhood of $x_0$ and $f : W \rightarrow \mathbb{R}^n$ be a continuously differentiable function. If $Df(x_0)$ is invertible, then $f$ is invertible, with a continuously differentiable inverse in a neighborhood of $f(x_0)$.
+
+To clarify this statement, we will specify the radius $R$ of a ball $V$ centered at $x_0$, in which the inverse of the function $f$ is defined.
+
+Setting $L = Df\big|_{x_0}$, now we will define the following conditions:
+\begin{enumerate}
+    \item The ball $W_0$ of radius $2R \| L^{-1} \|$ centered at $x_0$ is contained in $W$.
+    \item In the ball $W_0$, the derivstive of $f$ satisfies the Lipschitz condition:
+    \[
+    \|Df(u) - Df(v)\| \leq \frac{1}{2R \|L^{-1}\|^2} \|u - v\|, \quad \forall u,v \in W_0
+    \]
+\end{enumerate}
+
+Then,
+\begin{enumerate}
+    \item There exists a unique continuous differentiable function $g : V \rightarrow W$ such that $f(g(y)) = y$ for all $y \in V$. By the chain rule,
+    \[
+    Df(g(y)) \cdot Dg(y) = I \implies Dg(y) = (Df(g(y)))^{-1}
+    \]
+    \item The image of $g$ contains the ball of radius $R_1$ centered at $x_0$:
+    \[
+    R_1 = 2R \|L^{-1}\|^2 \left( \sqrt{\|L\|^2 + \frac{1}{\|L^{-1}\|^2}} - \|L\| \right)
+    \]
+\end{enumerate}
+
+
+
+
 \end{document}
