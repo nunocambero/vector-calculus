@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Arch Linux) (preloaded format=pdflatex 2025.3.17)  19 MAR 2025 09:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Arch Linux) (preloaded format=pdflatex 2025.3.17)  19 MAR 2025 11:21
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -518,6 +518,11 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \float@box=\box115
 \@float@everytoks=\toks51
 \@floatcapt=\box116
+) (/usr/share/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks52
+\verbatim@line=\toks53
+\verbatim@in@stream=\read4
 ) (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary3d.code.tex
 File: tikzlibrary3d.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
@@ -525,21 +530,21 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count333
 \l__pdf_internal_box=\box117
 )
-No file cached_models/notes-figure5.aux.
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
+No file cached_models/3d_surface_plot.aux.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
 (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count334
@@ -547,12 +552,12 @@ LaTeX Font Info:    ... okay on input line 38.
 \scratchbox=\box118
 \nofMPsegments=\count335
 \nofMParguments=\count336
-\everyMPshowfont=\toks52
+\everyMPshowfont=\toks54
 \MPscratchCnt=\count337
 \MPscratchDim=\dimen306
 \MPnumerator=\count338
 \makeMPintoPDFobject=\count339
-\everyMPtoPDFconversion=\toks53
+\everyMPtoPDFconversion=\toks55
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -595,11 +600,11 @@ Package pgfplots notification 'compat/show suggested version=true': document has
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 40.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 41.
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 40.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 41.
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
@@ -695,7 +700,7 @@ A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to di
 
 
 
-Overfull \hbox (51.12245pt too wide) detected at line 3297
+Overfull \hbox (51.12245pt too wide) detected at line 3298
 \OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 a \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 h\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 a\OT1/cmr/m/n/10.95 ) = \OML/cmm/m/it/10.95 f [] \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 f [] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 f [] \OT1/cmr/m/n/10.95 + [] \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 f [] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 f [] \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 f []
  []
 
@@ -710,22 +715,20 @@ Overfull \hbox (51.12245pt too wide) detected at line 3297
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to disable this.
 
 
-\openout3 = `cached_models/notes-figure5.dpth'.
-
-Missing character: There is no . in font nullfont!
-Missing character: There is no 0 in font nullfont!
-Missing character: There is no 1 in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no t in font nullfont!
-\openout3 = `cached_models/notes-figure5.mw'.
-
-[42
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./cached_models/notes-figure5.mw)
-\openout3 = `cached_models/notes-figure5.mw'.
-
+A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to disable this.
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to disable this.
 
+
+
+
+\openout3 = `cached_models/3d_surface_plot.dpth'.
+
+\openout3 = `cached_models/3d_surface_plot.mw'.
+
+[44
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./cached_models/3d_surface_plot.mw)
+\openout3 = `cached_models/3d_surface_plot.mw'.
 
 
 
@@ -792,6 +795,7 @@ geometry.sty    2020/01/02 v5.9 Page Geometry
    array.sty    2024/10/17 v2.6g Tabular extension package (FMi)
 booktabs.sty    2020/01/12 v1.61803398 Publication quality tables
    float.sty    2001/11/08 v1.3d Float enhancements (AL)
+verbatim.sty    2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
 l3backend-pdftex.def    2024-05-08 L3 backend support: PDF output (pdfTeX)
 supp-pdf.mkii
 epstopdf-base.sty    2020-01-24 v2.11 Base part for package epstopdf
@@ -800,19 +804,19 @@ epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
     umsb.fd    2013/01/14 v3.01 AMS symbols B
  ***********
 
-\openout3 = `cached_models/notes-figure5.dpth'.
+\openout3 = `cached_models/3d_surface_plot.dpth'.
 
  ) 
 Here is how much of TeX's memory you used:
- 25364 strings out of 475171
- 651436 string characters out of 5767103
- 1141794 words of memory out of 5000000
- 47936 multiletter control sequences out of 15000+600000
+ 25493 strings out of 475171
+ 654408 string characters out of 5767103
+ 3422477 words of memory out of 5000000
+ 48063 multiletter control sequences out of 15000+600000
  571038 words of font info for 82 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 103i,14n,108p,753b,2088s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 103i,14n,108p,753b,2834s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on cached_models/notes-figure5.pdf (1 page, 27434 bytes).
+Output written on cached_models/3d_surface_plot.pdf (1 page, 118714 bytes).
 PDF statistics:
  26 PDF objects out of 1000 (max. 8388607)
  16 compressed objects within 1 object stream

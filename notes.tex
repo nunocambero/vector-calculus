@@ -20,6 +20,7 @@
 \usepackage{array}
 \usepackage{booktabs}
 \usepackage{float}
+\usepackage{verbatim}
 \usetikzlibrary{3d}
 
 % Page Layout
@@ -3836,6 +3837,297 @@ Then,
     R_1 = 2R \|L^{-1}\|^2 \left( \sqrt{\|L\|^2 + \frac{1}{\|L^{-1}\|^2}} - \|L\| \right)
     \]
 \end{enumerate}
+
+\subsection*{Example}
+\[
+f(x) = 2x + \sin x, \quad f : \mathbb{R} \rightarrow \mathbb{R}
+\]
+\[
+f : [-k \pi, k \pi] \rightarrow [-2k \pi, 2k \pi]
+\]
+
+\[
+f(-k \pi) = -2k \pi, \quad f(k \pi) = 2k \pi
+\]
+\[
+f'(x) = 2 + \cos x \neq 0, \quad \forall x \in \mathbb{R}
+\]
+
+Then, $f$ is invertible in $\mathbb{R}$ and $f^{-1}$ is differentiable, with derivative:
+\[
+(f^{-1})'(y) = \frac{1}{f'(x)} = \frac{1}{2 + \cos x}
+\]
+
+\subsection*{Example}
+\[
+f : \mathbb{R}^2 \rightarrow \mathbb{R}^2, \quad (t, \theta) \rightarrow (e^t \cos \theta, e^t \sin \theta)
+\]
+
+\begin{center}
+    \begin{tikzpicture}
+        % Cartesian coordinates
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = {$t$},
+            ylabel = {$\theta$},
+            xmin = -2, xmax = 2,
+            ymin = -2, ymax = 2,
+            width=7cm,
+            height=7cm,
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=100
+        ]
+        \addplot[only marks, mark=*, color=red] coordinates {(1, 1)};
+        \node at (axis cs:1, 1) [anchor=south west] {$(t, \theta)$};
+        \end{axis}
+    \end{tikzpicture}
+    $\implies$
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = {$x$},
+            ylabel = {$y$},
+            xmin = -5, xmax = 5,
+            ymin = -5, ymax = 5,
+            width=7cm,
+            height=7cm,
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=100
+        ]
+        \addplot[domain=0:2*pi, samples=100, color=blue, thick] ({exp(1)*cos(deg(x))}, {exp(1)*sin(deg(x))});
+        \addplot[only marks, mark=*, color=red] coordinates {cos 45 * exp(1), sin 45 * exp(1)};
+        \node at (axis cs:1, 3) [anchor=north] {$(e^t \cos \theta, e^t \sin \theta)$};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\[
+Df = \begin{pmatrix}
+    e^t \cos \theta & -e^t \sin \theta \\
+    e^t \sin \theta & e^t \cos \theta
+\end{pmatrix}
+\]
+
+As $det(Df) = e^{2t} \neq 0$, $f$ does not have a global inverse, but it does have a local inverse.
+
+\subsection*{Example}
+\[
+f(x) = x^3, \quad \text{at } x_0 = 0
+\]
+\[
+f'(x) = 3x^2, \quad f'(0) = 0
+\]
+\[
+f^{-1}(y) = \sqrt[3]{y}
+\]
+
+Is $f^{-1}$ differentiable at $y_0 = 0$?
+\[
+(f^{-1})'(y) = \frac{1}{3} y^{-\frac{2}{3}}, \quad (f^{-1})'(0) = \infty \text{ (does not exist)}
+\]
+
+\subsection{Kontorovich Theorem}
+\[
+h_0 = - (Df\big|_{a_0})^{-1} f(a_0), \quad a_1 = a_0 + h_0
+\]
+\[
+\|f(a_0)\| \cdot \| (Df\big|_{a_0})^{-1} \| \cdot M < \frac{1}{2}
+\]
+\[
+Df\big|_{a_0} \text{ is invertible and } = L
+\]
+\[
+M < \frac{1}{2} \cdot \frac{1}{\|f(a_0)\| \cdot \|L^{2}\|}
+\]
+
+$(Df)^{-1}$ exists in $x_0$ and $\exists$ $x \in U_0$ such that $f(x) = 0$.
+
+\subsubsection{Proof}
+Given $y \in V$, where $V = V_R(f(x_0))$, we want to find $x \in U$ such that $f(x) = y$ once $y$ is fixed.
+\[
+f_y(x) = f(x) - y, \quad x \text{ is a root of } f_y(x) = 0
+\]
+
+We apply Kontorovich's theorem to $f_y(x)$:
+\[
+f_y(x) = f(x) - y = y_0 - y
+\]
+\[
+\|f_y(x_0)\| = \|y_0 - y\| < R
+\]
+\[
+Df_y(x_0) = Df\big|_{x_0}, \quad \text{take care, } f_y(x) \text{ depends on } x.
+\]
+
+\[
+\|f_y(x_0)\| \cdot \|(Df_y(x_0))^{-1}\|^2 \cdot M < \frac{1}{2}
+\]
+\[
+\|f_y(x_0)\| \cdot \|(Df_y(x_0))^{-1}\|^2 \cdot M = \|y_0 - y\| \cdot L^2 \cdot M < \frac{1}{2}
+\]
+
+\[
+M < \frac{1}{2RL^2}
+\]
+\[
+f_y(x) = f(x) - y, \quad Df_y = Df
+\]
+
+Lipschitz constant for $f_y(x)$ and $f(x)$:
+\[
+\|Df_y(u) - Df_y(v)\| = \|Df(u) - Df(v)\| \leq M \|u - v\|
+\]
+
+Let $M_R$ be the least Lipschitz constant
+\[
+\text{If } M < M_R \text{, then } M < \frac{1}{2RL^2}
+\]
+\[
+h_0 = - (Df\big|_{x_0})^{-1} f(x_0)
+\]
+\[
+f_y(x) = f(x) - y = 0
+\]
+
+We have found $x$ such that $f(x) = y$.
+\[
+g(y) = x \implies f(g(y)) = y
+\]
+
+\subsection{Implicit Function Theorem}
+Let $f : \mathbb{R}^{n+m} \rightarrow \mathbb{R}^n$, in this case for example:
+\[
+(x,y,z) \rightarrow x^2 + y^2 + z^2 - 1
+\]
+\[
+f(x,y,z) = x^2 + y^2 + z^2 - 1
+\]
+
+\begin{center}
+    \tikzsetnextfilename{3d_surface_plot}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = {$x$},
+            ylabel = {$y$},
+            zlabel = {$z$},
+            xmin = -1.5, xmax = 1.5,
+            ymin = -1.5, ymax = 1.5,
+            zmin = -1.5, zmax = 1.5,
+            width=10cm,
+            height=10cm,
+            view={60}{20},
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=50,
+            colormap/cool,
+        ]
+        % Upper hemisphere
+        \addplot3[
+            domain=0:360,
+            y domain=0:90,
+            surf,
+            opacity=0.5,
+            colormap/greenyellow
+        ]
+        ({cos(x)*sin(y)}, {sin(x)*sin(y)}, {cos(y)});
+
+        % Lower hemisphere
+        \addplot3[
+            domain=0:360,
+            y domain=90:180,
+            surf,
+            opacity=0.5,
+            colormap/redyellow
+        ]
+        ({cos(x)*sin(y)}, {sin(x)*sin(y)}, {cos(y)});
+
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+We look for a zero of $f$:
+\[
+f(x_0,y_0,z_0) = 0, \quad x_0^2 + y_0^2 + z_0^2 - 1 = 0
+\]
+\[
+z_0 = \pm \sqrt{1 - x_0^2 - y_0^2}
+\]
+
+\[
+(x_c,y_c) \in \{(x,y) \in \mathbb{R}^2 : x^2 + y^2 \leq 1\}
+\]
+\[
+z_c = \sqrt{1 - x_c^2 - y_c^2}
+\]
+\[
+f : \mathbb{R}^{2+1} \rightarrow \mathbb{R}^1, \quad n = 1, \quad m = 2
+\]
+
+Where $z_c$ is the passive variable and $(x_c,y_c)$ are the active variables. In general we will have $n$ passive variables and $m$ active variables.
+\[
+\begin{cases}
+    F_1(x_1, \ldots, x_n, \ldots, x_{n+m}) = 0 \\
+    F_2(x_1, \ldots, x_n, \ldots, x_{n+m}) = 0 \\
+    \vdots \\
+    F_n(x_1, \ldots, x_n, \ldots, x_{n+m}) = 0
+\end{cases}
+\quad \text{Non-linear system with } n \text{ equations and } n+m \text{ variables}
+\]
+
+\subsubsection{Implicit Function Theorem (short version)}
+Let $U \subset \mathbb{R}^{n+m}$ be an open set and $F : U \rightarrow \mathbb{R}^n$ be a continuously differentiable function such that $F(c) = 0$ and $DF(c)$ is onto for some $c \in U$. Then, the system of linear equations
+\[
+DF(c) \cdot \begin{pmatrix}
+    x_1 \\
+    \vdots \\
+    x_n
+\end{pmatrix} = 0
+\]
+
+has $n$ passive variables and $m$ active variables. There exists a neighborhood of $c$ in which $F = 0$ implicitly defines $n$ of the active variables as functions of the passive variables. 
+
+\subsubsection{Implicit Function Theorem Continued}
+Let $W$ be an open neighborhood of $\mathbb{R}^{n+m}$ and $F : W \rightarrow \mathbb{R}^n$ be a continuously differentiable function such that $F(c) = 0$. If $DF(c)$ is onto, then it has $n$ passive columns (arranging the variables so that the passive variables are first), that is $c = \begin{pmatrix}
+    a \\
+    b
+\end{pmatrix}$ when the entries of the corresponding to then $n$ passive variables are $a$ and the entries corresponding to the $m$ active variables are $b$.
+
+Then, there exists a unique continuously differentiable function $g$ from a neighborhood of $b$ to a neighborhood of $a$ that expresses the first $n$ passive variables as functions of the last $m$ active variables.
+
+To quantify this statement, we can define the radius $R$ of a ball $V$ centered at $b$ in which the $g$ is defined. First note that the $n \times n$ matrix 
+\[
+\begin{pmatrix}
+    D_1 F(c) & D_2 F(c) & \ldots & D_n F(c)
+\end{pmatrix}
+\]
+
+representing the first $n$ columns of $DF(c)$ is invertible. 
+
+\[
+L = \begin{pmatrix}
+    D_1 F(c) & D_2 F(c) & \ldots & D_n F(c) & \vline & D_{n+1} F(c) & \ldots & D_{n+m} F(c) \\
+    \hline
+    0 & 0 & \ldots & 0 & \vline & 1 & 0 & \ldots & 0 \\
+    0 & 0 & \ldots & 0 & \vline & 0 & 1 & \ldots & 0 \\
+    \vdots & \vdots & \ddots & \vdots & \vline & \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \ldots & 0 & \vline & 0 & 0 & \ldots & 1
+\end{pmatrix}
+\]
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
