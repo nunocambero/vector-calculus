@@ -4108,8 +4108,79 @@ representing the first $n$ columns of $DF(c)$ is invertible.
 
 \[
 L = \begin{pmatrix}
-    D_1 F(c) & D_2 F(c) & \ldots & D_n F(c) & \vline & D_{n+1} F(c) & \ldots & D_{n+m} F(c) \\
+    \dfrac{\partial f_1}{x_1} & \dfrac{\partial f_1}{x_2} & \ldots & \dfrac{\partial f_1}{x_n} & \vline & \dfrac{\partial f_1}{x_{n+1}} & \ldots & \dfrac{\partial f_1}{x_{n+m}} \\
+    \dfrac{\partial f_2}{x_1} & \dfrac{\partial f_2}{x_2} & \ldots & \dfrac{\partial f_2}{x_n} & \vline & \dfrac{\partial f_2}{x_{n+1}} & \ldots & \dfrac{\partial f_2}{x_{n+m}} \\
+    \vdots & \vdots & \ddots & \vdots & \vline & \vdots & \ddots & \vdots \\
+    \dfrac{\partial f_n}{x_1} & \dfrac{\partial f_n}{x_2} & \ldots & \dfrac{\partial f_n}{x_n} & \vline & \dfrac{\partial f_n}{x_{n+1}} & \ldots & \dfrac{\partial f_n}{x_{n+m}}\\
     \hline
+    0 & 0 & \ldots & 0 & \vline & 0 & 1 & \ldots & 0 \\
+    0 & 0 & \ldots & 0 & \vline & 0 & 0 & \ldots & 1 \\
+    \vdots & \vdots & \ddots & \vdots & \vline & \vdots & \ddots & \vdots \\
+    0 & 0 & \ldots & 0 & \vline & 0 & 0 & \ldots & 1
+\end{pmatrix}
+\]
+
+\[
+DF(c) \text{ is onto} \implies DF(c) : \mathbb{R}^{n+m} \rightarrow \mathbb{R}^n
+\]
+
+Given $w \in \mathbb{R}^n$, there exists $v \in \mathbb{R}^{n+m}$ such that $DF(c) v = w$.
+
+This is satisified if and only if $DF(c)$ has $n$ linearly independent columns.
+
+By convention, $D_1 F(c)$, $D_2 F(c)$, $\ldots$, $D_n F(c)$ are the columns of $DF(c)$ corresponding to the passive variables and are linearly independent.
+
+We only have to prove that there are $x_1$, $x_2$, $\ldots$, $x_n$ passive variables because we have changed the order of the columns.
+
+Let 
+\[
+c = \begin{pmatrix}
+    a \\
+    b
+\end{pmatrix}, \quad \text{where } a \text{ and } b \text{ are the passive and active variables, respectively}
+\]
+
+and let 
+\[
+\tilde{F} \text{ be an extension of } F \text{ in the image }
+\]
+\[
+\tilde{F} : \mathbb{R}^{n+m} \rightarrow \mathbb{R}^{n+m}, \quad \text{to apply the inverse function theorem}   
+\]
+
+\[
+\begin{pmatrix}
+    x \\
+    y
+\end{pmatrix}, \quad x \in \mathbb{R}^n, \quad y \in \mathbb{R}^m, \quad \begin{pmatrix}
+    x \\
+    y
+\end{pmatrix} = \begin{pmatrix}
+    x_1 \\
+    x_2 \\
+    \vdots \\
+    x_n \\
+    y_1 \\
+    y_2 \\
+    \vdots \\
+    y_m
+\end{pmatrix}
+\]
+
+\[
+\tilde{F}\begin{pmatrix}
+    x \\
+    y
+\end{pmatrix} = \begin{pmatrix}
+    F(x,y) \\
+    y
+\end{pmatrix}
+\]
+
+\[
+D\tilde{F} = \begin{pmatrix}
+    D_1 F & D_2 F & \ldots & D_n F & \vline & D_{n+1} F & D_{n+2} F & \ldots & D_{n+m} F \\
+    \hline 
     0 & 0 & \ldots & 0 & \vline & 1 & 0 & \ldots & 0 \\
     0 & 0 & \ldots & 0 & \vline & 0 & 1 & \ldots & 0 \\
     \vdots & \vdots & \ddots & \vdots & \vline & \vdots & \vdots & \ddots & \vdots \\
@@ -4117,14 +4188,269 @@ L = \begin{pmatrix}
 \end{pmatrix}
 \]
 
+We need $D \tilde{F}$ to be Lipschitz. If $DF$ is Lipschitz, then $D \tilde{F}$ is Lipschitz.
+\[
+\|D \tilde{F}(u) - D \tilde{F}(v)\| \leq M \|u - v\|
+\]
+
+\[
+\begin{pmatrix}
+    D_1 F(u) - D_1 F(v) & \ldots & D_n F(u) - D_n F(v) & \vline & D_{n+1} F(u) - D_{n+1} F(v) & \ldots & D_{n+m} F(u) - D_{n+m} F(v) \\
+    \hline
+    0 & \ldots & 0 & \vline & 1 & \ldots & 0 \\
+    \vdots & \ddots & \vdots & \vline & \vdots & \ddots & \vdots \\
+    0 & \ldots & 0 & \vline & 0 & \ldots & 1
+\end{pmatrix} 
+\]
+
+Now we find a number $R > 0$ satisfying the following hypotheses:
+\begin{enumerate}
+    \item The ball $W_0$ of radius $2R \|L^{-1}\|$ centered at $c$ is contained in $W$.
+    \item In the ball $W_0$, the derivative of $\tilde{F}$ satisfies the Lipschitz condition:
+    \[
+    \|F(u) - F(v)\| \leq \frac{1}{2R \|L^{-1}\|^2} \|u - v\|
+    \]
+\end{enumerate}
+
+Then, there exists a unique continuously differentiable function $g$ from a neighborhood of $b$ to a neighborhood of $a$ that expresses the first $n$ passive variables as functions of the last $m$ active variables.
+\[
+g : B_R(b) \rightarrow B_R(a)
+\]
+
+such that $g(b) = a$ and $F \begin{pmatrix}
+    g(y) \\
+    y
+\end{pmatrix} = 0$ for all $y \in B_R(b)$.
+
+By the chain rule, the derivative of this implicit function $g$ at a point $b$ is given by:
+\[
+Dg(b) = - \begin{bmatrix}
+    D_1 F(c) & D_2 F(c) & \ldots & D_n F(c)
+\end{bmatrix}^{-1} \begin{bmatrix}
+    D_{n+1} F(c) & D_{n+2} F(c) & \ldots & D_{n+m} F(c)
+\end{bmatrix}
+\]
+
+Taking into account all the previous results, 
+\[
+\tilde{F} \begin{pmatrix}
+    x \\
+    y
+\end{pmatrix} = \begin{pmatrix}
+    F(x,y) \\
+    y
+\end{pmatrix}, \quad \tilde{F}(c) = \tilde{F} \begin{pmatrix}
+    a \\
+    b
+\end{pmatrix} = \begin{pmatrix}
+    F(a,b) \\
+    b
+\end{pmatrix} = \begin{pmatrix}
+    0 \\
+    b
+\end{pmatrix}
+\]
 
 
+\[
+\implies \exists \space (D \tilde{F})^{-1} \implies \text{we can apply the inverse function theorem}
+\]
 
+\[
+\tilde{F}\left( \tilde{G} \begin{pmatrix}
+    x \\
+    y
+\end{pmatrix} \right) = \begin{pmatrix}
+    x \\
+    y
+\end{pmatrix}
+\]
 
+We restrict $\tilde{G}$ to $\begin{pmatrix}
+    0 \\
+    y
+\end{pmatrix}$
+\[
+\tilde{F} \begin{pmatrix}
+    g(y) \\
+    y
+\end{pmatrix} = \begin{pmatrix}
+    0 \\
+    y
+\end{pmatrix}, \quad \tilde{F} \begin{pmatrix}
+    g(y) \\
+    y
+\end{pmatrix} = \begin{pmatrix}
+    F(g(y),y) \\
+    y
+\end{pmatrix} = \begin{pmatrix}
+    0 \\
+    y
+\end{pmatrix}
+\]
 
+\[
+\tilde{F} \left( \tilde{G} \begin{pmatrix}
+    0 \\
+    y
+\end{pmatrix} \right) = \begin{pmatrix}
+    0 \\
+    y
+\end{pmatrix}
+\]
 
+\subsection*{Example: Unit Circle}
+\[
+F : \mathbb{R}^2 \rightarrow \mathbb{R}, \quad (x,y) \rightarrow x^2 + y^2 - 1
+\]
+\[
+F(x,y) = x^2 + y^2 - 1 = 0
+\]
 
+\[
+DF = \begin{pmatrix}
+    2x & 2y
+\end{pmatrix}
+\]
 
+We need to find a $c = (x_0,y_0)$ such that $F(c) = 0$ and $DF(c)$ is onto.
+\[
+y = \pm \sqrt{1 - x^2}
+\]
+
+In this case we can obtain $g(x)$ explicitly.
+
+$x$ will be the active variable and $y$ will be the passive variable.
+\[
+DF \begin{pmatrix}
+    x_0 \\
+    y_0
+\end{pmatrix} = \begin{pmatrix}
+    2x_0 & 2y_0
+\end{pmatrix}
+\]
+\[
+\begin{cases}
+    2x_0 \neq 0 & \text{if } y > 0 \\
+    2y_0 \neq 0 & \text{if } x > 0
+\end{cases}
+\]
+
+Is $DF$ onto?
+\[
+\begin{pmatrix}
+    2x & 2y
+\end{pmatrix} \begin{pmatrix}
+    x \\
+    y
+\end{pmatrix} = w, \quad w \in \mathbb{R}
+\]
+
+Does there exist a solution $\begin{pmatrix}
+    x \\
+    y
+\end{pmatrix}$ such that $DF \begin{pmatrix}
+    x \\
+    y
+\end{pmatrix} = w$?
+
+\[
+2x_0 x + 2y_0 y = w
+\]
+
+\subsection*{Example}
+\[
+\begin{cases}
+    x^2 - y = a \\
+    y^2 - z = b \\
+    z^2 - x = 0
+\end{cases}
+\]
+
+\[
+DF = \begin{pmatrix}
+    2x & -1 & 0 & -1 & 0 \\
+    0 & 2y & -1 & 0 & -1 \\
+    -1 & 0 & 2z & 0 & 0
+\end{pmatrix}
+\]
+
+\[
+c = (0, 0,0,0,0), \quad DF(c) = \begin{pmatrix}
+    0 & -1 & 0 & -1 & 0 \\
+    0 & 0 & -1 & 0 & -1 \\
+    -1 & 0 & 0 & 0 & 0
+\end{pmatrix}
+\]
+\[
+L = \begin{pmatrix}
+    0 & -1 & 0 & \vline & -1 & 0 \\
+    0 & 0 & -1 & \vline & 0 & -1 \\
+    -1 & 0 & 0 & \vline & 0 & 0 \\
+    \hline 
+    0 & 0 & 0 & \vline & 1 & 0 \\
+    0 & 0 & 0 & \vline & 0 & 1
+\end{pmatrix}
+\]
+
+\[
+\| DF \begin{pmatrix}
+    x_1 \\
+    y_1 \\
+    z_1
+\end{pmatrix} - D \tilde{F} \begin{pmatrix}
+    x_2 \\
+    y_2 \\
+    z_2
+\end{pmatrix} =
+\]
+\[
+= \| \begin{pmatrix}
+    2x_1 & -1 & 0 & \vline & -1 & 0 \\
+    0 & 2y_1 & -1 & \vline & 0 & -1 \\
+    -1 & 0 & 2z_1 & \vline & 0 & 0 \\
+    \hline
+    0 & 0 & 0 & \vline & 1 & 0 \\
+    0 & 0 & 0 & \vline & 0 & 1
+\end{pmatrix} - \begin{pmatrix}
+    2x_2 & -1 & 0 & \vline & -1 & 0 \\
+    0 & 2y_2 & -1 & \vline & 0 & -1 \\
+    -1 & 0 & 2z_2 & \vline & 0 & 0 \\
+    \hline
+    0 & 0 & 0 & \vline & 1 & 0 \\
+    0 & 0 & 0 & \vline & 0 & 1
+\end{pmatrix} \| = 
+\]
+\[
+= \| \begin{pmatrix}
+    2(x_1 - x_2) & 0 & 0 & \vline & 0 & 0 \\
+    0 & 2(y_1 - y_2) & 0 & \vline & 0 & 0 \\
+    0 & 0 & 2(z_1 - z_2) & \vline & 0 & 0 \\
+    \hline
+    0 & 0 & 0 & \vline & 0 & 0 \\
+    0 & 0 & 0 & \vline & 0 & 0
+\end{pmatrix} \|
+\]
+
+\[
+\| DF \begin{pmatrix}
+    x_1 \\
+    y_1 \\
+    z_1
+\end{pmatrix} - D \tilde{F} \begin{pmatrix}
+    x_2 \\
+    y_2 \\
+    z_2
+\end{pmatrix} \| = 2 \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2 + (z_1 - z_2)^2} = 2 \| \begin{pmatrix}
+    x_1 \\
+    y_1 \\
+    z_1
+\end{pmatrix} - \begin{pmatrix}
+    x_2 \\
+    y_2 \\
+    z_2
+\end{pmatrix} \| \implies M = 2
+\]
 
 
 
