@@ -11,6 +11,7 @@
 
 \usepackage{etex}
 \usepackage{morewrites}
+\usepackage{enumitem}
 
 \listfiles
 
@@ -4394,7 +4395,7 @@ L = \begin{pmatrix}
 \]
 
 \[
-\| DF \begin{pmatrix}
+\left\| DF \begin{pmatrix}
     x_1 \\
     y_1 \\
     z_1
@@ -4402,10 +4403,10 @@ L = \begin{pmatrix}
     x_2 \\
     y_2 \\
     z_2
-\end{pmatrix} =
+\end{pmatrix} \right\| =
 \]
 \[
-= \| \begin{pmatrix}
+= \left\| \begin{pmatrix}
     2x_1 & -1 & 0 & \vline & -1 & 0 \\
     0 & 2y_1 & -1 & \vline & 0 & -1 \\
     -1 & 0 & 2z_1 & \vline & 0 & 0 \\
@@ -4419,21 +4420,21 @@ L = \begin{pmatrix}
     \hline
     0 & 0 & 0 & \vline & 1 & 0 \\
     0 & 0 & 0 & \vline & 0 & 1
-\end{pmatrix} \| = 
+\end{pmatrix} \right\| = 
 \]
 \[
-= \| \begin{pmatrix}
+= \left\| \begin{pmatrix}
     2(x_1 - x_2) & 0 & 0 & \vline & 0 & 0 \\
     0 & 2(y_1 - y_2) & 0 & \vline & 0 & 0 \\
     0 & 0 & 2(z_1 - z_2) & \vline & 0 & 0 \\
     \hline
     0 & 0 & 0 & \vline & 0 & 0 \\
     0 & 0 & 0 & \vline & 0 & 0
-\end{pmatrix} \|
+\end{pmatrix} \right\|
 \]
 
 \[
-\| DF \begin{pmatrix}
+\left\| DF \begin{pmatrix}
     x_1 \\
     y_1 \\
     z_1
@@ -4441,7 +4442,7 @@ L = \begin{pmatrix}
     x_2 \\
     y_2 \\
     z_2
-\end{pmatrix} \| = 2 \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2 + (z_1 - z_2)^2} = 2 \| \begin{pmatrix}
+\end{pmatrix} \right\| = 2 \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2 + (z_1 - z_2)^2} = 2 \left\| \begin{pmatrix}
     x_1 \\
     y_1 \\
     z_1
@@ -4449,12 +4450,320 @@ L = \begin{pmatrix}
     x_2 \\
     y_2 \\
     z_2
-\end{pmatrix} \| \implies M = 2
+\end{pmatrix} \right\| \implies M = 2
 \]
 
+\subsection*{Problem 5.20}
+Are the following functions locally invertible with differentiable inverse?
+\begin{enumerate}[label=(\alph*)]
+    \item $F(x,y) = (x^2y, -2x)$ \quad at $(1,1)$
+    \item $F(x,y,z) = (xyz, x^2, z^2)$ \quad at $(0,0,0)$
+    \item $F(x,y,z) = (xyz, x^2, z^2)$ \quad at $(1,1,1)$
+\end{enumerate}
 
+For (a), we have $F : \mathbb{R}^2 \rightarrow \mathbb{R}^2$ and $F(x,y) = (x^2y, -2x)$. We need to calculate $M$ and $L$.
+\[
+DF = \begin{pmatrix}
+    2xy & x^2 \\
+    -2 & 0
+\end{pmatrix}, \quad DF \big|_{(1,1)} = \begin{pmatrix}
+    2 & 1 \\
+    -2 & 0
+\end{pmatrix}, \quad \begin{vmatrix}
+    2 & 1 \\
+    -2 & 0
+\end{vmatrix} = 2 \neq 0
+\]
 
+So $F$ is differentiable at $(1,1)$ and $DF$ is invertible:
+\[
+\left(DF \big|_{(1,1)}\right)^{-1} = \frac{1}{2} \begin{pmatrix}
+    0 & -1 \\
+    2 & 2
+\end{pmatrix}
+\]
 
+By the inverse function theorem, we take $G = F^{-1}$ and $DG = \left(DF \big|_{(1,1)}\right)^{-1}$.
+\[
+DG \big|_{F(1,1)} = DG \big|_{(1,-2)} = \frac{1}{2} \begin{pmatrix}
+    0 & -1 \\
+    2 & 2
+\end{pmatrix}
+\]
+
+as $F(1,1) = (1,-2)$.
+\[
+R < \frac{1}{2 \|L^{-1}\| M}, \quad \text{where } L = DF \big|_{(1,1)}
+\]
+
+We calculate $M$ by taking all the second derivatives of $F$:
+\[
+2xy \space
+\begin{cases}
+    2y = \dfrac{\partial}{dx} (2xy) \\
+    2x = \dfrac{\partial}{dy} (2xy)
+\end{cases}, \quad
+x^2 \space
+\begin{cases}
+    2x = \dfrac{\partial}{dx} (x^2) \\
+    0 = \dfrac{\partial}{dy} (x^2)
+\end{cases}, \quad
+-2 \space
+\begin{cases}
+    0 = \dfrac{\partial}{dx} (-2) \\
+    0 = \dfrac{\partial}{dy} (-2)
+\end{cases}, \quad
+0 \space
+\begin{cases}
+    0 = \dfrac{\partial}{dx} (0) \\
+    0 = \dfrac{\partial}{dy} (0)
+\end{cases}
+\]
+
+\[
+(2y)^2 + (2x)^2 + 2x^2 \leq 8(x^2 + y^2)
+\]
+\[
+h_0 = - \left(DF \big|_{(1,1)}\right)^{-1} F(1,1) = - \frac{1}{2} \begin{pmatrix}
+    0 & -1 \\
+    2 & 2
+\end{pmatrix} \begin{pmatrix}
+    1 \\
+    -2
+\end{pmatrix} = \frac{1}{2} \begin{pmatrix}
+    -1 \\
+    1
+\end{pmatrix}
+\]
+
+\[
+(x_1,y_1) = (x_0,y_0) + (-1,1) = (1,1) + (-1,1) = (0,2)
+\]
+
+so we obtain $M$: 
+\[
+M = \sqrt{8(x^2 + y^2)} = \sqrt{8(0^2 + 2^2)} = \sqrt{8}(2 + \sqrt{2}) = 4 \sqrt{2} + 4
+\]
+
+\begin{center}
+    \tikzsetnextfilename{problem_5_20_a}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = {$x$},
+            ylabel = {$y$},
+            xmin = -4, xmax = 4,
+            ymin = -2, ymax = 6,
+            width=10cm,
+            height=10cm,
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=100
+        ]
+        \addplot[domain=-1.414:1.414, samples=100, color=blue, thick] {sqrt(2 - x^2)+2};
+        \addplot[domain=-1.414:1.414, samples=100, color=blue, thick] {-sqrt(2 - x^2) + 2};
+        \addplot[only marks, mark=*, color=red] coordinates {(1, 1)};
+        \addplot[only marks, mark=*, color=red] coordinates {(0,2)};
+        \addplot[only marks, mark=*, color=red] coordinates {(0, 3.414)};
+        \addplot[domain=0:4, samples=100, color=red, dashed] {0.585 * x};
+        \node at (axis cs:1, 1) [anchor=south west] {$(x_0,y_0)$};
+        \node at (axis cs:0, 3.414) [anchor=south west] {$(x_1,y_1)$};
+        \node at (axis cs:0, 2) [anchor=south west] {$h_0$};
+        \draw[->] (axis cs:0, 2) -- (axis cs:1.414, 2.414);
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+For (c), we have $F : \mathbb{R}^3 \rightarrow \mathbb{R}^3$ and $F(x,y,z) = (xyz, x^2, z^2)$. We need to calculate $M$ and $L$.
+\[
+DF = \begin{pmatrix}
+    yz & xz & xy \\
+    2x & 0 & 0 \\
+    0 & 0 & 2z
+\end{pmatrix}, \quad DF \big|_{(1,1,1)} = \begin{pmatrix}
+    1 & 1 & 1 \\
+    2 & 0 & 0 \\
+    0 & 0 & 2
+\end{pmatrix}, \quad \begin{vmatrix}
+    1 & 1 & 1 \\
+    2 & 0 & 0 \\
+    0 & 0 & 2
+\end{vmatrix} = -4 \neq 0
+\]
+
+So $F$ is differentiable at $(1,1,1)$ and $DF$ is invertible:
+\[
+\left(DF \big|_{(1,1,1)}\right)^{-1} = \frac{1}{2} \begin{pmatrix}
+    0 & 1 & 0 \\
+    2 & -1 & -1 \\
+    0 & 0 & 1
+\end{pmatrix}
+\]
+
+By the inverse function theorem, we take $G = F^{-1}$ and $DG = \left(DF \big|_{(1,1,1)}\right)^{-1}$.
+\[
+DG \big|_{F(1,1,1)} = DG \big|_{(1,1,1)} = \frac{1}{2} \begin{pmatrix}
+    0 & 1 & 0 \\
+    2 & -1 & -1 \\
+    0 & 0 & 1
+\end{pmatrix}
+\]
+
+as $F(1,1,1) = (1,1,1)$.
+\[
+R < \frac{1}{2 \|L^{-1}\| M}, \quad \text{where } L = DF \big|_{(1,1,1)}
+\]
+
+We calculate $M$ by taking all the second derivatives of $F$:
+\[
+yz \space
+\begin{cases}
+    z = \dfrac{\partial}{dx} (yz) \\
+    y = \dfrac{\partial}{dy} (yz) \\
+    0 = \dfrac{\partial}{dz} (yz)
+\end{cases}, \quad
+xz \space
+\begin{cases}
+    z = \dfrac{\partial}{dx} (xz) \\
+    0 = \dfrac{\partial}{dy} (xz) \\
+    x = \dfrac{\partial}{dz} (xz)
+\end{cases}, \quad
+xy \space
+\begin{cases}
+    y = \dfrac{\partial}{dx} (xy) \\
+    x = \dfrac{\partial}{dy} (xy) \\
+    0 = \dfrac{\partial}{dz} (xy)
+\end{cases}
+\]
+\[
+2x \space
+\begin{cases}
+    2 = \dfrac{\partial}{dx} (x^2) \\
+    0 = \dfrac{\partial}{dy} (x^2) \\
+    0 = \dfrac{\partial}{dz} (x^2)
+\end{cases}, \quad
+0 \space
+\begin{cases}
+    0 = \dfrac{\partial}{dx} (0) \\
+    0 = \dfrac{\partial}{dy} (0) \\
+    0 = \dfrac{\partial}{dz} (0)    
+\end{cases}, \quad
+2z \space
+\begin{cases}
+    0 = \dfrac{\partial}{dx} (z^2) \\
+    0 = \dfrac{\partial}{dy} (z^2) \\
+    2z = \dfrac{\partial}{dz} (z^2)
+\end{cases} 
+\]
+
+\[
+(yz)^2 + (xz)^2 + (xy)^2 + 2x^2 + 2z^2 \leq 8(x^2 + y^2 + z^2)
+\]
+\[
+h_0 = - \left(DF \big|_{(1,1,1)}\right)^{-1} F(1,1,1) = - \frac{1}{2} \begin{pmatrix}
+    0 & 1 & 0 \\
+    2 & -1 & -1 \\
+    0 & 0 & 1
+\end{pmatrix} \begin{pmatrix}
+    1 \\
+    1 \\
+    1
+\end{pmatrix} = \frac{1}{2} \begin{pmatrix}
+    -1 \\
+    0 \\
+    -1
+\end{pmatrix}
+\]
+
+\[
+(x_1,y_1,z_1) = (1,1,1) + (-\frac{1}{2}, 0, -\frac{1}{2}) = (\frac{1}{2}, 1, \frac{1}{2})
+\]
+
+so we obtain $M$:
+\[
+M = \sqrt{8(x^2 + y^2 + z^2)} = \sqrt{8(0^2 + 2^2 + 1^2)} = \sqrt{8}(3) = 6 \sqrt{2}
+\]
+
+\begin{center}
+    \tikzsetnextfilename{ball_plot}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = {$x$},
+            ylabel = {$y$},
+            zlabel = {$z$},
+            xmin = -2, xmax = 2,
+            ymin = -2, ymax = 2,
+            zmin = -2, zmax = 2,
+            width=15cm,
+            height=15cm,
+            view={60}{30},
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=50,
+            colormap/cool,
+        ]
+        % Ball surface
+        \addplot3[
+            domain=0:360,
+            y domain=0:180,
+            surf,
+            opacity=0.3,
+            color=orange
+        ]
+        ({sin(y)*cos(x) + 0.5}, {sin(y)*sin(x) + 1}, {cos(y) + 0.5});
+        % Ball center
+        \addplot3[
+            only marks,
+            mark=*,
+            color=red
+        ]
+        coordinates {(0.5, 1, 0.5)};
+        % Ball radius
+        \addplot3[
+            only marks,
+            mark=*,
+            color=red
+        ]
+        coordinates {(0, 0.3, 1)};
+        \draw [->] (axis cs:0.5, 1, 0.5) -- (axis cs:0, 0.3, 1);
+        \node at (axis cs:0.5, 1, 0) [anchor=south west] {$(x_1,y_1,z_1)$};
+        \node at (axis cs:0, 0.3, 1) [anchor=south west] {$(x_0,y_0,z_0)$};
+        \node at (axis cs:0.5, 0.5, 0.5) [anchor=south west] {$h_0$};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\subsection{Curl and Divergence}
+Let $F : \mathbb{R}^3 \rightarrow \mathbb{R}^3$ be a continuously differentiable function of class $\mathcal{C}'$ (all first derivatives arer continuous). The curl of $F$ is defined as:
+\[
+\text{curl} (F) = \nabla \times F = \begin{pmatrix}
+    \overrightarrow{\mathbf{i}} & \overrightarrow{\mathbf{j}} & \overrightarrow{\mathbf{k}} \\
+    \dfrac{\partial}{\partial x} & \dfrac{\partial}{\partial y} & \dfrac{\partial}{\partial z} \\
+    F_1(x,y,z) & F_2(x,y,z) & F_3(x,y,z)
+\end{pmatrix} = \]
+\[
+= \begin{pmatrix}
+    \dfrac{\partial F_3}{\partial y} - \dfrac{\partial F_2}{\partial z} &
+    \dfrac{\partial F_1}{\partial z} - \dfrac{\partial F_3}{\partial x} &
+    \dfrac{\partial F_2}{\partial x} - \dfrac{\partial F_1}{\partial y}
+\end{pmatrix}
+\]
+
+where $\nabla$ = $\begin{pmatrix}
+    \dfrac{\partial}{\partial x} & \dfrac{\partial}{\partial y} & \dfrac{\partial}{\partial z}
+\end{pmatrix}$ is the gradient operator.
+
+The divergence of $F$ is defined as:
+\[
+\text{div} (F) = \nabla \cdot F = \begin{pmatrix}
+    \dfrac{\partial}{\partial x} & \dfrac{\partial}{\partial y} & \dfrac{\partial}{\partial z}
+\end{pmatrix} \begin{pmatrix}
+    F_1(x,y,z) \\
+    F_2(x,y,z) \\
+    F_3(x,y,z)
+\end{pmatrix} = \dfrac{\partial F_1}{\partial x} + \dfrac{\partial F_2}{\partial y} + \dfrac{\partial F_3}{\partial z}
+\]
 
 
 
