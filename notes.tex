@@ -12,6 +12,7 @@
 \usepackage{etex}
 \usepackage{morewrites}
 \usepackage{enumitem}
+\usepackage{float}
 
 \listfiles
 
@@ -3620,7 +3621,7 @@ Df \begin{pmatrix}
 \end{pmatrix}\right| = 3 \sqrt{(x_1^2 - x_2^2)^2 + (y_1^2 - y_2^2)^2}
 \]
 
-If $(y_1 y_2)^2 \leq A^2$ and $(x_1 + x_2)^2 \leq A^2$, then: $M = 3A$.
+If $(y_1 + y_2)^2 \leq A$ and $(x_1 + x_2)^2 \leq A$, then: $M = 3A$.
 
 \paragraph{Best Constant for the Lipschitz Condition}
 The best constant for the Lipschitz condition $M^*$ is defined as:
@@ -4764,6 +4765,198 @@ The divergence of $F$ is defined as:
     F_3(x,y,z)
 \end{pmatrix} = \dfrac{\partial F_1}{\partial x} + \dfrac{\partial F_2}{\partial y} + \dfrac{\partial F_3}{\partial z}
 \]
+
+\section{Manifolds}
+A curve is a manifold of dimension 1. A surface is a manifold of dimension 2. A manifold of dimension $n$ is a set that locally looks like $\mathbb{R}^n$.
+\[
+M \subset \mathbb{R}^n, \quad M \text{ locally is a graph of } f : \mathbb{R}^k \rightarrow \mathbb{R}^{n-k}
+\]
+
+The graph is defined as:
+\[
+\Gamma(f) = \{(x,f(x)) : x \in \mathbb{R}^k, f(x) \in \mathbb{R}^{n-k}\} \subset \mathbb{R}^n
+\]
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \node[] (0) at (0,0) {\textbf{Manifolds}};
+        \node[] (1) at (2,2) {\textbf{Equation}};
+        \node[] (2) at (2,-2) {\textbf{Parametrization}};
+        \node[] (3) at (9,2) {$x^2 + y^2 + z^2 = 9$ \quad $F(x,y,z) = 0$ (implicit function theorem)};
+        \node[] (4) at (9,-2) {$\begin{pmatrix} x(u,v) & y(u,v) & z(u,v) \end{pmatrix} = \begin{pmatrix} 3\cos(u)\sin(v) \\ 3\sin(u)\sin(v) \\ 3\cos(v) \end{pmatrix}$};
+
+        \draw[->] (0) -- (1);
+        \draw[->] (0) -- (2);
+        \draw[->] (1) -- (3);
+        \draw[->] (2) -- (4);
+    \end{tikzpicture}
+\end{figure}
+
+
+\subsection{Smooth Manifolds in $\mathbb{R}^n$}
+The graph $\Gamma(f)$ of a function $f : \mathbb{R}^n \rightarrow \mathbb{R}^m$ is the set of pairs $(x,y)$ such that $y = f(x)$, where $x \in \mathbb{R}^n$ and $y \in \mathbb{R}^m$ such that $y = f(x)$.
+
+For example:
+\begin{enumerate}[label=(\Alph*)]
+    \item $(x,x^2)$ is a smooth graphic.
+    \item $(x, |x|)$ is not smooth at $(0,0)$.
+    \item $(x,x^{\frac{1}{3}})$ is a smooth manifold.
+\end{enumerate}
+
+\subsection*{Example:}
+\[
+x^2 + y^2 = 1, \quad \text{Is it locally a manifold?}
+\]
+\[
+(\cos \theta, \sin \theta) \quad \theta \in [-\frac{\pi}{2}, \frac{\pi}{2}]
+\]
+
+\subsection{Surface} 
+A smooth surface $S \subset \mathbb{R}^3$ is a manifold of dimension 2 in $\mathbb{R}^3$ if it is locally a graph of a continuous function $f : \mathbb{R}^2 \rightarrow \mathbb{R}^3$ expressing one variable as a function of the other two.
+
+\subsection*{Example:}
+\[
+(a,b,c) \in S
+\]
+\[
+I = (a - \varepsilon, a + \epsilon) \quad J = (b - \delta, b + \delta) \quad K = (c - \gamma, c + \gamma)
+\]
+
+\[
+U = I \times J \times K \text{ is open in } \mathbb{R}^3
+\]
+\[
+f : I \times J \rightarrow K, \quad (x,y,f(x,y))
+\]
+\[
+g : I \times K \rightarrow J, \quad (x,g(x,z),z)
+\]
+\[
+h : J \times K \rightarrow I, \quad (g(y,z),y,z)
+\]
+
+The functions $f$, $g$, and $h$ are obtained by the implicit function theorem. 
+
+\subsection*{Example:}
+\[
+S^2 = \{(x,y,z) \in \mathbb{R}^3 : x^2 + y^2 + z^2 = 1\}
+\]
+\[
+D_{x,y} = \{(x,y) \in \mathbb{R}^2 : x^2 + y^2 < 1\}
+\]
+
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = {$x$},
+            ylabel = {$y$},
+            zlabel = {$z$},
+            xmin = -1.5, xmax = 1.5,
+            ymin = -1.5, ymax = 1.5,
+            zmin = -1.5, zmax = 1.5,
+            width=12cm,
+            height=12cm,
+            view={60}{30},
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=50,
+            colormap/cool,
+        ]
+        % Sphere plot
+        \addplot3[
+            domain=0:360,
+            y domain=0:180,
+            surf,
+            opacity=0.2,
+            colormap/viridis
+        ]
+        ({sin(y)*cos(x)}, {sin(y)*sin(x)}, {cos(y)});
+        % Random point
+        \addplot3[
+            only marks,
+            mark=*,
+            color=red
+        ]
+        coordinates {(0.5, 0.5, 0.7)};
+        \addplot3[
+            only marks,
+            mark=*,
+            color=red
+        ]
+        coordinates {(0.5, 0.5, 0)};
+        \addplot3[
+            domain=0:360,
+            samples=100,
+            color=red,
+            dashed,
+            thick
+        ]
+        ({cos(x)}, {sin(x)}, {0});
+        \draw [-] (axis cs:0.5, 0.5, 0) -- (axis cs:0.5, 0.5, 0.7) node[midway, left] {$D_{x,y}$};
+        \node at (axis cs:0.5, 0.5, 0.7) [anchor=south west] {$z = \sqrt{1 - x^2 - y^2}$};
+        \end{axis}
+    \end{tikzpicture}
+    \hspace{1cm}
+        \begin{tikzpicture}
+            \begin{axis}[
+                axis lines = middle,
+                xlabel = {$x$},
+                ylabel = {$y$},
+                zlabel = {$z$},
+                xmin = -1.5, xmax = 1.5,
+                ymin = -1.5, ymax = 1.5,
+                zmin = -1.5, zmax = 1.5,
+                width=10cm,
+                height=10cm,
+                view={60}{30},
+                grid = major,
+                grid style = {dashed, gray!30},
+                samples=50,
+                colormap/cool,
+            ]
+            \addplot3[
+                domain=-1.3:1.3,
+                y domain=-1.3:1.3,
+                surf,
+                opacity=0.5,
+                colormap/viridis
+            ]
+            ({0}, {x}, {y});
+            \addplot3[
+                domain=0:180,
+                color=red,
+                samples=100,
+                thick                
+            ]
+            ({0}, {cos(x)}, {sin(x)});
+            \addplot3[
+                            domain=0:360,
+                            samples=100,
+                            color=red,
+                            dashed 
+                        ]
+                        ({cos(x)}, {sin(x)}, {0});
+
+            \end{axis}
+        \end{tikzpicture}
+
+    
+\end{center}
+
+It is a graph of a function $f : D_{x,y} \rightarrow \mathbb{R}^{+}_{z}$, where $f(x,y) = \sqrt{1 - x^2 - y^2}$.
+\[
+(x,y,f(x,y)) \in S^2 \cap (D_{x,y} \times \mathbb{R}^{+}_{z}) \subset \mathbb{R}^3
+\]
+
+\subsection{Using the Implicit Function Theorem to identify smooth manifolds}
+Is the locus defined by $x^8 + 2x^3 + y + y^5 = 1$ a smooth manifold?
+
+\paragraph{Theorem:} Let $M \subset \mathbb{R}^n$ be a subset, $U \subset \mathbb{R}^n$ an open set, and $F : U \rightarrow \mathbb{R}^{n-k}$ a continuously differentiable function such that $M \cap U$ is the set of solutions of $F(z) = 0$. If $DF(c)$ is onto for every $z \in M \cap U$, then $M$ is a smooth manifold of dimension $k$ in $\mathbb{R}^n$.
+Conversely, if $M$ is a smooth manifold of dimension $k$ in $\mathbb{R}^n$, then every point $z \in M$ has a neighborhood $U$ such that there exists a continuously differentiable function $F : U \rightarrow \mathbb{R}^{n-k}$ with $DF(z)$ onto and $M \cap U$ is the set of solutions of $F(z) = 0$.
+
+Following the theorem, we apply the implicit function theorem to the function $F(x,y) = x^8 + 2x^3 + y + y^5 - 1$.
 
 
 
