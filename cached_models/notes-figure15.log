@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.3.23)  4 APR 2025 11:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.3.23)  4 APR 2025 12:04
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -538,7 +538,7 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count335
 \l__pdf_internal_box=\box118
 )
-No file cached_models/notes-figure10.aux.
+No file cached_models/notes-figure15.aux.
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
 LaTeX Font Info:    ... okay on input line 41.
 LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 41.
@@ -761,14 +761,21 @@ A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to di
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to disable this.
 
 
-\openout3 = `cached_models/notes-figure10.dpth'.
+A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to disable this.
+A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to disable this.
+A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to disable this.
+A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to disable this.
 
-\openout3 = `cached_models/notes-figure10.mw'.
 
-[52
+A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to disable this.
+\openout3 = `cached_models/notes-figure15.dpth'.
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./cached_models/notes-figure10.mw)
-\openout3 = `cached_models/notes-figure10.mw'.
+\openout3 = `cached_models/notes-figure15.mw'.
+
+[53
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./cached_models/notes-figure15.mw)
+\openout3 = `cached_models/notes-figure15.mw'.
 
 
 
@@ -843,19 +850,19 @@ epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
     umsb.fd    2013/01/14 v3.01 AMS symbols B
  ***********
 
-\openout3 = `cached_models/notes-figure10.dpth'.
+\openout3 = `cached_models/notes-figure15.dpth'.
 
  ) 
 Here is how much of TeX's memory you used:
- 25836 strings out of 475171
- 660296 string characters out of 5767095
- 2740517 words of memory out of 5000000
- 48402 multiletter control sequences out of 15000+600000
+ 25851 strings out of 475171
+ 660687 string characters out of 5767095
+ 2771657 words of memory out of 5000000
+ 48417 multiletter control sequences out of 15000+600000
  571038 words of font info for 82 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 103i,19n,108p,753b,2880s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 103i,19n,108p,753b,2570s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on cached_models/notes-figure10.pdf (1 page, 75525 bytes).
+Output written on cached_models/notes-figure15.pdf (1 page, 117614 bytes).
 PDF statistics:
  26 PDF objects out of 1000 (max. 8388607)
  16 compressed objects within 1 object stream
