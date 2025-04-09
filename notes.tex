@@ -3508,8 +3508,10 @@ The induced norm of a matrix $A$ is defined as:
 \| A \| = \sup_{\|x\| = 1} \| A(x) \|
 \]
 \[
-\|x\| = \left(\sum_{i=1}^{n} x_i^2 \right)^{\frac{1}{2}} \implies \|A\| = \rho (AA^t)
+\|x\| = \left(\sum_{i=1}^{n} x_i^2 \right)^{\frac{1}{2}} \implies \|A\| = \sqrt{\rho (AA^t)}
 \]
+
+where $\rho$ is the spectral radius of the matrix $AA^t$. The spectral radius is defined as the maximum eigenvalue of the matrix $AA^t$.
 
 \subsection{Inverse Function Theorem for One Variable}
 Let $f : [a,b] \rightarrow [c,d]$ be a continuous function. $f(a) = c$ and $f(b) = d$. If $f$ is strictly increasing or decreasing in $[a,b]$, then $f$ is invertible and there exists g : [c,d] $\rightarrow$ [a,b] such that $g(f(x)) = x$ and $f(g(y)) = y$.
