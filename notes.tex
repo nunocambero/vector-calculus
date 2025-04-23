@@ -5476,11 +5476,187 @@ Let $U \subset \mathbb{R}^2$, $(x_0,y_0) \in U$, and $f : U \rightarrow \mathbb{
     \]
 \end{enumerate}
 
+\subsection{Maximum and Minimum}
+The maximum and minimum of a function $f : U \subset \mathbb{R}^n \rightarrow \mathbb{R}$ are the points $x_0 \in U$ such that:
+\begin{enumerate}
+    \item $f(x_0) \geq f(x)$ for all $x \in B_{\varepsilon}(x_0)$ (maximum)
+    \item $f(x_0) \leq f(x)$ for all $x \in B_{\varepsilon}(x_0)$ (minimum)
+\end{enumerate}
 
+We build a function $g : \mathbb{R} \rightarrow \mathbb{R}$ such that $g(t) = f(x_0 + t \cdot e_i)$, where $e_i$ is the vector with $1$ in the $i$-th position and $0$ elsewhere. The function $g(t)$ has a maximum or minimum at $t=0$ because $f$ has a maximum or minimum at $x_0$, and $g'(0) = 0$.
+\[
+g'(t) = \inner{\nabla f}{e_i} = 0 \implies \nabla f\big|_{x_0} = 0
+\]
 
+Now we have to check the second derivative:
+Given a function $f : U \subset \mathbb{R}^n \rightarrow \mathbb{R}$, we consider $f : \mathbb{R}^2 \rightarrow \mathbb{R}$, where $f \in \mathcal{C}^2$ in $U$. For $(x_0,y_0) \in U$, $f$ has a maximum or minimum at $(x_0,y_0)$:
+\[
+f(x_0 + h_1, y_0 + h_2) = f(x_0,y_0) + \inner{\nabla f\big|_{(x_0,y_0)}}{\begin{pmatrix}
+    h_1 \\
+    h_2 \\
+\end{pmatrix}} + \frac{1}{2} \inner{H\big|_{(x_0,y_0)}\begin{pmatrix}
+    h_1 \\
+    h_2 \\
+\end{pmatrix}}{\begin{pmatrix}
+    h_1 \\
+    h_2 \\
+\end{pmatrix}} + r(h_1^2 + h_2^2)
+\]
 
+Knowing that $\nabla f\big|_{(x_0,y_0)} = (0,0)$, we have:
+\[
+f(x_0 + h_1, y_0 + h_2) - f(x_0,y_0) \simeq \frac{1}{2} \inner{H\big|_{(x_0,y_0)}\begin{pmatrix}
+    h_1 \\
+    h_2 \\
+\end{pmatrix}}{\begin{pmatrix}
+    h_1 \\
+    h_2 \\
+\end{pmatrix}} < 0  
+\]
 
+where $H\big|_{(x_0,y_0)}$ is negative definite.
 
+\subsection{Classifying Critical Points}
+\paragraph{Extremum:} An extremum of a function is a point where the function achieves a maximum or a minimum.
+\subsubsection{Theorem}
+Let $U \subset \mathbb{R}^n$ be an open subset and $f : U \rightarrow \mathbb{R}$ a continuously differentiable function. If $x_0 \in U$ is an extremum of $f$, then $Df\big|_{x_0} = \overrightarrow{0}$.
 
+\paragraph{Critical point:} Let $U \subset \mathbb{R}^n$ be an open subset and $f : U \rightarrow \mathbb{R}$ a continuously differentiable function. A point $x_0 \in U$ is called a critical point of $f$ if the derivative vanishes at that point. The value of the function at the critical point is called a critical value.
+
+\subsubsection{Theorem: Existence of minima and maxima}
+Let $W \subset \mathbb{R}^n$ be a compact set and $f : W \rightarrow \mathbb{R}$ a continuous function. Then, there exists $a \in W$ such that $f(a) \leq f(x)$ for all $x \in W$ (minimum) and there exists $b \in W$ such that $f(b) \geq f(x)$ for all $x \in W$ (maximum).
+
+\begin{quotation}
+    \textit{"A continuous function on a compact set attains its maximum and minimum values."}
+\end{quotation}
+
+\paragraph{Note:} A closed set contains all its limit points, and a bounded set is a set that can be contained within a ball of finite radius. In $\mathbb{R}^n$, a set is compact if and only if it is closed and bounded.
+
+\subsubsection{Theorem}
+Let $U \subset \mathbb{R}^n$ be an open set, $f : U \rightarrow \mathbb{R}$ a function in $\mathcal{C}^2$, and $x_0 \in U$ a critical point of $f$. Then, $x_0$ is a local minimum of $f$ if and only if the Hessian matrix $H\big|_{x_0}$ is positive definite. Similarly, $x_0$ is a local maximum of $f$ if and only if the Hessian matrix $H\big|_{x_0}$ is negative definite.
+
+\paragraph{Note:} Given a matrix $A \in \mathbb{R}^{2 \times 2}$
+\[
+A = \begin{pmatrix}
+    a & b \\
+    c & d \\
+\end{pmatrix}
+\]
+
+The matrix $A$ is positive definite if and only if $a > 0$ and $\text{det}(A) > 0$. The matrix $A$ is negative definite if and only if $a < 0$ and $\text{det}(A) > 0$.
+
+If applied to the Hessian matrix:
+\[
+H = \begin{pmatrix}
+    \dfrac{\partial^2 f}{\partial x^2} & \dfrac{\partial^2 f}{\partial x \partial y} \\
+    \dfrac{\partial^2 f}{\partial y \partial x} & \dfrac{\partial^2 f}{\partial y^2}
+\end{pmatrix}
+\]
+
+\paragraph{Saddle point:} A saddle point is a critical point of a function that is neither a local maximum nor a local minimum. It is a point where the function changes direction, and $\text{det}(H) < 0$.
+\subsubsection{Theorem: Behaviour of functions near saddle points}
+Let $U \subset \mathbb{R}^n$ be an open set, $f : U \rightarrow \mathbb{R}$ a function in $\mathcal{C}^2$. If $f$ has a saddle point at $a \in U$, then in every neighborhood of $a$, there are points where $f(b) > f(a)$ and points where $f(c) < f(a)$ for $b \in U$ and $c \in U$.
+\paragraph{Proof:} There exists a subspace $W$ in which $H$ is positive definite and a subsapce $Z$ in which $H$ is negative definite.
+\[
+h = \begin{pmatrix}
+    h_1 \\
+    h_2 \\
+\end{pmatrix} \in W
+\]
+\[
+\frac{f(a + th) - f(a)}{t^2} = \frac{t^2 \inner{h}{Hh}}{2t^2} + \frac{r(t^2 \|h\|^2)}{t^2} \implies f(a + th) > f(a)
+\]
+\[
+f(a + th) = f(a) + \inner{\nabla f\big|_a}{ht} - \frac{t^2}{2} \inner{h}{Hh} + r(ht)
+\]
+\[
+\frac{f(a + th) - f(a)}{t^2} \simeq \frac{1}{2} \inner{h}{Hh} \begin{cases}
+    > 0 & \text{if } h \in W \\
+    < 0 & \text{if } h \in Z \\
+\end{cases}
+\]
+
+\subsection{Conclusion}
+\begin{enumerate}
+    \item Let $(x_0,y_0)$ be a local minimum of $f$. Then:
+    \begin{itemize}
+        \item $\nabla f\big|_{(x_0,y_0)} = (0,0)$
+        \item $H\big|_{(x_0,y_0)}$ is positive definite
+    \end{itemize}
+    \item Let $(x_0,y_0)$ be a local maximum of $f$. Then:
+    \begin{itemize}
+        \item $\nabla f\big|_{(x_0,y_0)} = (0,0)$
+        \item $H\big|_{(x_0,y_0)}$ is negative definite
+    \end{itemize}
+    \item Let $(x_0,y_0)$ be a saddle point of $f$. Then:
+    \begin{itemize}
+        \item $\nabla f\big|_{(x_0,y_0)} = (0,0)$
+        \item $\text{det}(H\big|_{(x_0,y_0)}) < 0$
+    \end{itemize}
+\end{enumerate}
+
+\subsection*{Exercise}
+Given the function $f(x,y) = x^2 + y^2 - 2x - 6y + 14$, find the critical points and classify them.
+\[
+2x - 2 = 0 \implies x = 1
+\]
+\[
+2y - 6 = 0 \implies y = 3
+\]
+
+The unique critical point is $(1,3)$, and we have:
+\[
+H = \begin{pmatrix}
+    2 & 0 \\
+    0 & 2 \\
+\end{pmatrix} \quad \text{is positive definite.}
+\]
+
+so $(1,3)$ is a local minimum.
+\[
+f(x,y) = x^2 -2x +1 + y^2 - 6y + 9 + 4 = (x - 1)^2 + (y - 3)^2 + 4
+\]
+\[
+f(x,y) \geq 4 = f(1,3) \implies f(x,y) \geq f(1,3) \implies (1,3) \text{ is a global minimum.}
+\]
+
+\subsection*{Exercise}
+Find the critical points of the function $f(x,y) = x^4 + y^4 - 4xy + 1$ and classify them.
+\[
+\nabla f = \begin{pmatrix}
+    4x^3 - 4y \\
+    4y^3 - 4x \\
+\end{pmatrix}, \quad \begin{cases}
+    4x^3 - 4y = 0 \implies x^3 = y \\   
+    4y^3 - 4x = 0 \implies y^3 = x \\
+\end{cases}
+\]
+
+As $y = x^3$, $x^9 = x \implies x^9 - x = 0 \implies x(x^8 - 1) = 0$.
+\[
+x(x^4 - 1)(x^4 + 1) = 0 \implies x = 0, \pm 1, (\pm i)
+\]
+
+The critical points are $(0,0)$, $(1,1)$ and $(-1,-1)$.
+\[
+H = \begin{pmatrix}
+    12x^2 & -4 \\
+    -4 & 12y^2 \\
+\end{pmatrix}, \quad H\big|_{(0,0)} = \begin{pmatrix}
+    0 & -4 \\
+    -4 & 0 \\
+\end{pmatrix} \text{is indefinite.}
+\]
+\[
+H\big|_{(1,1)} = \begin{pmatrix}
+    12 & -4 \\
+    -4 & 12 \\
+\end{pmatrix} \text{ is positive definite.} \quad  H\big|_{(-1,-1)} = \begin{pmatrix}
+    12 & -4 \\
+    -4 & 12 \\
+\end{pmatrix} \text{is positive definite.}
+\]
+
+So $(1,1)$ and $(-1,-1)$ are local minima because $H$ is positive definite. The critical point $(0,0)$ is a saddle point because $H$ is indefinite.
 
 \end{document}
