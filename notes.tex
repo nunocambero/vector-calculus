@@ -5659,4 +5659,223 @@ H\big|_{(1,1)} = \begin{pmatrix}
 
 So $(1,1)$ and $(-1,-1)$ are local minima because $H$ is positive definite. The critical point $(0,0)$ is a saddle point because $H$ is indefinite.
 
+\subsection*{Exercise 8.2c}
+Classify the critical points of the function $f(x,y) = x^3+y^3-3 x^2-3 y^2-9 x$.
+
+\[
+\frac{\partial f}{\partial x} = 3x^2 - 6x - 9, \quad \frac{\partial f}{\partial y} = 3y^2 - 6y
+\]
+\[
+H = \begin{pmatrix}
+    6x - 6 & 0 \\
+    0 & 6y - 6 \\
+\end{pmatrix}, \quad \text{det}(H) = (6x - 6)(6y - 6) \quad \text{is positive definite.}
+\]
+\[
+\frac{\partial f}{\partial x} = 0 \implies 3x^2 - 6x - 9 = 0 \implies x^2 - 2x - 3 = 0 \implies (x - 3)(x + 1) = 0 \implies x = 3, -1
+\]
+\[
+\frac{\partial f}{\partial y} = 0 \implies 3y^2 - 6y = 0 \implies y(y - 2) = 0 \implies y = 0, 2
+\]
+
+So we have the critical points $(3,0)$, $(3,2)$, $(-1,0)$ and $(-1,2)$.
+\[
+H\big|_{(3,0)} = \begin{pmatrix}
+    12 & 0 \\
+    0 & -6 \\
+\end{pmatrix} \quad H\big|_{(3,2)} = \begin{pmatrix}
+    12 & 0 \\
+    0 & 6 \\
+\end{pmatrix}
+\]
+\[
+H\big|_{(-1,0)} = \begin{pmatrix}
+    -12 & 0 \\
+    0 & -6 \\
+\end{pmatrix} \quad H\big|_{(-1,2)} = \begin{pmatrix}
+    -12 & 0 \\
+    0 & 6 \\
+\end{pmatrix}
+\]
+
+$\text{det}(H\big|_{(3,0)}) < 0 \implies (3,0) \text{ is a saddle point.}$
+
+$\text{det}(H\big|_{(3,2)}) > 0 \implies f(3,2) = -31 \text{ is a local minimum.}$
+
+$\text{det}(H\big|_{(-1,0)}) > 0 \implies (-1,0) = 5 \text{ is a local maximum.}$
+
+$\text{det}(H\big|_{(-1,2)}) < 0 \implies (-1,2) \text{ is a saddle point.}$
+
+\subsection*{Exercise 8.3b}
+Find the critical points of the function $f(x,y) = x^2+ y^2+x^2y+4$ and classify them.
+\[
+D = \{(x,y) \mid |x| \leq 1, |y| \leq 1\} 
+\]
+
+$f$ is continuous on $D$ and differentiable on $D$. As $\partial D \subset D$, $D$ is closed. There exists $R$ such that $D \subset B_R(0)$. $D$ is bounded and closed, so $D$ is compact.
+
+Given $f$ continuous on $D$, we know that $f$ attains its maximum and minimum values on $D$.
+\[
+\frac{\partial f}{\partial x} = 2x + 2xy, \quad \frac{\partial f}{\partial y} = 2y + x^2
+\]
+\[
+\frac{\partial f}{\partial x} = 0 \implies 2x + 2xy = 0 \implies x(1 + y) = 0 \implies x = 0, y = -1
+\]
+\[
+\frac{\partial f}{\partial y} = 0 \implies 2y + x^2 = 0 \implies y = -\frac{x^2}{2}
+\]
+\[
+x = 0 \implies y = 0 \implies (0,0) \text{ is a critical point.}
+\]
+\[
+y = -1 \implies x^2 = 2 \implies x = \pm \sqrt{2} \implies (-\sqrt{2}, -1) \text{ and } (\sqrt{2}, -1) \text{ are critical points.}
+\]
+
+We only keep $(0,0)$:
+\[
+H\big|_{(0,0)} = \begin{pmatrix}
+    2 & 0 \\
+    0 & 2 \\
+\end{pmatrix} \quad \text{is positive definite.}
+\]
+
+so $(0,0)$ is a local minimum.
+
+\subsection*{Exercise 7.2}
+Determine the second-order Taylor formula for the given functions about the point
+$(x_0, y_0)$:
+\[
+g(x,y) = \sin(x + y^2) \quad \text{at } (0,0)
+\]
+
+We know that when $x \simeq 0$ and $y \simeq 0$, we have:
+\[
+g(x \simeq 0, y \simeq 0) = x + y^2 \simeq 0
+\]
+\[
+\sin(x + y^2) = x + y^2 - \frac{(x + y^2)^3}{6} + r(x,y) \implies g(x,y) = x + y^2 - \frac{(x + y^2)^3}{6} + r(x,y)
+\]
+
+We expand $(x + y^2)^3$ and rule out terms of degree greater than needed:
+\[
+(x + y^2)^3 = x^3 + 3x^2y^2 + 3xy^4 + y^6 
+\]
+
+So the Taylor polynomial of degree 2 is:
+\[
+\sin(x + y^2) \simeq x + y^2 \quad \text{at } (0,0)
+\]
+
+The Taylor polynomial of degree 3 is:
+\[
+\sin(x + y^2) \simeq x + y^2 + x^3 \quad \text{at } (0,0)
+\]
+
+The Taylor polynomial of degree 4 is:
+\[
+\sin(x + y^2) \simeq x + y^2 + x^3 + 3x^2y^2 \quad \text{at } (0,0)
+\]
+
+\subsection*{Exercise}
+Given $F(x,y) = x^3 + yx + y^3 - 3$, prove that $x = g(y)$ near $(1,1)$ and find the Taylor polynomial of degree 2 of $g$.
+
+To use the implicit function theorem, we need to check that $DF\big|_{(1,1)}$ is onto. We have:
+\[
+DF = \begin{pmatrix}
+    3x^2 + y & 3y^2 + x \\
+\end{pmatrix}, \quad DF\big|_{(1,1)} = \begin{pmatrix}
+    4 & 4 \\
+    \end{pmatrix}
+\]
+
+which is onto. So we take $x$ as the passive variable and $y$ as the active variable. There exists a function $g$ such that $F(g(y),y) = 0$.
+\[
+g(1) = 1 \quad \text{and } g(1 + h) = 1 g'(1)h + \frac{1}{2} g''(1)h^2 + r(h^2)
+\]
+
+To calculate $g'(1)$, we differentiate the equation $F(g(y),y) = 0$ with respect to $y$:
+\[
+DF\big|_{(g(1),1)} \cdot \begin{pmatrix}
+    g'(y) \\
+    1 \\
+\end{pmatrix} = 0 \implies g'(y) = -\frac{DF_2}{DF_1} \big|_{(g(1),1)} \implies g'(1) = -\frac{4}{4} = -1
+\]
+\[
+g(1 + h) = 1 - h + Ah^2
+\]
+
+With $F(1, 1) = 0$, we have:
+\[
+F(g(1 + h), 1 + h) = (g(1 + h))^3 + (1 + h)g(1 + h) + (1 + h)^3 - 3 =
+\]
+\[
+= (1 - h + Ah^2)^3 + (1 + h)(1 - h + Ah^2) + (1 + h)^3 - 3
+\]
+\[
+\implies (4A + 5)h^2 = 0 \implies A = -\frac{5}{4} \implies g(1 + h) = 1 - h - \frac{5}{4}h^2
+\]
+
+\subsection*{Exercise 7.5}
+Show that the equation $x^2 + y^3 + xyz^3 - 3 = 0$ determines $z$ as a function of $g(x, y)$ near the point $(1, 1, 1)$. Find the Taylor polynomial of degree 2 of $g$ at the point $(1, 1)$.
+\[
+F(x,y,z) = x^2 + y^3 + xyz^3 - 3 \quad \text{at } (1,1,1)
+\]
+\[
+DF = \begin{pmatrix}
+    2x + yz^2 & 3y^2 + yz^3 & xy(3z^2) \\
+\end{pmatrix}, \quad DF\big|_{(1,1,1)} = \begin{pmatrix}
+    3 & 4 & 3 \\
+    \end{pmatrix}
+\]
+\[
+DF\big|_{(1,1,1)} \text{ is onto, so there exists a function } g \text{ such that } F(x,y,g(x,y)) = 0
+\]
+\[
+g(1 + h_1, 1 + h_2) = g(1,1) + \frac{\partial g}{\partial x}\big|_{(1,1)}h_1 + \frac{\partial g}{\partial y}\big|_{(1,1)}h_2 + \frac{1}{2} \left(\frac{\partial^2 g}{\partial x^2}\big|_{(1,1)}h_1^2 + \frac{\partial^2 g}{\partial y^2}\big|_{(1,1)}h_2^2 + 2\frac{\partial^2 g}{\partial x \partial y}\big|_{(1,1)}h_1 h_2\right)
+\]
+
+The implicit function theorem says that $g$ is differentiable:
+\[
+\begin{pmatrix}
+    \dfrac{\partial g}{\partial x} &
+    \dfrac{\partial g}{\partial y} &
+    \dfrac{\partial^2 g}{\partial g(x,y)}
+\end{pmatrix} \big|_{(1,1,1)} \begin{pmatrix}
+    1 \\
+    0 \\
+    \dfrac{\partial g}{\partial x}\big|_{(1,1)} \\
+\end{pmatrix} = 0
+\]
+\[
+\implies \begin{pmatrix}
+    3 & 4 & 3 \\
+    \end{pmatrix} \begin{pmatrix}
+    1 \\
+    0 \\
+    \dfrac{\partial g}{\partial x}\big|_{(1,1)} \\
+\end{pmatrix} = 0 \implies \dfrac{\partial g}{\partial x}\big|_{(1,1)} = -1
+\]
+\[
+\frac{\partial g}{\partial y}\big|_{(1,1)} = -\frac{DF_2}{DF_1} \big|_{(1,1,1)} = -\frac{4}{3} \implies \dfrac{\partial g}{\partial y}\big|_{(1,1)} = -\frac{4}{3}
+\]
+\[
+(1 + h_1)^2 + (1 + h_2)^3 + (1 + h_1)(1 + h_2)(1 - h_1 - \frac{4}{3}h_2)^3 + A \frac{h_1^2}{2} + B \frac{h_2^2}{2} + C h_1 h_2 = 0
+\]
+
+So $A = -\frac{2}{3}$, \quad $B = -\frac{26}{9}$, and $C = -\frac{2}{3}$. The Taylor polynomial of degree 2 is:
+\[
+g(x,y) \simeq 1 - (x - 1) - \frac{4}{3}(y - 1) - \frac{1}{3}(x - 1)^2 - \frac{13}{9}(y - 1)^2 - \frac{2}{3}(x - 1)(y - 1) \quad \text{at } (1,1)
+\]
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}
