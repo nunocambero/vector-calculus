@@ -4869,7 +4869,7 @@ D_{x,y} = \{(x,y) \in \mathbb{R}^2 : x^2 + y^2 < 1\}
         % Sphere plot
         \addplot3[
             domain=0:360,
-            y domain=0:180,
+            y domain=0:90,
             surf,
             opacity=0.2,
             colormap/viridis
@@ -5867,8 +5867,358 @@ So $A = -\frac{2}{3}$, \quad $B = -\frac{26}{9}$, and $C = -\frac{2}{3}$. The Ta
 g(x,y) \simeq 1 - (x - 1) - \frac{4}{3}(y - 1) - \frac{1}{3}(x - 1)^2 - \frac{13}{9}(y - 1)^2 - \frac{2}{3}(x - 1)(y - 1) \quad \text{at } (1,1)
 \]
 
+\section{Lagrange Multipliers}
+We have to remember level curves and level surfaces, and the fact that the gradient is perpendicular to the level curves and level surfaces. The gradient is a vector that points in the direction of the steepest ascent of a function.
 
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = {$x$},
+            ylabel = {$y$},
+            zlabel = {$z$},
+            xmin = -3, xmax = 3,
+            ymin = -3, ymax = 3,
+            zmin = 0, zmax = 4,
+            width=10cm,
+            height=10cm,
+            view={60}{30},
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=50,
+            colormap/cool,
+        ]
+        % 3D paraboloid
+        \addplot3[
+            domain=-1.5:1.5,
+            y domain=-1.5:1.5,
+            surf,
+            opacity=0.7,
+        ]
+        {x^2 + y^2};
+        \end{axis}
+    \end{tikzpicture}
+    \hspace{1cm}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = {$x$},
+            ylabel = {$y$},
+            xmin = -2, xmax = 2,
+            ymin = -2, ymax = 2,
+            width=10cm,
+            height=10cm,
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=100,
+        ]
+        % Level curves of the paraboloid
+        \addplot[domain=0:360, samples=100, thick, color=blue] ({cos(x)}, {sin(x)});
+        \addplot[domain=0:360, samples=100, thick, color=red] ({1.4142 * cos(x)}, {1.4142 * sin(x)});
+        \addplot[domain=0:360, samples=100, thick, color=green] ({1.67 * cos(x)}, {1.67 * sin(x)});
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
 
+\subsection{Constrained Optimization}
+Graphically, restriction is to be on the unit circle of $F(x,y) = x^2 + 2y^2$.
+
+We have seen that if $f(x,y)$ is a continuous function on a compact set $D \subset \mathbb{R}^2$, then $f$ attains its maximum and minimum values on $D$.
+\[
+D \quad \begin{cases}
+    \partial D \quad \begin{cases}
+        \text{Lagrange multipliers} \\
+        \text{Restriction constrained} \\
+    \end{cases} \\
+    \text{Interior of } D \quad \begin{cases}
+        \text{Hessian} \\
+        \text{Unconstrained optimization} \\
+    \end{cases} \\
+\end{cases} \\
+\]
+
+\subsection*{Example}
+Obtain, graphically, the maximum and minimum of the function $f(x,y,z) = x^2 + y^2 + z^2$, which is the distance from the origin squared, in the curve intersection of the cylinder $x^2 + y^2 = 1$ and $z = y$.
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = {$x$},
+            ylabel = {$y$},
+            zlabel = {$z$},
+            xmin = -2, xmax = 2,
+            ymin = -2, ymax = 2,
+            zmin = -2, zmax = 2,
+            width=10cm,
+            height=10cm,
+            view={60}{30},
+            grid = major,
+            grid style = {dashed, gray!30},
+        ]
+        % Cylinder
+        \addplot3[
+            domain=0:360,
+            y domain=-1:1,
+            surf,
+            opacity=0.3,
+            color=cyan,
+        ]
+        ({cos(x)}, {sin(x)}, {y});
+        % Plane
+        \addplot3[
+            domain=-1.5:1.5,
+            y domain=-1.5:1.5,
+            surf,
+            opacity=0.3,
+            color=yellow,
+        ]
+        ({x}, {y}, {y});
+        % Intersection curve
+        \addplot3[
+            domain=0:360,
+            samples=50,
+            thick,
+            color=red,
+        ]
+        ({cos(x)}, {sin(x)}, {sin(x)});
+        \end{axis}
+    \end{tikzpicture}
+    \hspace{1cm}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = {$x$},
+            ylabel = {$y$},
+            zlabel = {$z$},
+            xmin = -1.5, xmax = 1.5,
+            ymin = -1.5, ymax = 1.5,
+            zmin = -1.5, zmax = 1.5,
+            width=10cm,
+            height=10cm,
+            view={60}{30},
+            grid = major,
+            grid style = {dashed, gray!30},
+            samples=50,
+            colormap/viridis,
+        ]
+        % Sphere
+        \addplot3[
+            domain=0:360,
+            y domain=0:180,
+            surf,
+            opacity=0.3,
+            color=orange,
+        ]
+        ({cos(x)*sin(y)}, {sin(x)*sin(y)}, {cos(y)});
+        % Other surface
+        \addplot3[
+            domain=0:360,
+            y domain=0:180,
+            surf,
+            opacity=0.1,
+            color=blue,
+        ]
+        ({1.4142*cos(x)*sin(y)}, {1.4142*sin(x)*sin(y)}, {1.4142*cos(y)});
+        % Curve
+        \addplot3[
+            domain=0:360,
+            samples=50,
+            thick,
+            color=red,
+        ]
+        ({cos(x)}, {sin(x)}, {sin(x)});
+        % Points of intersection
+        \addplot3[
+            only marks,
+            mark=*,
+            color=black,
+            mark size=2pt,
+        ]
+        coordinates {(1,0,0) (-1,0,0) (0,1,1) (0,-1,-1)};
+        
+        \end{axis}
+    \end{tikzpicture}
+    \label{fig:cylinder_plane}
+\end{figure}
+
+So we have the following points:
+\begin{itemize}
+    \item $(1,0,0)$
+    \item $(-1,0,0)$
+    \item $(0,1,1)$
+    \item $(0,-1,-1)$
+    \end{itemize}
+The maximums are $(0,1,1)$ and $(0,-1,-1)$, and the minimums are $(1,0,0)$ and $(-1,0,0)$.
+
+\subsection{Tangent Space}
+Let $F(x) = 0$ be given by an equation. Then the tangent space at the point $x_0$ is given by the equation:
+\[
+T_{M_{x_0}} = \text{ker}(DF\big|_{x_0}) = \{x \in \mathbb{R}^n \mid F(x) = 0\} \quad \text{is the tangent space at } x_0
+\]
+
+$T_{M_{x_0}}$ is the tangent space at $x_0$ and is a manifold.
+
+\subsection{Constrained Optimization}
+We have to find the maximum and minimum of $f(x,y)$ subject to the constraint $F(x) = 0$. We need to optimize the function $f$ on the manifold $M$ defined by the constraint $F(x) = 0$.
+\[
+\inner{v}{\nabla f} = 0, \quad (\nabla f) \begin{pmatrix}
+    v_1 \\
+    \vdots \\
+    v_n \\
+\end{pmatrix} = 0
+\]
+
+where $v \in T_{M_{x_0}} = \text{ker}(DF\big|_{x_0})$.
+
+\subsection{Lemma}
+Let $A = \begin{bmatrix}
+    \alpha_1 \\
+    \vdots \\
+    \alpha_m \\
+\end{bmatrix} : \mathbb{R}^n \rightarrow \mathbb{R}^m$ and $\beta : \mathbb{R}^n \rightarrow \mathbb{R}$ be linear transformations. Then,
+\[
+\text{ker}(A) \subset \text{ker}(\beta) \iff \exists \space \lambda_1, \ldots, \lambda_n \in \mathbb{R} \text{ such that } \beta = \sum_{i=1}^n \lambda_i \alpha_i
+\]
+
+\[
+A = \begin{bmatrix}
+    \frac{\partial F_1}{\partial x_1} & \cdots & \frac{\partial F_1}{\partial x_n} \\
+    \vdots & \ddots & \vdots \\
+    \frac{\partial F_m}{\partial x_1} & \cdots & \frac{\partial F_m}{\partial x_n} \\
+\end{bmatrix} \quad \text{and } v \in \text{ker}(A) \implies v \in \mathbb{R}^n
+\]
+\[
+\beta = \nabla f = \begin{pmatrix}
+    \frac{\partial f}{\partial x_1} & \cdots & \frac{\partial f}{\partial x_n} \\
+\end{pmatrix} \quad v \in \text{ker}(\beta)
+\]
+
+\subsection{Theorem (Lagrange multipliers)}
+Let $M$ be a manifold known by a vector function $F(x) = 0$, where $F = F(x_1, \ldots, x_n)$ goes from an open subset $U \subset \mathbb{R}^n$ to $\mathbb{R}^m$. And $DF(x)$ is onto for all $x \in M$. Then, the numbers $\lambda_1, \ldots, \lambda_m$ are called Lagrange multipliers of $f$ at $x_0$. 
+
+If $a \in x$ is a critical point of $f$ restricted to $M$, then there exists $\lambda_1, \ldots, \lambda_m$ such that the derivative of $f$ at $a$ is a linear combination of the derivatives of the constrained functions $F$ at $a$:
+\[
+Df\big|_a = \lambda_1 DF_1\big|_a + \cdots + \lambda_m DF_m\big|_a
+\]
+
+\subsection*{Example}
+Find the maximum and minimum of the function $f(x,y) = x^2 + 2y^2$ subject to the constraint $g(x,y) = x^2 + y^2 = 1$.
+\[
+F(x) = 0 \text{ defines the manifold } M \text{ and } F(x,y) = x^2 + y^2 - 1 = 0
+\]
+\[
+DF = \begin{pmatrix}
+    2x & 2y \\
+\end{pmatrix}, \quad \nabla f = \begin{pmatrix}
+    2x & 4y \\
+\end{pmatrix}
+\]
+\[
+\begin{cases}
+    \nabla f = \lambda \nabla F \\
+    F(x,y) = 0 \\
+\end{cases} \implies \begin{cases}
+    \begin{pmatrix}
+        2x & 4y \\
+    \end{pmatrix} = \lambda \begin{pmatrix}
+        2x & 2y \\
+    \end{pmatrix} \\
+    x^2 + y^2 = 1 \\
+\end{cases}
+\]
+
+\[
+\begin{cases}
+    2x = \lambda 2x \\
+    4y = \lambda 2y \\
+    x^2 + y^2 = 1 \\
+\end{cases} \implies \text{ three equations, three unknowns.}
+\]
+
+From the first equation, we have two cases:
+\begin{itemize}
+    \item $x = 0 \implies y^2 = 1 \implies y = \pm 1$
+    \item $x \neq 0 \implies \lambda = 1$ and $y = 2x$.
+    \end{itemize}
+
+The critical points are $(0,1)$ and $(0,-1)$.
+
+\subsection*{Exercise}
+Find the points of the sphere $x^2 + y^2 + z^2 = 4$ that are closest and furthest to the point $(3,1,-1)$.
+
+We have to maximize and minimize the function $f(x,y,z) = (x - 3)^2 + (y - 1)^2 + (z + 1)^2$ because it achieves its maximum and minimum values on the same point. 
+
+$F(x,y,z) = x^2 + y^2 + z^2 - 4 = 0$ defines the manifold $M$. We have:
+\[
+\nabla f = \begin{pmatrix}
+    2(x - 3) & 2(y - 1) & 2(z + 1) \\
+\end{pmatrix}, \quad \nabla F = \begin{pmatrix}
+    2x & 2y & 2z \\
+\end{pmatrix}
+\]
+\[
+\begin{cases}
+    \nabla f = \lambda \nabla F \\
+    F(x,y,z) = 0 \\
+\end{cases} \implies \begin{cases}
+    \begin{pmatrix}
+        2(x - 3) & 2(y - 1) & 2(z + 1) \\
+    \end{pmatrix} = \lambda \begin{pmatrix}
+        2x & 2y & 2z \\
+    \end{pmatrix} \\
+    x^2 + y^2 + z^2 - 4 = 0 \\  
+\end{cases}
+\]
+\[
+2x - 6 = \lambda 2x \implies 2x (1 - \lambda) = 6 \implies \begin{cases}
+    2x (1 - \lambda) = 6 \\
+    2y (1 - \lambda) = 2 \\
+    2z (1 - \lambda) = -2 \\
+\end{cases}
+\]
+
+so $\lambda \neq 1$ and we have:
+\[
+\begin{cases}
+    x = \dfrac{3}{1 - \lambda} \\
+    y = \dfrac{1}{1 - \lambda} \\
+    z = \dfrac{-1}{1 - \lambda} \\
+\end{cases} \implies \frac{9}{(1 - \lambda)^2} + \frac{1}{(1 - \lambda)^2} + \frac{1}{(1 - \lambda)^2} = 4
+\]
+\[
+\implies \frac{11}{(1 - \lambda)^2} = 4 \implies (1 - \lambda)^2 = \frac{11}{4} \implies 1 - \lambda = \pm \frac{\sqrt{11}}{2}
+\]
+
+\subsection*{Exercise}
+Find the maximum value of $f(x,y,z) = x + 2y + 3z$ in the curve intersection of the plane $x - y + z = 1$ and the cylinder $x^2 + y^2 = 1$.
+\[
+F(x,y,z) = 0 \text{ defines the manifold } M \text{ and } F(x,y,z) = \begin{cases}
+    x - y + z - 1 \\
+    x^2 + y^2 - 1 \\
+\end{cases} = 0
+\]
+\[
+\nabla f = \begin{pmatrix}
+    1 & 2 & 3 \\
+\end{pmatrix}, \quad \nabla F = \begin{pmatrix}
+    1 & -1 & 1 \\
+    2x & 2y & 0 \\
+\end{pmatrix}
+\]
+\[
+\nabla f = \lambda \nabla F_1 + \mu \nabla F_2 \implies \begin{pmatrix}
+    1 & 2 & 3 \\
+\end{pmatrix} = \lambda \begin{pmatrix}
+        1 & -1 & 1 \\
+    \end{pmatrix} + \mu \begin{pmatrix}
+        2x & 2y & 0 \\
+    \end{pmatrix} \implies \begin{cases}
+        1 = \lambda + 2\mu x \\
+        2 = -\lambda + 2\mu y \\
+        3 = \lambda \\
+    \end{cases}
+\]
 
 
 

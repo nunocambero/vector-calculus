@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.3.23)  30 APR 2025 09:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.3.23)  30 APR 2025 09:59
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -538,7 +538,7 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count335
 \l__pdf_internal_box=\box118
 )
-No file cached_models/notes-figure8.aux.
+No file cached_models/notes-figure21.aux.
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
 LaTeX Font Info:    ... okay on input line 41.
 LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 41.
@@ -757,25 +757,7 @@ A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to di
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to disable this.
 
 
-\openout3 = `cached_models/notes-figure8.dpth'.
-
-Missing character: There is no . in font nullfont!
-Missing character: There is no 0 in font nullfont!
-Missing character: There is no 1 in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no 0 in font nullfont!
-Missing character: There is no 1 in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no t in font nullfont!
-\openout3 = `cached_models/notes-figure8.mw'.
-
-[51
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./cached_models/notes-figure8.mw)
-\openout3 = `cached_models/notes-figure8.mw'.
-
+A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to disable this.
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to disable this.
 
 
@@ -815,7 +797,20 @@ Overfull \hbox (14.84949pt too wide) detected at line 5835
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to disable this.
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to disable this.
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to disable this.
-A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to disable this.
+\openout3 = `cached_models/notes-figure21.dpth'.
+
+Missing character: There is no . in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+\openout3 = `cached_models/notes-figure21.mw'.
+
+[62
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./cached_models/notes-figure21.mw)
+\openout3 = `cached_models/notes-figure21.mw'.
+
 
 
  ***********
@@ -889,22 +884,22 @@ epstopdf-sys.cfg    2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
     umsb.fd    2013/01/14 v3.01 AMS symbols B
  ***********
 
-\openout3 = `cached_models/notes-figure8.dpth'.
+\openout3 = `cached_models/notes-figure21.dpth'.
 
  ) 
 Here is how much of TeX's memory you used:
- 25890 strings out of 475171
- 661698 string characters out of 5767095
- 4912329 words of memory out of 5000000
- 48455 multiletter control sequences out of 15000+600000
+ 25884 strings out of 475171
+ 661642 string characters out of 5767095
+ 3953781 words of memory out of 5000000
+ 48449 multiletter control sequences out of 15000+600000
  571384 words of font info for 83 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 103i,19n,108p,753b,2878s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on cached_models/notes-figure8.pdf (1 page, 103693 bytes).
+ 103i,19n,108p,753b,2658s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on cached_models/notes-figure21.pdf (1 page, 122188 bytes).
 PDF statistics:
- 41 PDF objects out of 1000 (max. 8388607)
- 25 compressed objects within 1 object stream
+ 26 PDF objects out of 1000 (max. 8388607)
+ 16 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
