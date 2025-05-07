@@ -6220,6 +6220,177 @@ F(x,y,z) = 0 \text{ defines the manifold } M \text{ and } F(x,y,z) = \begin{case
     \end{cases}
 \]
 
+\subsection*{Exercise}
+Find, graphically, the closest point $P(x_0, y_0, z_0)$ to an arbitrary sphere.
+
+Our restriction is $F(x,y,z) = 0$, and we have the distance function:
+\[f(x,y,z) = \left(d (P, (x,y,z))\right)^2 = (x - x_0)^2 + (y - y_0)^2 + (z - z_0)^2\]
+
+The level surfaces of $f$ are:
+\[
+\{ (x,y,z) \mid f(x,y,z) = c \} = \{ (x,y,z) \mid (x - x_0)^2 + (y - y_0)^2 + (z - z_0)^2 = c \}
+\]
+
+We need to find the level surface of $f$ that is tangent to the level surface of $F$. The level surface of $F$ is given by the equation:
+\[
+\{ (x,y,z) \mid F(x,y,z) = c \} = \{ (x,y,z) \mid x^2 + y^2 + z^2 - c = 0 \}
+\]
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = {$x$},
+            ylabel = {$y$},
+            zlabel = {$z$},
+            xmin = -3, xmax = 3,
+            ymin = -3, ymax = 6,
+            zmin = -3, zmax = 3,
+            width=14cm,
+            height=10cm,
+            view={75}{15},
+            grid = major,
+            grid style = {dashed, gray!30},
+        ]
+        % Sphere
+        \addplot3[
+            domain=0:360,
+            y domain=0:180,
+            thick,
+            opacity=0.3,
+            color=red,
+        ]
+        ({cos(x)*sin(y)}, {sin(x)*sin(y)}, {cos(y)});
+        % Other surface
+        \addplot3[
+            domain=0:360,
+            y domain=0:180,
+            surf,
+            opacity=0.1,
+            color=blue,
+        ]
+        ({1.4142*cos(x)*sin(y)}, {1.4142*sin(x)*sin(y) + 4}, {1.4142*cos(y)});
+        % Curve
+        \addplot3[
+            domain=0:360,
+            y domain=0:180,
+            samples=50,
+            thick,
+            color=red,
+            opacity=0.3,
+        ]
+        ({2.5857*cos(x)*sin(y)}, {2.5857*sin(x)*sin(y)}, {2.5857*cos(y)});
+        \addplot3[
+            domain=0:360,
+            y domain=0:180,
+            samples=50,
+            thick,
+            color=red,
+            opacity=0.3,
+        ]
+        ({1.7*cos(x)*sin(y)}, {1.7*sin(x)*sin(y)}, {1.7*cos(y)});
+        % Points of intersection
+        \addplot3[
+            only marks,
+            mark=*,
+            color=black,
+            mark size=2pt,
+        ]
+        coordinates {(0,0,0)};
+        \addplot3[
+            only marks,
+            mark=*,
+            color=black,
+            mark size=2pt,
+        ]
+        coordinates {(0,2.5857,0)};
+        \addplot3[
+            domain=-3:3,
+            y domain=-3:3,
+            samples=50,
+            color=black,
+            opacity=0.3,
+        ]
+        ({x}, {2.5857}, {y});
+
+        \node at (axis cs:0,0.25,0.25) {$P$};
+        \node at (axis cs:0,2.75,0.25) {$P'$};
+        
+        \end{axis}
+    \end{tikzpicture}
+    \label{fig:sphere_plane}
+\end{figure}
+
+\subsection*{Exercise}
+Find the minimum value of $f(x,y,z) = x^2 + 2y^2 + 3z^2$ subject to the constraint $x + 2y + 3z = 10$.
+
+The constraint is not bounded, so we cannot say that the function attains its maximum value, but we can say that it attains its minimum value. We have:
+\[
+F(x,y,z) = 0 \text{ defines the manifold } M \text{ and } F(x,y,z) = x + 2y + 3z - 10 = 0
+\]
+\[
+\nabla f = \begin{pmatrix}
+    2x & 4y & 6z \\
+\end{pmatrix}, \quad \nabla F = \begin{pmatrix}
+    1 & 2 & 3 \\
+\end{pmatrix}
+\]
+\[
+\nabla f = \lambda \nabla F \implies \begin{pmatrix}
+    2x & 4y & 6z \\
+\end{pmatrix} = \lambda \begin{pmatrix}
+        1 & 2 & 3 \\
+    \end{pmatrix} \implies \begin{cases}
+        2x = \lambda \\
+        4y = 2\lambda \\
+        6z = 3\lambda \\
+    \end{cases} \implies \begin{cases}
+        x = \frac{\lambda}{2} \\
+        y = \frac{\lambda}{2} \\
+        z = \frac{\lambda}{2} \\
+    \end{cases}
+\]
+\[
+\implies \frac{\lambda}{2} + 2\frac{\lambda}{2} + 3\frac{\lambda}{2} = 10 \implies \frac{6\lambda}{2} = 10 \implies \lambda = \frac{10}{3}
+\]
+\[
+\implies x = \frac{5}{3}, y = \frac{5}{6}, z = \frac{5}{9} \implies f(x,y,z) = \left(\frac{5}{3}\right)^2 + 2\left(\frac{5}{6}\right)^2 + 3\left(\frac{5}{9}\right)^2 = \frac{25}{9} + \frac{50}{36} + \frac{75}{81} 
+\]
+
+\subsection*{Exercise}
+Find the extreme values of the function $f$ on the region described by the inequality:
+\[
+f(x,y) = 2x^2 + 3y^2 - 4x - 5 \quad \text{and } x^2 + y^2 \leq 16
+\]
+\[
+D = \{ (x,y) \mid x^2 + y^2 \leq 16 \} \text{ is the disk of radius } 4
+\]
+
+$D$ is a compact set, so $f$ attains its maximum and minimum values on $D$. We have:
+\[
+\nabla f = \begin{pmatrix}
+    4x - 4 \\
+    6y \\
+\end{pmatrix} \quad \nabla f = 0 \implies \begin{cases}
+    4x - 4 = 0 \\
+    6y = 0 \\
+\end{cases} \implies \begin{cases}
+    x = 1 \\
+    y = 0 \\
+\end{cases} \implies f(1,0) = -1
+\]
+
+We have to check the Hessian:
+\[
+H = \begin{pmatrix}
+    4 & 0 \\
+    0 & 6 \\
+\end{pmatrix} \quad \text{is positive definite.}
+\]
+
+so $(1,0)$ is a local minimum.
+
 
 
 
