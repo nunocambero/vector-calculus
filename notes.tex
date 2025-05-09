@@ -6391,7 +6391,94 @@ H = \begin{pmatrix}
 
 so $(1,0)$ is a local minimum.
 
+\section{Curvature of a curve (In $\mathbb{R}^3$ or in $\mathbb{R}^2$)}
+We need the "best coordinate system" to describe the curve. We have:
+\[
+Y = G(x), \quad Y = \frac{A_2}{2}X^2 + \text{remainder}
+\]
 
+\subsection{Curvature of a curve in $\mathbb{R}^2$}
+Let a curve in $\mathbb{R}^2$ be locally the graph of a function $G(x)$, with taylor polynomial:
+\[
+G(x) = \frac{A_2}{2}x^2 + \frac{A_3}{6}x^3 + \cdots + \frac{A_n}{n!}x^n + r(x) \quad \text{at } (0,0)
+\]
+
+Then, the curvature of the curve at the point 0, i.e. the point of the curve, is given by:
+\[
+\kappa = |A_2| \quad \text{at } (0,0)
+\]
+
+\subsection*{Example}
+Consider the unit circle at $(1,0)$:
+\[
+Y = y - 1, \quad X = x
+\]
+\[
+y = \sqrt{1 - x^2} \implies Y = \sqrt{1 - X^2} - 1
+\]
+
+With $Y = G(x)$, we have:
+\[
+G(0) = 0, \quad G'(x) = -\frac{X}{\sqrt{1 - X^2}} \implies G'(0) = 0
+\]
+\[
+G''(x) = -\frac{1}{\sqrt{1 - X^2}} + \frac{X^2}{(1 - X^2)^{3/2}} \implies G''(0) = -1
+\]
+\[
+G(x) = G(0) + G'(0)x + \frac{G''(0)}{2}x^2 \implies \kappa = |-1| = 1
+\]
+
+\subsection{Computing the curvature of a plane curve known as a graph $(x,f(x))$}
+In this case, the curvature of $f$ at the point $(x_0,f(x_0))$ is given by:
+\[
+\kappa = \frac{|f''(x_0)|}{(1 + (f'(x_0))^2)^{3/2}} \quad \text{at } (x_0,f(x_0))
+\]
+
+\subsection*{Example}
+Calculate the curvature of the parabola $y = x^2$ at the point $(a,f(a))$.
+\[
+f(x) = x^2 \implies f'(x) = 2x, \quad f''(x) = 2
+\]
+\[
+\kappa = \frac{|f''(a)|}{(1 + (f'(a))^2)^{3/2}} = \frac{2}{(1 + (2a)^2)^{3/2}} \quad \text{at } (a,a^2)
+\]
+
+\subsection*{Example: Curvature of a curve given by the implicit function theorem}
+With $x = g(y)$, calculate the curvature of the curve
+\[
+F(x,y) = x^3 + xy + y^3 - 3 \quad \text{at } (1,1)
+\]
+\[
+DF = \begin{pmatrix}
+    3x^2 + y & x + 3y^2 \\
+\end{pmatrix}, \quad DF\big|_{(1,1)} = \begin{pmatrix}
+    4 & 4 \\
+\end{pmatrix}
+\]
+\[
+DF\big|_{(1,1)} \text{ is onto, so there exists a function } g \text{ such that } F(g(y),y) = 0
+\]
+\[
+g(1) = 1 \implies F(g(1),1) = 0 \implies g'(y) = -\frac{DF_2}{DF_1} \big|_{(g(1),1)} \implies g'(1) = -\frac{4}{4} = -1
+\]
+\[
+g(1 + h) = g(1) + g'(1)h + \frac{g''(1)}{2}h^2 + \cdots
+\]
+\[
+F(g(1 + h), 1 + h) = (g(1 + h))^3 + (1 + h)(g(1 + h)) + (1 + h)^3 - 3
+\]
+\[
+= (1 - h + Ah^2)^3 + (1 + h)(1 - h + Ah^2) + (1 + h)^3 - 3
+\]
+\[
+= 1 - 3h + 3Ah^2 + (1 + h)(1 - h + Ah^2) + 1 + 3h + 3h^2 - 3 = 0
+\]
+\[
+A = - \frac{5}{4} \implies \frac{g''(1)}{2} = -\frac{5}{4} \implies g''(1) = -\frac{5}{2}
+\]
+\[
+\kappa = \frac{|g''(1)|}{(1 + (g'(1))^2)^{3/2}} = \frac{|-5/2|}{(1 + (-1)^2)^{3/2}} = \frac{5/2}{2\sqrt{2}} = \frac{5}{4\sqrt{2}}
+\]
 
 
 
