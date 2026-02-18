@@ -17,6 +17,7 @@
 \listfiles
 
 \usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
 \usepackage{graphicx}
 \usepackage{geometry}
 \usepackage{array}
@@ -34,6 +35,8 @@
 \newcommand{\card}[1]{\lvert #1 \rvert}
 \newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
 
+\newcommand{\remark}{\subsubsection*{Remark}}
+
 \title{\textbf{Vector Calculus}}
 \author{}
 \date{}
@@ -41,6 +44,10 @@
 \begin{document}
 
 \maketitle
+
+\tableofcontents
+
+\pagebreak 
 
 \section{Euclidean space}
 
@@ -456,5 +463,142 @@ if for every $\epsilon > 0$, there exists a $\delta > 0$ such that for all $x \i
         This gives non-existence of the limit, so we cannot prove existence by this method.
     \item \textbf{Following families of functions:} If we can find two different paths approaching the same point that yield different limit values, then the limit does not exist.
 \end{enumerate}
+
+\section{Higher Order Derivatives}
+Partial derivatives of first order \(f(x_1, x_2, \dots, x_n)\)
+\[
+\frac{\partial f}{\partial x_1}, \quad \frac{\partial f}{\partial x_2}, \quad \dots, \quad \frac{\partial f}{\partial x_n}.
+\]
+
+Second order partial derivatives:
+\[
+\frac{\partial^2 f}{\partial x_1^2}, \quad \frac{\partial^2 f}{\partial x_i \partial x_j}, \quad \dots, \quad \frac{\partial^2 f}{\partial x_n^2}.
+\]
+
+In general, the \(k\)-th order partial derivatives of \(f\) are denoted by:
+\[
+\frac{\partial^k f}{\partial x_{i_1} \partial x_{i_2} \dots \partial x_{i_k}},\quad \text{where \(x_{i_j} \neq x_{i_k}\)}.
+\]
+
+\subsubsection*{Remark}
+We can say that the function \(f\) is of class \(C^k\) if all its partial derivatives up to order \(k\) exist and are continuous. Also, a function is \textbf{analytic} if it is of class \(C^\infty\).
+
+\subsubsection*{Example}
+Consider the function \(f : \mathbb{R}^3 \to \mathbb{R}\) defined by:
+\[f(x, y, z) = e^{xy} + z \cos x.\]
+The first order partial derivatives are:
+\[\frac{\partial f}{\partial x} = y e^{xy} - z \sin x, \quad \frac{\partial f}{\partial y} = x e^{xy}, \quad \frac{\partial f}{\partial z} = \cos x.\]
+The second order partial derivatives are:
+\[\frac{\partial^2 f}{\partial x^2} = y^2 e^{xy} - z \cos x, \quad \frac{\partial^2 f}{\partial y \partial x} = e^{xy} + x y e^{xy}, \quad \frac{\partial^2 f}{\partial y^2} = x^2 e^{xy}, \quad \frac{\partial^2 f}{\partial z^2} = 0 \ldots\]
+
+\subsubsection*{Remark}
+We call \(\dfrac{\partial^k f}{\partial x_{i_1} \partial x_{i_2} \dots \partial x_{i_k}}\) a \textbf{mixed or crossing partial derivative} if at least two of the indices \(i_j\) are different. For example, \(\dfrac{\partial^2 f}{\partial x \partial y}\) is a mixed partial derivative, while \(\dfrac{\partial^2 f}{\partial x^2}\) is not.
+
+\subsection{Schwarz's Theorem}
+Take a function \(f : A \subset \mathbb{R}^2 \to \mathbb{R}\) of class \(C^1\). Then, the mixed partial derivatives of \(f\) are equal:
+\[\frac{\partial^2 f}{\partial x \partial y} = \frac{\partial^2 f}{\partial y \partial x}.\]
+
+\begin{remark}
+    In general, if \(f : A \subset \mathbb{R}^n \to \mathbb{R}\) is of class \(C^{k-1}\), then the order of differentiation does not matter for any mixed partial derivatives of order less than or equal to \(k\). That is, for any indices \(i_1, i_2, \ldots, i_k\) and any permutation \(\sigma\) of \(\{1, 2, \ldots, k\}\), we have:
+\[\frac{\partial^k f}{\partial x_{i_1} \partial x_{i_2} \dots \partial x_{i_k}} = \frac{\partial^k f}{\partial x_{i_{\sigma(1)}} \partial x_{i_{\sigma(2)}} \dots \partial x_{i_{\sigma(k)}}}.\]
+\end{remark}
+
+\begin{proof}
+    To simplify the proof, we assume that the derivatives are taken at the point \((0, 0)\). Take an arbitrary point \((x, y)\) inside a ball centered at \((0, 0)\):
+    \[
+    \|(x, y)\| < \varepsilon, \quad \text{assuming } B_\varepsilon(0, 0).
+    \]
+
+    Then, we can \textbf{discretize} the derivatives as follows:
+    \[\frac{\partial f(x, y)}{\partial x} \approx \frac{f(x + h, y) - f(x - h, y)}{2h},\]
+    \[\frac{\partial f(x, y)}{\partial y} \approx \frac{f(x, y + k) - f(x, y - k)}{2k}.\]
+
+    And for the second order derivatives:
+    \[\frac{\partial^2 f(x, y)}{\partial x^2} \approx \frac{f(x + h, y) - 2f(x, y) + f(x - h, y)}{h^2},\]
+    \[\frac{\partial^2 f(x, y)}{\partial y^2} \approx \frac{f(x, y + k) - 2f(x, y) + f(x, y - k)}{k^2}.\]
+    For the mixed partial derivative, we have:
+    \[\frac{\partial^2 f(x, y)}{\partial x \partial y} \approx \frac{f(x + h, y + k) - f(x + h, y - k) - f(x - h, y + k) + f(x - h, y - k)}{4hk}.\]
+
+    Back to the proof, we use the second differentiation:
+    \[D(x, y) = f(x, y) - f(x, 0) - f(0, y) + f(0, 0).\]
+
+    Now, we define the function \(\varphi : \mathbb{R} \to \mathbb{R}\) by:
+    \[\begin{rcases*} 
+    \varphi(x) = f(x, y) - f(x, 0), \\
+    \varphi(0) = f(0, y) - f(0, 0).
+    \end{rcases*} \implies D(x, y) = \varphi(x) - \varphi(0).\]
+
+    Then, we have:
+    \[\varphi'(x) = \frac{\partial f(x, y)}{\partial x} - \frac{\partial f(x, 0)}{\partial x},\]
+    and by the Mean Value Theorem, there exists \(-x \leq \hat{x} \leq x\) such that:
+    \[D(x, y) = \varphi(x) - \varphi(0) = x \varphi'(\hat{x}) = x \left( \frac{\partial f(\hat{x}, y)}{\partial x} - \frac{\partial f(\hat{x}, 0)}{\partial x} \right).\]
+
+    Applying the Mean Value Theorem again, now for the map:
+    \[y \longmapsto \frac{\partial f(\hat{x}, y)}{\partial x},\] 
+    we find that
+    \[D(x, y) = x y \frac{\partial^2 f(\hat{x}, \hat{y})}{\partial y \partial x}, \quad \text{for some \(-y \leq \hat{y} \leq y\)}\]. 
+
+    Similarly, we define the function \(\psi : \mathbb{R} \to \mathbb{R}\) by:
+    \[\begin{rcases*}
+    \psi(y) = f(x, y) - f(0, y), \\
+    \psi(0) = f(x, 0) - f(0, 0).
+    \end{rcases*} \implies D(x, y) = \psi(y) - \psi(0).\]
+
+    By following the same steps, we find that:
+    \[D(x, y) = x y \frac{\partial^2 f(\tilde{x}, \tilde{y})}{\partial x \partial y}, \quad \text{for some \(-x \leq \tilde{x} \leq x, -y \leq \tilde{y} \leq y\)}.\]
+
+    Since \(f\) is of class \(C^1\), we have:
+    \[\frac{\partial^2 f(\hat{x}, \hat{y})}{\partial y \partial x} = \frac{\partial^2 f(\tilde{x}, \tilde{y})}{\partial x \partial y}.\]
+    Passing to the limit as \((x, y) \to (0, 0)\), we conclude that:
+    \[\frac{\partial^2 f(0, 0)}{\partial y \partial x} = \frac{\partial^2 f(0, 0)}{\partial x \partial y}.\]
+\end{proof}
+
+\section{Local Extrema}
+Let \(f : A \subset \mathbb{R}^n \to \mathbb{R}\) be a function, and let \(a \in A\) be a point in its domain. We say that \(f\) has a \textbf{local maximum} at \(a\) if there exists a neighborhood \(U\) of \(a\) such that for all \(x \in U\), we have:
+\[ f(x) \leq f(a). \]
+Similarly, \(f\) has a \textbf{local minimum} at \(a\) if there exists a neighborhood \(U\) of \(a\) such that for all \(x \in U\), we have:
+\[ f(x) \geq f(a). \]
+
+\subsubsection*{Definition}
+Given a function \(f : A \subset \mathbb{R}^n \to \mathbb{R}\) and a point \(a \in A\), we say that \(a\) is a \textbf{critical point} or \textbf{stationary point} of \(f\) if the gradient of \(f\) at \(a\) is zero, i.e.,
+\[ \nabla f(a) = 0. \]
+
+\begin{remark}
+    A critical point that is not a local extremum is called a \textbf{saddle point}.
+
+    \begin{itemize}
+        \item \textbf{Theorem: } If \(f : A \subset \mathbb{R}^n \to \mathbb{R}\) is differentiable and has a local extremum at \(a\), then \(a\) is a critical point of \(f\).
+        \item If \(a\) is a local extremum, and the directional derivative of \(f\) at \(a\) in any direction \(v\) exists, then the directional derivative must be zero:
+        \[ D_v f(a) = \nabla f(a) \cdot v = 0. \]
+        \item If \(f\) is differentiable, and we find that \(\nabla f(a) = 0\), then every directional derivative at \(a\) is zero.
+        \item If any of the directional derivatives at \(a\) does not exist, then the function is not differentiable at \(a\), and \(a\) is an \textbf{angular point}.
+        \item In both cases we can find a potential local extremum at \(a\), but it can also be a saddle point.
+    \end{itemize}
+\end{remark}
+
+\subsection{How to find local extrema?}
+Let's consider the function \(f : \mathbb{R}^2 \to \mathbb{R}\) defined by:
+\[ f(x, y) = 3x^2 + y^2 - 6x - 4y + 8. \]
+To find the local extrema of \(f\), we first compute the gradient:
+\[\nabla f(x, y) = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y} \right) = (6x - 6, 2y - 4).\]
+Setting the gradient equal to zero gives us the critical point:
+\[6x - 6 = 0 \implies x = 1, \quad 2y - 4 = 0 \implies y = 2.\]
+Thus, the critical point is \((1, 2)\). We have:
+\[f(1, 2) = 3(1)^2 + (2)^2 - 6(1) - 4(2) + 8 = 3 + 4 - 6 - 8 + 8 = 1.\]
+
+We will complete the squares to determine the nature of the critical point:
+\begin{align*}
+f(x, y) & = 3x^2 - 6x + y^2 - 4y + 8 \\
+& = 3(x^2 - 2x) + (y^2 - 4y) + 8 \\
+& = 3(x - 1)^2 - 3 + (y - 2)^2 - 4 + 8 \\
+& = 3(x - 1)^2 + (y - 2)^2 + 1.
+\end{align*}
+Since \(f(x, y) \geq 1 = f(1, 2)\) for all \((x, y) \in \mathbb{R}^2\), the critical point \((1, 2)\) is a local minimum of \(f\).
+
+
+
+
+
+
 
 \end{document}
