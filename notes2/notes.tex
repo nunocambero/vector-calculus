@@ -24,6 +24,7 @@
 \usepackage{booktabs}
 \usepackage{float}
 \usepackage{verbatim}
+\usepackage{fancybox}
 \usetikzlibrary{3d}
 
 % Page Layout
@@ -339,7 +340,8 @@ where $\theta$ is the angle between vectors $b$ and $c$. This represents the are
     \end{tikzpicture}
 \end{center}
 \pagebreak
-\section{Level Curves}
+\section{Limits, Continuity, and Differentiability}
+\subsection{Level Curves}
 Let $A \subset \mathbb{R}^n$ be a subset of $\mathbb{R}^n$ and let $f : A \to \mathbb{R}$ be a real-valued function defined on $A$. For any constant $c \in \mathbb{R}$, the \textbf{level set} of $f$ corresponding to the value $c$ is defined as:
 \[ L_c = \{ x \in A \mid f(x) = c \}. \]
 
@@ -355,7 +357,7 @@ The level curves of $f$ for different values of $c$ are given by:
     \item For $c = 3$: $L_3 = \{ (x, y) \in \mathbb{R}^2 \mid xy = 3 \}$.
 \end{itemize}
 
-\subsection{Graph of a Function}
+\subsubsection{Graph of a Function}
 The \textbf{graph} of a function $f : A \to \mathbb{R}$ is defined as the set of points in $\mathbb{R}^{n+1}$ given by:
 \[ G_f = \{ (x, f(x)) \mid x \in A \}. \]
 
@@ -448,13 +450,13 @@ Thus, the level set $F^{-1}(0)$ is the intersection of the sphere $x^2 + y^2 + z
 
 \pagebreak
 
-\section{Limits of Functions}
+\subsection{Limits of Functions}
 Let $f : \mathbb{R}^n \to \mathbb{R}^m$ be a function, and let $a \in \mathbb{R}^n$ be a point in its domain. We say that the limit of $f(x)$ as $x$ approaches $a$ is $L \in \mathbb{R}^m$, denoted by:
 \[ \lim_{x \to a} f(x) = L, \]
 if for every $\epsilon > 0$, there exists a $\delta > 0$ such that for all $x \in \mathbb{R}^n$ satisfying $0 < \|x - a\| < \delta$, we have:
 \[ \|f(x) - L\| < \epsilon. \]
 
-\subsection{Methods to Compute Limits}
+\subsubsection{Methods to Compute Limits}
 \begin{enumerate}
     \item \textbf{Applying the Definition:} We must prove that for every $\epsilon > 0$, there exists a $\delta > 0$ such that 
         \[ 0 < (x, y) - (a, b) < \delta \implies |f(x, y) - L| < \epsilon. \]
@@ -464,7 +466,7 @@ if for every $\epsilon > 0$, there exists a $\delta > 0$ such that for all $x \i
     \item \textbf{Following families of functions:} If we can find two different paths approaching the same point that yield different limit values, then the limit does not exist.
 \end{enumerate}
 
-\section{Higher Order Derivatives}
+\subsection{Higher Order Derivatives}
 Partial derivatives of first order \(f(x_1, x_2, \dots, x_n)\)
 \[
 \frac{\partial f}{\partial x_1}, \quad \frac{\partial f}{\partial x_2}, \quad \dots, \quad \frac{\partial f}{\partial x_n}.
@@ -494,7 +496,7 @@ The second order partial derivatives are:
 \subsubsection*{Remark}
 We call \(\dfrac{\partial^k f}{\partial x_{i_1} \partial x_{i_2} \dots \partial x_{i_k}}\) a \textbf{mixed or crossing partial derivative} if at least two of the indices \(i_j\) are different. For example, \(\dfrac{\partial^2 f}{\partial x \partial y}\) is a mixed partial derivative, while \(\dfrac{\partial^2 f}{\partial x^2}\) is not.
 
-\subsection{Schwarz's Theorem}
+\subsubsection{Schwarz's Theorem}
 Take a function \(f : A \subset \mathbb{R}^2 \to \mathbb{R}\) of class \(C^1\). Then, the mixed partial derivatives of \(f\) are equal:
 \[\frac{\partial^2 f}{\partial x \partial y} = \frac{\partial^2 f}{\partial y \partial x}.\]
 
@@ -595,10 +597,286 @@ f(x, y) & = 3x^2 - 6x + y^2 - 4y + 8 \\
 \end{align*}
 Since \(f(x, y) \geq 1 = f(1, 2)\) for all \((x, y) \in \mathbb{R}^2\), the critical point \((1, 2)\) is a local minimum of \(f\).
 
+\pagebreak
 
+\subsubsection*{Example}
+Find the extrema of the function \(f : \mathbb{R}^2 \to \mathbb{R}\) defined by:
+\[ f(x, y) = 1 - \sqrt{x^2 + y^2}. \]
 
+We are looking for the points where:
+\begin{itemize}
+    \item The partial derivatives are zero (stationary points), or
+    \item The function is not differentiable (angular points).
+\end{itemize}
 
+First, we compute the partial derivatives:
+\[\frac{\partial f}{\partial x} = -\frac{x}{\sqrt{x^2 + y^2}}, \quad \frac{\partial f}{\partial y} = -\frac{y}{\sqrt{x^2 + y^2}}.\]
+Setting the partial derivatives equal to zero gives us:
+\[-\frac{x}{\sqrt{x^2 + y^2}} = 0 \implies x = 0, \quad -\frac{y}{\sqrt{x^2 + y^2}} = 0 \implies y = 0.\]
+Thus, the function \(f\) is not differentiable at \((0, 0)\) since the partial derivatives are undefined at that point. However, we can still evaluate \(f\) at \((0, 0)\):
+\[f(0, 0) = 1 - \sqrt{0^2 + 0^2} = 1.\]
+For any other point \((x, y) \neq (0, 0)\), we have:
+\[f(x, y) = 1 - \sqrt{x^2 + y^2} < 1.\]
+Thus, the point \((0, 0)\) is a global maximum of \(f\).
 
+\subsubsection*{Example}
+Another example is the function \(f : \mathbb{R}^2 \to \mathbb{R}\) defined by:
+\[ f(x, y) = 1 - x^2 + y^2. \]
 
+We compute the partial derivatives: 
+\[\begin{rcases}
+\frac{\partial f}{\partial x} = -2x \\
+\quad \frac{\partial f}{\partial y} = 2y.
+\end{rcases} \implies (0, 0) \text{ is a stationary point.}\]
+
+Evaluating \(f\) at \((0, 0)\) gives us:
+\[f(0, 0) = 1 - 0^2 - 0^2 = 1.\]
+For any other point \((x, y) \neq (0, 0)\), we have:
+\[f \big|_{x = 0} (x, y) = f(0, y) = 1 + y^2 > 1, \quad f \big|_{y = 0} (x, y) = f(x, 0) = 1 - x^2 < 1.\]
+Thus, the point \((0, 0)\) is a saddle point of \(f\).
+
+\pagebreak 
+
+\subsection{Methods for Classification of Extrema}
+To classify the extrema systematically, we will use:
+\begin{itemize}
+    \item Quadratic forms
+    \item The Hessian matrix.
+\end{itemize}
+
+\subsubsection{Second Derivative (general definition)}
+Take a vector \(v = (v_1, \dots, v_n) \in \mathbb{R}^n\) and a function \(f : A \subset \mathbb{R}^n \to \mathbb{R}\), differentiable at \(a\). Then,
+\[D_v f(a) = \inner{\nabla f(a)}{v} = \sum_{i=1}^n v_i \cdot \frac{\partial f}{\partial x_i}(a).\]
+
+Then, we can define the second derivative of \(f\) at \(a\) in the direction of \(v\) as:
+\[D^2_v f(a) = D_v (D_v f)(a) = \sum_{j=1}^n v_j \cdot \frac{\partial}{\partial x_j} \left( \sum_{i=1}^n v_i \cdot \frac{\partial f}{\partial x_i}(a) \right) = \sum_{i=1}^n \sum_{j=1}^n v_i v_j \cdot \frac{\partial^2 f}{\partial x_i \partial x_j}(a) = v^T H_f(a) v,\]
+where \(H_f(a)\) is the Hessian matrix of \(f\) at \(a\).
+
+\begin{center}
+    \fbox{$D^2_v f(a) = v^T H_f(a) v$}
+\end{center}
+
+\subsubsection{Hessian Matrix}
+The \textbf{Hessian matrix} of a function \(f : A \subset \mathbb{R}^n \to \mathbb{R}\) at a point \(a \in A\) is the \(n \times n\) matrix given by:
+\[H_f(a) = \begin{bmatrix}
+\dfrac{\partial^2 f}{\partial x_1^2}(a) & \dfrac{\partial^2 f}{\partial x_1 \partial x_2}(a) & \cdots & \dfrac{\partial^2 f}{\partial x_1 \partial x_n}(a) \\
+\dfrac{\partial^2 f}{\partial x_2 \partial x_1}(a) & \dfrac{\partial^2 f}{\partial x_2^2}(a) & \cdots & \dfrac{\partial^2 f}{\partial x_2 \partial x_n}(a) \\
+\vdots & \vdots & \ddots & \vdots \\
+\dfrac{\partial^2 f}{\partial x_n \partial x_1}(a) & \dfrac{\partial^2 f}{\partial x_n \partial x_2}(a) & \cdots & \dfrac{\partial^2 f}{\partial x_n^2}(a)
+\end{bmatrix}.\]
+
+\subsubsection*{Example}
+Consider the function \(f : \mathbb{R}^2 \to \mathbb{R}\) defined by:
+\[f(x, y) = \log(x^2 + y^3)\]
+The partial derivatives are:
+\[\frac{\partial f}{\partial x} = \frac{2x}{x^2 + y^3}, \quad \frac{\partial f}{\partial y} = \frac{3y^2}{x^2 + y^3}.\]
+The second order partial derivatives are:
+\[\frac{\partial^2 f}{\partial x^2} = \frac{2(y^3 - x^2)}{(x^2 + y^3)^2}, \quad \frac{\partial^2 f}{\partial y^2} = \frac{6yx^2 - 3y^4}{(x^2 + y^3)^2}, \quad \frac{\partial^2 f}{\partial x \partial y} = \frac{-6xy^2}{(x^2 + y^3)^2}.\]
+Thus, the Hessian matrix of \(f\) at \((x, y)\) is:
+\[H_f(x, y) = \begin{bmatrix}
+\dfrac{2(y^3 - x^2)}{(x^2 + y^3)^2} & \dfrac{-6xy^2}{(x^2 + y^3)^2} \\
+\dfrac{-6xy^2}{(x^2 + y^3)^2} & \dfrac{6yx^2 - 3y^4}{(x^2 + y^3)^2}
+\end{bmatrix}.\]
+
+\subsubsection{Quadratic Forms}
+A \textbf{quadratic form} on \(\mathbb{R}^n\) is a function \(Q : \mathbb{R}^n \to \mathbb{R}\) defined by:
+\[Q(x) = \sum_{i,j=1}^n a_{ij} x_i x_j = X^T A X = a_{11} x_1^2 + a_{22} x_2^2 + \cdots + a_{nn} x_n^2 + \sum_{\stackrel{1 \leq i, j \leq n}{i \neq j}} a_{ij} x_i x_j,\]
+where \(a_{ij}\) are constants. For example, the function \(Q_1 : \mathbb{R}^2 \to \mathbb{R}\) defined by:
+\[Q_1(x_1, x_2) = x_1^2 - x_2^2\]
+is a quadratic form on \(\mathbb{R}^2\), and so is the function \(Q_2 : \mathbb{R}^3 \to \mathbb{R}\) defined by:
+\[Q_2(x_1, x_2, x_3) = x_1^2 + 2 x_2^2 + 5 x_3^2 + 2 x_1 x_2 - 2 x_1 x_3 + 2 x_2 x_3.\]
+
+Quadratic forms can be classified as follows:
+\begin{itemize}
+    \item A quadratic form \(Q\) is \textbf{positive definite} if \(Q(x) > 0\) for all \(x \in \mathbb{R}^n\).
+    \item A quadratic form \(Q\) is \textbf{negative definite} if \(Q(x) < 0\) for all \(x \in \mathbb{R}^n\).
+    \item A quadratic form \(Q\) is \textbf{indefinite} if \(\exists\) \(x, y \in \mathbb{R}^n\) such that \(Q(x) > 0\) and \(Q(y) < 0\).
+\end{itemize}
+
+Any quadratic form \(Q\) can be associated with a symmetric matrix \(A\) such that \(Q(x) = x^T A x\). For example, the quadratic form \(Q_2(x_1, x_2, x_3) = x_1^2 + 2 x_2^2 + 5 x_3^2 + 2 x_1 x_2 - 2 x_1 x_3 + 2 x_2 x_3\) can be represented by the symmetric matrix:
+\[A = \begin{bmatrix}
+1 & 1 & -1 \\
+1 & 2 & 1 \\
+-1 & 1 & 5
+\end{bmatrix}.\]
+
+\subsubsection*{Examples}
+Consider the quadratic form \(\|\cdot\| : \mathbb{R}^n \to \mathbb{R}\) defined by:
+\[\|x\|^2 = x^T I x = \sum_{i=1}^n x_i^2,\]
+where \(I\) is the identity matrix. This is a positive definite quadratic form.
+\vskip 0.5cm
+The quadratic form \(Q_1 : \mathbb{R}^2 \to \mathbb{R}\) defined by:
+\[Q(x_1, x_2) = x_1^2 - x_2^2\]
+is an indefinite quadratic form, since \(Q(1, 0) = 1 > 0\) and \(Q(0, 1) = -1 < 0\).
+\vskip 0.5cm
+The quadratic form \(Q_2 : \mathbb{R}^3 \to \mathbb{R}\) defined by:
+\[Q_2(x_1, x_2, x_3) = x_1^2 + 2 x_2^2 + 5 x_3^2 + 2 x_1 x_2 - 2 x_1 x_3 + 2 x_2 x_3\]
+is a semi-positive definite quadratic form, since it can be rewritten as:
+\[Q_2(x_1, x_2, x_3) = (x_1 + x_2 - x_3)^2 + (x_2 + 2 x_3)^2,\]
+which is a sum of squares and hence always non-negative.
+
+\subsubsection*{Proposition}
+A quadratic form \(Q : \mathbb{R}^n \to \mathbb{R}\) can be expressed as a sum of squares of linear forms. That is, there exist linear forms \(L_1, L_2, \ldots, L_m : \mathbb{R}^n \to \mathbb{R}\) such that:
+\[Q(x_1, x_2, \ldots, x_n) = L_1^2 \pm L_2^2 \pm \cdots \pm L_n^2,\]
+where \(L_i, \dots, L_n\) do not depend on the variables \(x_1, x_2, \ldots, x_{i-1}\) for \(i = 1, 2, \ldots, n\).
+
+\pagebreak
+
+\subsubsection*{Example}
+Consider the quadratic form \(Q : \mathbb{R}^3 \to \mathbb{R}\) defined by:
+\[Q(x_1, x_2, x_3) = x_1^2 - x_2^2 + x_3^2 + 2 x_1 x_2 - 4 x_1 x_3.\]
+We can rewrite this as:
+\begin{align*}
+Q(x_1, x_2, x_3) & = (x_1 + x_2 - 2 x_3)^2 - 2 x_2^2 - 2 x_3^2 \\
+& = (x_1 + x_2 - 2 x_3)^2 - 2x_2^2 + 4 x_2 x_3 - 3 x_3^2 \\
+& = (x_1 + x_2 - 2 x_3)^2 - 2(x_2 - x_3)^2 - x_3^2.
+\end{align*}
+
+\begin{remark}
+    If we do not have squares in the expression of a quadratic form, we can always complete the squares to rewrite it as a sum of squares of linear forms. For example, the quadratic form \(Q : \mathbb{R}^2 \to \mathbb{R}\) defined by:
+\[Q(x_1, x_2) = x_1 x_2 + 2 x_2 x_3 \begin{cases}
+    x_1 = y_1 - y_2, \\
+    x_2 = y_1 + y_2 \\
+    x_3 = y_3
+\end{cases} \implies \]
+\[\implies Q(y_1, y_2, y_3) = y_1^2 - y_2^2 + 2 y_1 y_3 + 2 y_2 y_3 \]
+\end{remark}
+
+\begin{remark}
+    Given \(X^T A X\), we can express \(A = P D P^{-1}\) (\(A\) symmetric) and with all the eigenvalues of \(A\) in \(D\) being real, 
+    \[A = P D P^{-1}, \quad D = \begin{bmatrix}
+    \lambda_1 & 0 & \cdots & 0 \\
+    0 & \lambda_2 & \cdots & 0 \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \cdots & \lambda_n
+    \end{bmatrix} \]
+    where \(\lambda_i\) are the eigenvalues of \(A\). If we now perform the change of variables \(X = P Y\), we have:
+    \[Q(X) = X^T A X = (P Y)^T A (P Y) = Y^T P^T A P Y = Y^T D Y = \lambda_1 y_1^2 + \lambda_2 y_2^2 + \cdots + \lambda_n y_n^2.\]
+\end{remark}
+
+\subsubsection*{Theorem}
+Let \(Q : \mathbb{R}^n \to \mathbb{R}\) be a quadratic form. Then:
+\begin{itemize}
+    \item \(Q\) is positive definite if and only if all the eigenvalues of the associated matrix \(A\) are positive.
+    \item \(Q\) is negative definite if and only if all the eigenvalues of the associated matrix \(A\) are negative.
+    \item \(Q\) is indefinite if and only if there exist both positive and negative eigenvalues of the associated matrix \(A\).
+\end{itemize}
+
+\pagebreak
+
+\subsubsection{Taylor's Polynomial}
+Let \(f : A \subset \mathbb{R}^2 \to \mathbb{R}\) be a differentiable function, and let \(a = (x_0, y_0) \in A\). The \textbf{Taylor's polynomial} of \(f\) at \(a\) is the polynomial defined by:
+\[f(x, y) = f(x_0, y_0) + \nabla f(x_0, y_0) \cdot \begin{pmatrix} x - x_0 \\ y - y_0 \end{pmatrix} + \frac{1}{2} (x - x_0, y - y_0) \cdot H_f(x_0, y_0) \begin{pmatrix} x - x_0 \\ y - y_0 \end{pmatrix} + R,\]
+where \(H_f(x_0, y_0)\) is the Hessian matrix of \(f\) at \(a\).
+
+One can see that it is composed of three terms:
+\begin{itemize}
+    \item The first term \(f(x_0, y_0)\) is the value of the function at the point \(a\).
+    \item The second term \(\nabla f(x_0, y_0) \cdot \begin{pmatrix} x - x_0 \\ y - y_0 \end{pmatrix}\) is the linear approximation of \(f\) at \(a\).
+    \item The third term \(\frac{1}{2} (x - x_0, y - y_0) \cdot H_f(x_0, y_0) \begin{pmatrix} x - x_0 \\ y - y_0 \end{pmatrix}\) is the quadratic approximation of \(f\) at \(a\).
+\end{itemize}
+
+\subsection{Classification of Extrema}
+Let \(U \subset \mathbb{R}^n\) be an open set, and let \(f : U \to \mathbb{R}\) be a function of class \(C^1\). Let \(a \in U\) be a critical point of \(f\). If
+\[\nabla f(a) = \left( \frac{\partial f}{\partial x_1}(a), \frac{\partial f}{\partial x_2}(a), \ldots, \frac{\partial f}{\partial x_n}(a) \right) = 0,\]
+then 
+\[ f(x) - f(a) = \frac{1}{2} (x - a)^T H_f(a) (x - a), \]
+where \(H_f(a)\) is the Hessian matrix of \(f\) at \(a\). Thus, the nature of the critical point \(a\) can be determined by the definiteness of the quadratic form associated with the Hessian matrix:
+\begin{itemize}
+    \item If the quadratic form \(Q(x) = (x - a)^T H_f(a) (x - a)\) is positive definite, then \(a\) is a local minimum of \(f\).
+    \item If the quadratic form \(Q(x) = (x - a)^T H_f(a) (x - a)\) is negative definite, then \(a\) is a local maximum of \(f\).
+    \item If the quadratic form \(Q(x) = (x - a)^T H_f(a) (x - a)\) is indefinite, then \(a\) is a saddle point of \(f\).
+\end{itemize}
+
+\subsubsection{Hessian or Sylvester's Criteria in \(\mathbb{R}^2\)}
+Given the Hessian matrix of a function \(f : A \subset \mathbb{R}^2 \to \mathbb{R}\) at a critical point \(a = (x, y)\):
+\[H_f(a) = \begin{bmatrix}
+\dfrac{\partial^2 f}{\partial x^2}(a) & \dfrac{\partial^2 f}{\partial x \partial y}(a) \\
+\dfrac{\partial^2 f}{\partial y \partial x}(a) & \dfrac{\partial^2 f}{\partial y^2}(a)
+\end{bmatrix},\]
+
+the determinant of the Hessian matrix is given by:
+\[\det(H_f(a)) = \frac{\partial^2 f}{\partial x^2}(a) \cdot \frac{\partial^2 f}{\partial y^2}(a) - \left( \frac{\partial^2 f}{\partial x \partial y}(a) \right)^2.\]
+
+\pagebreak
+
+Then, the classification of the critical point \(a = (x_0, y_0)\) can be determined as follows:
+\begin{itemize}
+    \item If \(\det(H_f(x_0, y_0)) > 0\) and \(\dfrac{\partial^2 f}{\partial x^2}(x_0, y_0) > 0\), then \(a\) is a local minimum of \(f\).
+    \item If \(\det(H_f(x_0, y_0)) > 0\) and \(\dfrac{\partial^2 f}{\partial x^2}(x_0, y_0) < 0\), then \(a\) is a local maximum of \(f\).
+    \item If \(\det(H_f(x_0, y_0)) < 0\), then \(a\) is a saddle point of \(f\).
+    \item If \(\det(H_f(x_0, y_0)) = 0\), then the test is inconclusive, and we need to use higher-order derivatives or other methods to classify the critical point.
+\end{itemize}
+
+\subsubsection*{Example}
+Consider the function \(f : \mathbb{R}^2 \to \mathbb{R}\) defined by:
+\[f(x, y) = x^2 + 2y^2 - 4y.\]
+The gradient of \(f\) is:
+\[\nabla f(x, y) = (2x, 4y - 4).\]
+Setting the gradient equal to zero gives us the critical point:
+\[2x = 0 \implies x = 0, \quad 4y - 4 = 0 \implies y = 1.\]
+Thus, the critical point is \((0, 1)\). The Hessian matrix of \(f\) at \((0, 1)\) is:
+\[H_f(0, 1) = \begin{bmatrix}
+2 & 0 \\
+0 & 4
+\end{bmatrix}.\]
+The determinant of the Hessian matrix is:
+\[\det(H_f(0, 1)) = (2)(4) - (0)^2 = 8 > 0,\]
+and \(\dfrac{\partial^2 f}{\partial x^2}(0, 1) = 2 > 0\). Therefore, the critical point \((0, 1)\) is a local minimum of \(f\).
+
+\subsubsection*{Example}
+Consider the function \(f : \mathbb{R}^2 \to \mathbb{R}\) defined by:
+\[f(x, y) = 8x^3 - 24xy + 3y^2.\]
+The gradient of \(f\) is:
+\[\nabla f(x, y) = (24x^2 - 24y, -24x + 3y^2).\]
+Setting the gradient equal to zero gives us the critical points:
+\begin{align*}
+x^2 - y & = 0 \implies y = x^2, \\
+-8x + y^2 & = 0 \implies y^2 = 8x.
+\end{align*}
+Substituting \(y = x^2\) into \(y^2 = 8x\) gives us:
+\[x^4 = 8x \implies x^4 - 8x = 0 \implies x(x^3 - 8) = 0 \implies x = 0 \text{ or } x^3 = 8 \implies x = 2.\]
+Thus, the critical points are \((0, 0)\) and \((2, 4)\). The Hessian matrices of \(f\) at \((0, 0)\) and \((2, 4)\) are:
+\[H_f(0, 0) = \begin{bmatrix}
+0 & -24 \\
+-24 & 0
+\end{bmatrix}, \quad H_f(2, 4) = \begin{bmatrix}
+96 & -24 \\
+-24 & 24
+\end{bmatrix}.\]
+The determinants of the Hessian matrix at said points are:
+\begin{align*}
+\det(H_f(0, 0)) & = (0)(0) - (-24)^2 = -576 < 0, \\
+\det(H_f(2, 4)) & = (96)(24) - (-24)^2 = 2304 - 576 = 1728 > 0.
+\end{align*}
+Since \(\det(H_f(0, 0)) < 0\), the critical point \((0, 0)\) is a saddle point of \(f\). Since \(\det(H_f(2, 4)) > 0\) and \(\dfrac{\partial^2 f}{\partial x^2}(2, 4) = 96 > 0\), the critical point \((2, 4)\) is a local minimum of \(f\).
+
+\subsubsection{Extension to \(\mathbb{R}^3\)}
+The hessian matrix of a function \(f : A \subset \mathbb{R}^3 \to \mathbb{R}\) is of the form:
+\[H_f = \begin{bmatrix}
+    A & B & C \\
+    D & E & F \\
+    G & H & I
+\end{bmatrix} \quad \approx \quad \begin{bmatrix}
+\lambda_1 & 0 & 0 \\
+0 & \lambda_2 & 0 \\
+0 & 0 & \lambda_3
+\end{bmatrix}.\]
+Looking at the determinants of the leading principal minors of \(H_f\), we have:
+\begin{itemize}
+    \item \(\Delta_1 = A\)
+    \item \(\Delta_2 = \det \begin{pmatrix}
+    A & B \\
+    D & E
+    \end{pmatrix} = AE - BD\)
+    \item \(\Delta_3 = \det(H_f) = A(EI - FH) - B(DI - FG) + C(DH - EG)\)
+\end{itemize}
+
+With the eigenvalues of \(H_f\) being \(\lambda_1, \lambda_2, \lambda_3\), we have:
+\begin{itemize}
+    \item If \(\Delta_1 > 0\), \(\Delta_2 > 0\), and \(\Delta_3 > 0\), then \(f\) is positive definite, and the critical point is a local minimum.
+    \item If \(\Delta_1 < 0\), \(\Delta_2 > 0\), and \(\Delta_3 < 0\), then \(f\) is negative definite, and the critical point is a local maximum.
+    \item Any other combination of signs for \(\Delta_1, \Delta_2\), and \(\Delta_3\) indicates that the critical point is a saddle point.
+\end{itemize}
 
 \end{document}
