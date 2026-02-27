@@ -26,3 +26,5 @@
 \contentsline {subsection}{\numberline {3.3}Classification of Extrema}{18}{}%
 \contentsline {subsubsection}{\numberline {3.3.1}Hessian or Sylvester's Criteria in \(\mathbb {R}^2\)}{18}{}%
 \contentsline {subsubsection}{\numberline {3.3.2}Extension to \(\mathbb {R}^3\)}{20}{}%
+\contentsline {section}{\numberline {4}Implicit Function Theorem}{21}{}%
+\contentsline {subsection}{\numberline {4.1}Manifolds}{22}{}%

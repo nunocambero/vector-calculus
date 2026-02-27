@@ -878,5 +878,68 @@ With the eigenvalues of \(H_f\) being \(\lambda_1, \lambda_2, \lambda_3\), we ha
     \item If \(\Delta_1 < 0\), \(\Delta_2 > 0\), and \(\Delta_3 < 0\), then \(f\) is negative definite, and the critical point is a local maximum.
     \item Any other combination of signs for \(\Delta_1, \Delta_2\), and \(\Delta_3\) indicates that the critical point is a saddle point.
 \end{itemize}
+\pagebreak
+\section{Implicit Function Theorem}
+Using systems of linear equations as a base, we discuss the implications of the \textbf{Implicit Function Theorem} for level sets. 
+In other words, the role of differentiablility in the local structure of level sets.
+To do so, we use the linear approximation of a differentiable function to see that level sets are locally graphs.
+\vskip 0.5cm
+Let \(U\) be an open set, and \(F = (f_1, f_2, \dots, f_m) : U \subset \mathbb{R}^{n} \to \mathbb{R}^m\) be a differentiable function at any point in \(U\). 
+The level set 
+\[F^{-1}(c) = \bigcap_{i=1}^m f_i^{-1}(c_i),\] 
 
+where \(c = (c_1, c_2, \dots, c_m) \in \mathbb{R}^m\), is the set of points in \(U\) that satisfy the system of equations:
+\[F(x_1, \dots, x_n) = (f_1(x_1, \dots, x_n), \dots, f_m(x_1, \dots, x_n)) = (c_1, \dots, c_m),\]
+or equivalently,
+\[\begin{cases}
+f_1(x_1, \dots, x_n) = c_1 \\
+f_2(x_1, \dots, x_n) = c_2 \\
+\vdots \\
+f_m(x_1, \dots, x_n) = c_m
+\end{cases}.\]
+
+\begin{remark}
+    If \(f_i\) are linear functions, then we have a system of linear equations, and we know different procedures to fund independent variables.
+    The Implicit Function Theorem is a generalization of this idea to the case where \(f_i\) are differentiable functions, based on the linear approximation of \(f_i\) at a point in the level set.
+    Indeed, fix a point \(a = (a_1, \dots, a_n) \in F^{-1}(c)\), and \(\mathbf{x} \in \mathbb{R}^n\) very close to 0. Then, we have:
+    \[a + \mathbf{x} \in F^{-1}(c) \quad F(a + \mathbf{x}) = c\]
+    \[F(a + \mathbf{x}) = F(a) + F'(a) \cdot \mathbf{x} + G(\mathbf{x}),\]
+    where \(G : U \to M_{M \times N}\) is a function such that \(G(\mathbf{x}) \to 0\) as \(\mathbf{x} \to 0\), and consequently,
+    \[F'(a) \cdot \mathbf{x} \to 0 \text{ as } \mathbf{x} \to 0.\]
+
+    Assume \(N \geq M\) and we find that
+    \begin{align*}
+    \begin{rcases}
+        \dfrac{\partial f_1(a)}{\partial x_1} x_1 + \dfrac{\partial f_1(a)}{\partial x_2} x_2 + \cdots + \dfrac{\partial f_1(a)}{\partial x_N} x_N &= 0\\
+        \dfrac{\partial f_2(a)}{\partial x_1} x_1 + \dfrac{\partial f_2(a)}{\partial x_2} x_2 + \cdots + \dfrac{\partial f_2(a)}{\partial x_N} x_N &= 0\\
+        \vdots \\
+        \dfrac{\partial f_m(a)}{\partial x_1} x_1 + \dfrac{\partial f_m(a)}{\partial x_2} x_2 + \cdots + \dfrac{\partial f_m(a)}{\partial x_N} x_N &= 0
+    \end{rcases} \implies JF(a) \cdot \mathbf{x} = 0.
+    \end{align*}
+\end{remark}
+
+\pagebreak
+\subsubsection*{Thanks to the Algebra we have:}
+\begin{align*}
+    \text{rank}(F'(a)) = M & \iff \text{The } M \text{ rows of } F'(a) \text{ are linearly independent} \\
+                           & \iff \text{There exist } M \text{ columns of } F'(a) \text{ that are linearly independent} \\
+                           & \iff F'(a) \text{ contains } M \text{ columns such that the } M \times M \text{ submatrix formed} \\
+                           & \quad \quad \quad\text{by these columns has non-zero determinant}. \\
+                           & \iff \text{The space of solutions to that linear system has dimension } N - M. \\
+                           & \iff F \text{ has maximal rank at } a. \\
+                           & \iff \{\nabla f_1(a), \nabla f_2(a), \dots, \nabla f_m(a)\} \text{ are linearly independent vectors in } \mathbb{R}^n.
+\end{align*}
+
+\subsection{Manifolds}
+Let \(1 \leq m \leq n - 1\) and \(D \subset \mathbb{R}^n\) be a set we want to present as an \textbf{m-dimensional manifold}.
+Let \(k = n - m\), and suppose a neighborhood of any point \(a \in D\). Then, there exist \(\mathcal{C}^1\) functions such that 
+\begin{itemize}
+    \item Near \(a\), \(D\) can be described as the set of points that satisfy a system of \(k\) equations:
+    \[\begin{cases}f_1(x_1, \dots, x_n) = 0 \\
+    f_2(x_1, \dots, x_n) = 0 \\
+    \vdots \\
+    f_k(x_1, \dots, x_n) = 0\end{cases}\]
+    \item The gradients of the functions \(f_1, f_2, \dots, f_k\) are linearly independent at \(a\):
+    \[\nabla f_1(a), \nabla f_2(a), \dots, \nabla f_k(a) \text{ are linearly independent vectors in } \mathbb{R}^n.\]
+\end{itemize}
 \end{document}
