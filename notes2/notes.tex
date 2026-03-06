@@ -942,4 +942,279 @@ Let \(k = n - m\), and suppose a neighborhood of any point \(a \in D\). Then, th
     \item The gradients of the functions \(f_1, f_2, \dots, f_k\) are linearly independent at \(a\):
     \[\nabla f_1(a), \nabla f_2(a), \dots, \nabla f_k(a) \text{ are linearly independent vectors in } \mathbb{R}^n.\]
 \end{itemize}
+
+\subsection{Tangent Space}
+Let \(F = (f_1, f_2, \dots, f_n)\) be a function, and consider the set of vectors \(v \in \mathbb{R}^n\) such that \(F'(a) \cdot v = 0\). Then, 
+\[\begin{rcases}
+    \frac{\partial f_1(a)}{\partial x_1} v_1 + \frac{\partial f_1(a)}{\partial x_2} v_2 + \cdots + \frac{\partial f_1(a)}{\partial x_n} v_n = 0 \\
+    \frac{\partial f_2(a)}{\partial x_1} v_1 + \frac{\partial f_2(a)}{\partial x_2} v_2 + \cdots + \frac{\partial f_2(a)}{\partial x_n} v_n = 0 \\
+    \vdots \\
+    \frac{\partial f_m(a)}{\partial x_1} v_1 + \frac{\partial f_m(a)}{\partial x_2} v_2 + \cdots + \frac{\partial f_m(a)}{\partial x_n} v_n = 0
+\end{rcases} \implies v \in T_a D,\]
+where \(T_a D\) is the \textbf{tangent space} to the manifold \(D\) at the point \(a\). The tangent space is repreented as:
+\[a + \left\{\sum_{i=1}^n \lambda_i \nabla f_i(a) : \lambda_i \in \mathbb{R}\right\}.\]
+
+The set in the expression above is the span of the vectors \(\nabla f_1(a), \nabla f_2(a), \dots, \nabla f_m(a)\), which are linearly independent. 
+\pagebreak
+\subsubsection*{Example}
+Consider \(S = \{(x,y,z) \in \mathbb{R}^3 : x^2 + 2y^2 - 5z^2 = 1\}\). We will find the tangent space and normal line to \(S\) at the point \(a = (2, -1, 1)\):
+\[\text{With } S = f^{-1}(1), \quad f(x, y, z) = x^2 + 2y^2 - 5z^2,\]
+we have:
+\[\nabla f(x, y, z) = (2x, 4y, -10z).\]
+
+At the point \(a = (2, -1, 1)\), we have:
+\[\nabla f(2, -1, 1) = (4, -4, -10).\]
+Thus, the tangent space to \(S\) at the point \(a\) is given by:
+\begin{align*}
+T_a S & = \{(x, y, z) \in \mathbb{R}^3 : \nabla f(2, -1, 1) \cdot \begin{pmatrix}
+x - 2 \\ y + 1 \\ z - 1
+\end{pmatrix} = 0\} \\
+& = \{(x, y, z) \in \mathbb{R}^3 : 4(x - 2) - 4(y + 1) - 10(z - 1) = 0\} \\
+& = \{(x, y, z) \in \mathbb{R}^3 : 2x - 2y - 5z = 1\}.
+\end{align*}
+and the normal line to \(S\) at the point \(a\) is given by:
+\begin{align*}
+L & = \{(x, y, z) \in \mathbb{R}^3 : (x, y, z) = (2, -1, 1) + t(4, -4, -10), t \in \mathbb{R}\} \\
+& = \{(x, y, z) \in \mathbb{R}^3 : \frac{x - 2}{4} = \frac{y + 1}{-4} = \frac{z - 1}{-10} = \lambda\} \\
+& = \{(x, y, z) \in \mathbb{R}^3 : x = \frac{1}{2} + 2y + 5z, y = \lambda, z = \mu, \lambda, \mu \in \mathbb{R}\} \\
+& = \{(x, y, z) \in \mathbb{R}^3 : \begin{pmatrix}
+x \\ y \\ z
+\end{pmatrix} = \begin{pmatrix}
+1/2 \\ 0 \\ 0
+\end{pmatrix} + \lambda \begin{pmatrix}
+1 \\ 1 \\ 0
+\end{pmatrix} + \mu \begin{pmatrix}
+5/2 \\ 0 \\ 1
+\end{pmatrix}, \lambda, \mu \in \mathbb{R}\}.
+\end{align*}
+
+To construct the tangent plane to \(S\) at the point \(a\), we can use the fact that the normal vector to the plane is given by \(\nabla f(2, -1, 1) = (4, -4, -10)\). Thus,
+\[\begin{rcases}
+    (4, -4, -10) \cdot (4, 4, 0) = 0 \\
+    (4, -4, -10) \cdot (10, 0, 4) = 0
+\end{rcases} \implies \begin{pmatrix}
+2 \\ -1 \\ 1
+\end{pmatrix} + \lambda \begin{pmatrix}
+4 \\ 4 \\ 0
+\end{pmatrix} + \mu \begin{pmatrix}
+10 \\ 0 \\ 4
+\end{pmatrix} \in T_a S, \quad \lambda, \mu \in \mathbb{R}.
+\]
+\pagebreak
+\section{Lagrange Multipliers}
+We would like to optimize a function \(g : A \subset \mathbb{R}^n \to \mathbb{R}\) subject to the constraint 
+\[\begin{cases}
+f_1(x_1, \dots, x_n) = c_1 \\
+f_2(x_1, \dots, x_n) = c_2 \\
+\vdots \\
+f_m(x_1, \dots, x_n) = c_m
+\end{cases},\]
+
+where \(F = (f_1, f_2, \dots, f_m) : \mathbb{R}^n \to \mathbb{R}^m\) is a function. Then, we look for the critical points of \(g\) restricted to the level set
+\[F^{-1}(c) = \bigcap_{i=1}^m f_i^{-1}(c_i).\]
+
+\(F'\) has full rank so that the level set \(F^{-1}(c)\) is a manifold, i.e., the gradients \(\nabla f_i(a)\) are linearly independent at any point \(a \in F^{-1}(c)\). 
+ 
+\subsection{Necessary Condition for Optimality}
+
+Suppose \(g\) has a local maximum at \(a \in F^{-1}(c)\). Then, using the Implicit Function Theorem, the set \(F^{-1} (c) = \) graph \(\phi\)
+\[P = (P_1, \phi(P_1)) \in F^{-1}(c), \quad P_1 = (x_1, \dots, x_{n-m}) \in \mathbb{R}^{n - m},\]
+where \(\phi : \mathbb{R}^{n - m} \to \mathbb{R}^m\). Then, the function \(g\) restricted to the level set \(F^{-1}(c)\) can be expressed as \(g(P_1, \phi(P_1))\) and we have:
+\[F^{-1}(c) = \text{graph}(\phi) \implies F(\mathbf{x}, \phi(\mathbf{x})) = c \text{ and therefore } f_i(\mathbf{x}, \phi(\mathbf{x})) = c_i \text{ for } i = 1, 2, \dots, m.\]
+
+Now, what is the tangent space to the level set \(F^{-1}(c)\) ? It is given by:
+\[S = \{\nabla f_i(\mathbf{x_1}, \phi(\mathbf{x_1})) \cdot \Delta(\mathbf{x_1}) = 0 \text{ for } i = 1, 2, \dots, m\},\]
+
+where \(\Delta\) is the Jacobian matrix of the function \(\mathbf{x_1} \mapsto (\mathbf{x_1}, \phi(\mathbf{x_1}))\) and \(\mathbf{x_1} = (x_1, \dots, x_{n-m})\). Then,
+\[\phi_j(\mathbf{x_1}) = \phi_j(x_1, \dots, x_{n-m}), \quad j = 1, 2, \dots, m,\]
+and consequently,
+\[\Delta(\mathbf{x_1}) = \begin{pmatrix}
+1 & 0 & \cdots & 0 \\
+0 & 1 & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & 1 \\
+& & \phi'(\mathbf{x_1}) &
+\end{pmatrix},  \quad \phi'(\mathbf{x_1}) = \begin{pmatrix}
+\dfrac{\partial \phi_1}{\partial x_1}(\mathbf{x_1}) & \dfrac{\partial \phi_1}{\partial x_2}(\mathbf{x_1}) & \cdots & \dfrac{\partial \phi_1}{\partial x_{n-m}}(\mathbf{x_1}) \\
+\dfrac{\partial \phi_2}{\partial x_1}(\mathbf{x_1}) & \dfrac{\partial \phi_2}{\partial x_2}(\mathbf{x_1}) & \cdots & \dfrac{\partial \phi_2}{\partial x_{n-m}}(\mathbf{x_1}) \\
+\vdots & \vdots & \ddots & \vdots \\
+\dfrac{\partial \phi_m}{\partial x_1}(\mathbf{x_1}) & \dfrac{\partial \phi_m}{\partial x_2}(\mathbf{x_1}) & \cdots & \dfrac{\partial \phi_m}{\partial x_{n-m}}(\mathbf{x_1})
+\end{pmatrix}
+.\]
+
+We know that \(\nabla f_1, \dots, \nabla f_m\) are linearly independent on \(S\) (they form a basis). Finally, using the function we want to maximize (on the constraint),
+\[\mathbf{x_1} \mapsto g(\mathbf{x_1}, \phi(\mathbf{x_1}))\]
+and differentiating \(g\):
+\[g(\mathbf{x_1}, \phi(\mathbf{x_1})) \implies \nabla g\big|_{F^{-1}(c)} = \nabla g(\mathbf{x_1}, \phi(\mathbf{x_1})) \cdot \Delta(\mathbf{x_1}) = 0, \text{ tangent plane to } g.\]
+
+Hence, \(\nabla g(\mathbf{x_1}, \phi(\mathbf{x_1}))\) belongs to \(S\):
+\[\nabla g(\mathbf{x_1}, \phi(\mathbf{x_1})) \in \left\{\sum_{i=1}^m \lambda_i \nabla f_i \right\}, \text{ such that } F(\mathbf{x}) = c.\]
+
+\pagebreak
+
+\subsubsection*{Example: Chapter 2.3, Exercise 5}
+\begin{multicols}{2}
+Compute the absolute maximum and minimum of the function \(f : \mathbb{R}^3 \to \mathbb{R}\) defined by:
+\[f(x, y, z) = x^2 + y^2 + 6x - 8y + 25\]
+on the set \(D = \{(x, y, z) \in \mathbb{R}^3 : x^2 + y^2 \leq 16 \}\).
+
+By completing the squares, we can rewrite \(f\) as:
+\[f(x, y, z) = (x + 3)^2 + (y - 4)^2.\]
+The function \(f\) is a paraboloid that opens upwards, and the set \(D\) is a cylinder of radius 4 centered at the origin. 
+
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[
+        axis lines = center,
+        xlabel = \(x\),
+        ylabel = \(y\),
+        zlabel = {\(f(x,y)\)},
+        zmin = 0,
+        zmax = 150,
+        view={120}{45}, 
+    ]
+    
+    % The Paraboloid (Green)
+    \addplot3[
+        surf,
+        opacity=0.5,
+        domain=-5:5,
+        samples=40, % High samples help the 'sort' buffer be more precise
+        green!50,
+        z buffer=sort,
+    ] {x^2 + y^2 + 6*x - 8*y + 25};
+
+    % The Cylinder (Orange)
+    \addplot3[
+        surf,
+        opacity=0.5,
+        samples=40,
+        domain=0:360,
+        y domain=20:100,
+        orange!50,        
+        z buffer=sort,
+    ] ({4*cos(x)}, {4*sin(x)}, {y});
+
+    % The Intersection Line (Red)
+    \addplot3[
+        thick,
+        red,
+        samples=60,
+        domain=0:360,
+    ] ({4*cos(x)}, {4*sin(x)}, {16 + 24*cos(x) - 32*sin(x) + 25});
+
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+\end{multicols}
+
+The Weierstrass Theorem states that given a continuous function defined on a compact set, it attains its maximum and minimum values. 
+
+\begin{itemize}
+    \item The function \(f\) is continuous since it is a composition of continuous functions (polynomials).
+    \item The set \(D\) is closed since it contains all its limit points (\(\partial D = \{(x, y, z) \in \mathbb{R}^3 : x^2 + y^2 = 16\}\) is included in \(D\)).
+    \item The set \(D\) is bounded since we can find a ball of radius \(R\) that contains \(D\) (for instance, the ball of radius 5 centered at the origin contains \(D\)).
+\end{itemize}
+
+Since \(f\) is continuous and \(D\) is compact, we can apply the Weierstrass Theorem to conclude that \(f\) attains its absolute maximum and minimum values on \(D\). In the interior, we can apply the Hessian criteria to find the critical points of \(f\). The gradient of \(f\) is given by:
+\[\nabla f(x, y, z) = (2x + 6, 2y - 8, 0).\]
+Setting the gradient equal to zero gives us the critical point:
+\[2x + 6 = 0 \implies x = -3, \quad 2y - 8 = 0 \implies y = 4, \quad 0 = 0 \implies z \text{ is free}.\]
+Thus, the critical points are of the form \((-3, 4, z)\) for any \(z \in \mathbb{R}\). However, \((-3, 4, z)\) is not in \(D\) since \((-3)^2 + 4^2 = 25 > 16\). Therefore, there are no critical points of \(f\) in the interior of \(D\). Now we apply the method of Lagrange multipliers to find the critical points of \(f\) on the boundary of \(D\). The constraint is given by:
+\[g(x, y, z) = x^2 + y^2 - 16 = 0.\]
+The gradient of \(g\) is given by:
+\[\nabla g(x, y, z) = (2x, 2y, 0).\]
+Setting \(\nabla f = \lambda \nabla g\) gives us the system of equations:
+\[(2x + 6, 2y - 8, 0) = \lambda (2x, 2y, 0) \implies
+\begin{cases}
+2x + 6 & = 2\lambda x \\
+2y - 8 & = 2\lambda y \\
+x^2 + y^2 & = 16
+\end{cases}\]
+
+From the first two equations, we can express \(\lambda\) in terms of \(x\) and \(y\):
+\[\lambda = \frac{2x + 6}{2x} = \frac{2y - 8}{2y}.\]
+Equating the two expressions for \(\lambda\) gives us:
+\[\frac{2x + 6}{2x} = \frac{2y - 8}{2y} \implies xy + 3y = xy - 4x \implies 3y = -4x \implies y = -\frac{4}{3}x, \]
+if \(x \neq 0\) and \(y \neq 0\). Substituting \(y = -\frac{4}{3}x\) into the constraint equation gives us:
+\[x^2 + \left(-\frac{4}{3}x\right)^2 = 16 \implies x^2 + \frac{16}{9}x^2 = 16 \implies \frac{25}{9}x^2 = 16 \implies x^2 = \frac{144}{25} \implies x = \pm \frac{12}{5}.\]
+Substituting \(x = \pm \dfrac{12}{5}\) into \(y = -\dfrac{4}{3}x\) gives us:
+\[x = \pm \frac{12}{5} \implies y = -\frac{4}{3} \cdot \pm \frac{12}{5} = \mp \frac{16}{5}.\]
+Thus, the critical points of \(f\) on the boundary of \(D\) are \(\left(\frac{12}{5}, -\frac{16}{5}, z\right)\) and \(\left(-\frac{12}{5}, \frac{16}{5}, z\right)\) for any \(z \in \mathbb{R}\).
+Evaluating \(f\) at these critical points gives us:
+\begin{align*}
+f\left(\frac{12}{5}, -\frac{16}{5}, z\right) & = \left(\frac{12}{5}\right)^2 + \left(-\frac{16}{5}\right)^2 + 6 \cdot \frac{12}{5} - 8 \cdot \left(-\frac{16}{5}\right) + 25 \\
+& = \frac{144}{25} + \frac{256}{25} + \frac{72}{5} + \frac{128}{5} + 25 \\
+& = \frac{400}{25} + \frac{200}{5} + 25 \\
+& = 16 + 40 + 25 \\
+& = 81,
+\end{align*}
+and
+\begin{align*}
+f\left(-\frac{12}{5}, \frac{16}{5}, z\right) & = \left(-\frac{12}{5}\right)^2 + \left(\frac{16}{5}\right)^2 + 6 \cdot \left(-\frac{12}{5}\right) - 8 \cdot \frac{16}{5} + 25 \\
+& = \frac{144}{25} + \frac{256}{25} - \frac{72}{5} - \frac{128}{5} + 25 \\
+& = \frac{400}{25} - \frac{200}{5} + 25 \\
+& = 16 - 40 + 25 \\
+& = 1.
+\end{align*}
+
+\pagebreak
+
+\subsubsection*{Example: Chapter 2.3, Exercise 6}
+Compute the absolute maximum and minimum of the function \(f : \mathbb{R}^2 \to \mathbb{R}\) defined by:
+\[f(x, y) = x^2 + y^2 - 2x - 2y + 2\]
+on the set \(T = \{(x, y) \in \mathbb{R}^2 : \dfrac{y}{2} \leq x \leq 3 - \sqrt{2y}, 0 \leq y \leq 2 \}\).
+Again, we can apply the Weierstrass Theorem to conclude that \(f\) attains its absolute maximum and minimum values on \(T\) since \(f\) is continuous and \(T\) is compact.
+In the interior of \(T\), we can apply the Hessian criteria to find the critical points of \(f\). The gradient of \(f\) is given by:
+\[\nabla f(x, y) = (2x - 2, 2y - 2).\]
+Setting the gradient equal to zero gives us the critical point:
+\[2x - 2 = 0 \implies x = 1, \quad 2y - 2 = 0 \implies y = 1.\]
+Thus, the critical point is \((1, 1)\), and \(f(1,1) = 0\). Let's rewrite \(f\) by completing the squares:
+\[f(x, y) = (x - 1)^2 + (y - 1)^2.\]
+The function \(f\) is the distance from the point \((1, 1)\) in the plane. Then, obviously, the minimum value of \(f\) is 0, and it is attained at the point \((1, 1)\). The maximum value of \(f\) is attained at the point in \(T\) that is farthest from \((1, 1)\). The boundary of \(T\) consists of three curves:
+\begin{itemize}
+    \item The line \(x = \dfrac{y}{2}\) for \(0 \leq y \leq 2\).
+    \item The curve \(x = 3 - \sqrt{2y}\) for \(0 \leq y \leq 2\).
+    \item The line \(y = 0\) for \(0 \leq x \leq 3\).
+\end{itemize}
+
+Then, the maximum is attained at the point \((3, 0)\)
+\[f(3, 0) = (3 - 1)^2 + (0 - 1)^2 = 4 + 1 = 5.\]
+
+\pagebreak
+
+\subsubsection*{Example: Chapter 2.3, Exercise 7}
+Compute the absolute maximum and minimum of the function \(f : \mathbb{R}^3 \to \mathbb{R}\) defined by:
+\[f(x, y, z) = x + 2y + 3z\]
+on the set \(S = \{(x, y, z) \in \mathbb{R}^3 : x^2 + y^2 = 2, x + z = 1\}\), which is the intersection of a cylinder and a plane. We can apply Lagrange multipliers to find the critical points of \(f\) on \(S\). The gradient of \(f\) is expressed as:
+\[\nabla f(x, y, z) = \lambda \nabla g_1(x, y, z) + \mu \nabla g_2(x, y, z),\]
+where \(g_1(x, y, z) = x^2 + y^2 - 2 = 0\) and \(g_2(x, y, z) = x + z - 1 = 0\). The gradients of \(g_1\) and \(g_2\) are given by:
+\[\nabla g_1(x, y, z) = (2x, 2y, 0), \quad \nabla g_2(x, y, z) = (1, 0, 1).\]
+Setting \(\nabla f = \lambda \nabla g_1 + \mu \nabla g_2\) gives us the system of equations:
+\[\begin{cases}
+1 & = 2\lambda x + \mu \\
+2 & = 2\lambda y \\
+3 & = \mu
+\end{cases} \implies
+\begin{cases}
+1 & = 2\lambda x + 3 \\
+2 & = 2\lambda y \\
+3 & = \mu
+\end{cases}\]
+From the first equation, we can express \(\lambda\) in terms of \(x\):
+\[\lambda = \frac{1 - 3}{2x} = -\frac{1}{x}.\]
+Substituting \(\lambda = -\dfrac{1}{x}\) into the second equation gives us:
+\[2 = 2\lambda y \implies y = -x.\]
+Substituting \(y = -x\) into the constraint \(g_1(x, y, z) = 0\) gives us:
+\[x^2 + (-x)^2 = 2 \implies 2x^2 = 2 \implies x^2 = 1 \implies x = \pm 1.\]
+Substituting \(x = \pm 1\) into \(y = -x\) gives us:
+\[x = \pm 1 \implies y = \mp 1.\]
+Substituting \(x = \pm 1\) into the constraint \(g_2(x, y, z) = 0\) gives us:
+\[x + z = 1 \implies z = 1 - x.\]
+Thus, the critical points of \(f\) on \(S\) are \((1, -1, 0)\) and \((-1, 1, 2)\). Evaluating \(f\) at these critical points gives us:
+\[f(1, -1, 0) = 1 + 2(-1) + 3(0) = -1,\]
+and
+\[f(-1, 1, 2) = -1 + 2(1) + 3(2) = 7.\]
+Therefore, the absolute minimum of \(f\) on \(S\) is \(-1\) and the absolute maximum of \(f\) on \(S\) is \(7\).
 \end{document}
