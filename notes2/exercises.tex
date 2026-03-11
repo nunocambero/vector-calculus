@@ -147,5 +147,169 @@ The first-order Taylor expansion of \(f\) around the point \((-1, 1)\) is given 
 
 Substituting the values, we have:
 \[\mathcal{P}_{1, (-1, 1)}(x, y) = -1 - h'(-1)(x + 1) - 3h'(-1)(y - 1) = -1 - (x + 1) - 3(y - 1)\]
+\pagebreak
+\section*{Chapter 2.2}
+\subsection*{Exercise 1}
+\textbf{Given \(f : \mathbb{R} \to \mathbb{R}\) differentiable, with \(f'(x) \neq 0, \forall x \in \mathbb{R}\), prove it is one-to-one.}
+\vskip 0.5cm
 
+\begin{proof}
+    By contradiction. Assume \(f\) is not one-to-one. Then, there exist \(t_0, t_1 \in \mathbb{R}\) such that \(t_0 \neq t_1\) and \(f(t_0) = f(t_1)\). By definition:
+    \[f'(t) = \lim_{t \to t_0} \frac{f(t) - f(t_0)}{t - t_0},\]
+    computing \(f'(t_1)\) gives us:
+    \[f'(t_1) = \lim_{t \to t_0} \frac{f(t_1) - f(t_0)}{t_1 - t_0} = 0.\]
+    This would contradict the assumption that \(f'(x) \neq 0\) for all \(x \in \mathbb{R}\). Therefore, \(f\) must be one-to-one.
+\end{proof}
+\vskip 0.5cm
+\textbf{Given \(F : \mathbb{R}^2 \to \mathbb{R}^2\) a vector function defined as \(F(x, y) = (e^x \cos y, e^x \sin y)\), prove that \(F\) is not one-to-one, even though its Jacobian determinant is non-zero for all \((x, y) \in \mathbb{R}^2\).}
+\vskip 0.5cm
+\begin{proof}
+    Taking two points \(P_0 = \left(0, \dfrac{\pi}{4}\right)\) and \(P_1 = \left(0, \dfrac{9\pi}{4}\right)\), we have:
+    \[F(P_0) = \left(e^0 \cos\left(\frac{\pi}{4}\right), e^0 \sin\left(\frac{\pi}{4}\right)\right) = \left(\frac{\sqrt{2}}{2}, \frac{\sqrt{2}}{2}\right),\]
+    \[F(P_1) = \left(e^0 \cos\left(\frac{9\pi}{4}\right), e^0 \sin\left(\frac{9\pi}{4}\right)\right) = \left(\frac{\sqrt{2}}{2}, \frac{\sqrt{2}}{2}\right).\]
+    Thus, \(F(P_0) = F(P_1)\) even though \(P_0 \neq P_1\), proving that \(F\) is not one-to-one. However, the Jacobian determinant of \(F\) is given by:
+    \[\det J_F(x, y) = \det \begin{bmatrix} e^x \cos y & -e^x \sin y \\ e^x \sin y & e^x \cos y \end{bmatrix} = e^{2x} (\cos^2 y + \sin^2 y) = e^{2x} > 0 \quad \text{for all } (x, y) \in \mathbb{R}^2.\]
+    Applying the Inverse Function Theorem, we can conclude that \(F\) is locally invertible at every point in \(\mathbb{R}^2\), but it is not globally one-to-one.
+\end{proof}
+\vskip 0.5cm
+\textbf{If \(H\) is the inverse of \(F\) defined above, compute \(DH\) for \(F(0, 0) = (1, 0)\).}
+\vskip 0.5cm
+Since det \(J_F(x, y) = e^{2x} > 0\) for all \((x, y) \in \mathbb{R}^2\), \(M = \left\{(x, y) \in \mathbb{R}^2 : -2\pi < y < 2\pi\right\}\),
+\[J_F(0, 0) = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \implies \text{ det } J_F(0, 0) = 1 \neq 0.\]
+\[J_H(F_1, F_2) = \underbrace{J_F^{-1}(F_1, F_2) = (J_F(x, y))^{-1}}_{\text{Inverse Function Theorem}} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}^{-1} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}\]
+
+\pagebreak
+\subsubsection*{Exercise 2}
+\textbf{Given the system of equations:}
+\[\begin{cases}
+u = x + xyz \\
+v = y + xy  \\
+w = z + 2x + 3x^2
+\end{cases}\]
+\textbf{solve for \(x, y, z\) in terms of \(u, v, w\), near the point \((x, y, z) = (0, 0, 0)\).}
+\vskip 0.5cm
+Define the function \(F : \mathbb{R}^3 \to \mathbb{R}^3\) as:
+\[F(x, y, z) = \begin{bmatrix} x + xyz \\ y + xy \\ z + 2x + 3x^2 \end{bmatrix}.\]
+We need to find the inverse of that function (if possible).
+Applying the Inverse Function Theorem, we compute the Jacobian matrix of \(F\):
+\[J_F(x, y, z) = \begin{bmatrix} 1 + yz & xz & xy \\ y & 1 + x & 0 \\ 2 + 6x & 0 & 1 \end{bmatrix}.\]
+Evaluating the Jacobian at the point \((0, 0, 0)\) gives us:
+\[J_F(0, 0, 0) = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 2 & 0 & 1 \end{bmatrix}.\]
+The determinant of \(J_F(0, 0, 0)\) is:
+\[\det J_F(0, 0, 0) = 1 \cdot (1 \cdot 1 - 0 \cdot 0) - 0 \cdot (0 \cdot 1 - 0 \cdot 2) + 0 \cdot (0 \cdot 0 - 1 \cdot 2) = 1 \neq 0.\]
+Since the determinant is non-zero, the Inverse Function Theorem guarantees that \(F\) is locally invertible around the point \((0, 0, 0)\). [\dots]
+\pagebreak
+\subsubsection*{Exercise 3}
+\textbf{Check that \(z^3 + x(z - y) = 1\) defines \(z = f(x, y)\) as an implicit function of class \(\mathcal{C}^{\infty}\) near the point \((x, y, z) = (0, 1, 1)\).}
+\vskip 0.5cm
+We apply the Implicit Function Theorem to find \(z\). Define the function \(F : \mathbb{R}^3 \to \mathbb{R}\) as:
+\[F(x, y, z) = z^3 + x(z - y) - 1.\]
+We need to check if \(F(0, 1, 1) = 0\) and if \(J_F(0, 1, 1)\) has a non-zero entry in the column corresponding to \(z\). Evaluating \(F\) at the point gives us:
+\[F(0, 1, 1) = 1^3 + 0 \cdot (1 - 1) - 1 = 0.\]
+Next, we compute the Jacobian of \(F\):
+\[J_F(x, y, z) = \begin{bmatrix} z - y & -x & 3z^2 + x \end{bmatrix} \implies J_F(0, 1, 1) = \begin{bmatrix} 0 & 0 & 3 \end{bmatrix}.\]
+So we have \(x, y\) free variables, and \(z\) is the pivot variable. Hence, we can apply the Implicit Function Theorem to conclude that there exists a function \(z = f(x, y)\) of class \(\mathcal{C}^{\infty}\) defined in a neighborhood of \((0, 1, 1)\) and satisfying \(F(x, y, f(x, y)) = 0\) for all \((x, y)\) in that neighborhood.
+\vskip 0.5cm
+\textbf{Study if (0, 1) is a local maximum, minimum, or saddle point of \(f\).}
+\vskip 0.5cm
+Using implicit differentiation, we can compute the first and second partial derivatives of \(f\) at the point \((0, 1)\). The first partial derivatives are given by:
+\[\frac{\partial F}{\partial x} = 3 \left[z(x, y)\right]^2 \cdot \frac{\partial z}{\partial x} + (z(x, y) - y) + x \cdot \frac{\partial z}{\partial x} = 0,\]
+\[\frac{\partial F}{\partial y} = 3 \left[z(x, y)\right]^2 \cdot \frac{\partial z}{\partial y} - x + x \cdot \frac{\partial z}{\partial y} = 0.\]
+Evaluating these at the point \((0, 1)\) gives us:
+\[\frac{\partial F}{\partial x}(0, 1) = 3 \cdot 1^2 \cdot \frac{\partial z}{\partial x}(0, 1) + (1 - 1) + 0 \cdot \frac{\partial z}{\partial x}(0, 1) = 3 \cdot \frac{\partial z}{\partial x}(0, 1) = 0 \implies \frac{\partial z}{\partial x}(0, 1) = 0,\]
+\[\frac{\partial F}{\partial y}(0, 1) = 3 \cdot 1^2 \cdot \frac{\partial z}{\partial y}(0, 1) - 0 + 0 \cdot \frac{\partial z}{\partial y}(0, 1) = 3 \cdot \frac{\partial z}{\partial y}(0, 1) = 0 \implies \frac{\partial z}{\partial y}(0, 1) = 0.\]
+Thus, \((0, 1)\) is a critical point of \(f\). To determine its nature, we need to compute the second partial derivatives and evaluate the Hessian matrix at this point.
+\[\frac{\partial^2 F}{\partial x^2} = 6z \cdot \left(\frac{\partial z}{\partial x}\right)^2 + 3z^2 \cdot \frac{\partial^2 z}{\partial x^2} + 2 \cdot \frac{\partial z}{\partial x} + x \cdot \frac{\partial^2 z}{\partial x^2} = 0,\]
+\[\frac{\partial^2 F}{\partial y^2} = 6z \cdot \left(\frac{\partial z}{\partial y}\right)^2 + 3z^2 \cdot \frac{\partial^2 z}{\partial y^2} + x \cdot \frac{\partial^2 z}{\partial y^2} = 0,\]
+\[\frac{\partial^2 F}{\partial x \partial y} = 6z \cdot \frac{\partial z}{\partial x} \cdot \frac{\partial z}{\partial y} + 3z^2 \cdot \frac{\partial^2 z}{\partial x \partial y} - 1 + x \cdot \frac{\partial^2 z}{\partial x \partial y} = 0.\]
+\newpage
+Evaluating these at the point \((0, 1)\) gives us:
+\[\frac{\partial^2 F}{\partial x^2}(0, 1) = 0 + 3 \cdot 1^2 \cdot \frac{\partial^2 z}{\partial x^2}(0, 1) + 2 \cdot 0 + 0 \cdot \frac{\partial^2 z}{\partial x^2}(0, 1) = 3 \cdot \frac{\partial^2 z}{\partial x^2}(0, 1) \implies \frac{\partial^2 z}{\partial x^2}(0, 1) = 0,\]
+\[\frac{\partial^2 F}{\partial y^2}(0, 1) = 0 + 3 \cdot 1^2 \cdot \frac{\partial^2 z}{\partial y^2}(0, 1) + 0 \cdot \frac{\partial^2 z}{\partial y^2}(0, 1) = 3 \cdot \frac{\partial^2 z}{\partial y^2}(0, 1) \implies \frac{\partial^2 z}{\partial y^2}(0, 1) = 0,\]
+\[\frac{\partial^2 F}{\partial x \partial y}(0, 1) = 0 + 3 \cdot \frac{\partial^2 z}{\partial x \partial y}(0, 1) - 1 \cdot \frac{\partial^2 z}{\partial x \partial y}(0, 1) = 3 \cdot \frac{\partial^2 z}{\partial x \partial y}(0, 1) - 1 \implies \frac{\partial^2 z}{\partial x \partial y}(0, 1) = \frac{1}{3}.\]
+The determinant of the Hessian matrix of \(f\) at the point \((0, 1)\) is given by:
+\[\det H_f(0, 1) = \det \begin{bmatrix} \dfrac{\partial^2 z}{\partial x^2}(0, 1) & \dfrac{\partial^2 z}{\partial x \partial y}(0, 1) \\ \dfrac{\partial^2 z}{\partial x \partial y}(0, 1) & \dfrac{\partial^2 z}{\partial y^2}(0, 1) \end{bmatrix} = \det \begin{bmatrix} 0 & \dfrac{1}{3} \\ \dfrac{1}{3} & 0 \end{bmatrix} = -\frac{1}{9} < 0,\]
+which indicates that \((0, 1)\) is a saddle point of \(f\).
+\pagebreak
+\subsubsection*{Exercise 4}
+\textbf{Given the system of equations:}
+\[\begin{cases}
+xz^3 + y^2u^3 - 1 = 0 \\
+2xy^3 + u^2z = 0
+\end{cases}\]
+\textbf{find \(z = g_1(x, y)\) and \(u = g_2(x, y)\) as implicit functions.}
+\vskip 0.5cm
+Apply the Implicit Function Theorem to find \(z\) and \(u\). Define the function \(F : \mathbb{R}^4 \to \mathbb{R}^2\) as:
+\[f(x, y, z, u) = \begin{bmatrix} xz^3 + y^2u^3 - 1 \\ 2xy^3 + u^2z \end{bmatrix} = (0, 0).\]
+so for our notation, we have \(N = 4\) and \(M = 2\). We compute the Jacobian matrix of \(f\) at a point \((0, 1, 0, 1)\):
+\[J_f(x, y, z, u) = \begin{bmatrix} z^3 & 2yu^3 & 3xz^2 & 3y^2u^2 \\ 2y^3 & 6xy^2 & u^2 & 2uz \end{bmatrix}\]
+\[J_f(0, 1, 0, 1) = \begin{bmatrix} 0 & 2 & 0 & 3 \\ 2 & 0 & 1 & 0 \end{bmatrix} \sim \begin{bmatrix} 2 & 0 & 1 & 0 \\ 0 & 2 & 0 & 3 \end{bmatrix}.\]
+We have \(x, y\) as free variables, and \(z, u\) as pivot variables. Looking for \(z = g_1(x, y)\) and \(u = g_2(x, y)\), we define \(F : \mathbb{R}^4 \to \mathbb{R}^4\) as:
+\[F(x, y, z, u) = \begin{bmatrix} x \\ y \\ xz^3 + y^2u^3 - 1 \\ 2xy^3 + u^2z \end{bmatrix}.\]
+In terms of the Implicit Function Theorem, that is the splitting of the variables. The Jacobian matrix of \(F\) is given by:
+\[J_F(x, y, z, u) = \begin{bmatrix}1 & 0 & \vline & 0 & 0 \\ 0 & 1 & \vline & 0 & 0 \\ \hline z^3 & 2yu^3 & \vline & 3xz^2 & 3y^2u^2 \\ 2y^3 & 6xy^2 & \vline & u^2 & 2uz \end{bmatrix}.\]
+The determinant of the Jacobian matrix of \(F\) is:
+\[\det J_F(x, y, z, u) = \det \begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ z^3 & 2yu^3 & 3xz^2 & 3y^2u^2 \\ 2y^3 & 6xy^2 & u^2 & 2uz \end{bmatrix} = \det \begin{bmatrix} 3xz^2 & 3y^2u^2 \\ u^2 & 2uz \end{bmatrix} = 6xz^3u - 3y^2u^4.\]
+Then, we know the existance of an inverse function so that:
+\begin{align*}
+    x = F_1 & & z = g_1(F_1, F_2, F_3, F_4) = g_1(x, y, F_3, F_4) \\ 
+    y = F_2 & & u = g_2(F_1, F_2, F_3, F_4) = g_2(x, y, F_3, F_4)
+\end{align*}
+\pagebreak
+\section*{Chapter 2.3}
+\subsection*{Exercise 3}
+\textbf{Given the function \(f : \mathbb{R}^2 \to \mathbb{R}\) defined as \(f(x, y) = x^2 + y^2\) on \(A = \{xy = 1\}\), find the minimum of \(f\) on \(A\).}
+\vskip 0.5cm
+\begin{multicols}{2}
+To find the minimum of \(f\) on the set \(A\), we can use the method of Lagrange multipliers. We define the constraint function \(g(x, y) = xy - 1\). The Lagrangian function is given by:
+\[\mathcal{L} = f(x, y) - \lambda g(x, y) = x^2 + y^2 - \lambda (xy - 1).\]
+We need to compute the gradients and set them equal to zero:
+\[\nabla \mathcal{L} = \begin{bmatrix} 2x - \lambda y \\ 2y - \lambda x \\ -(xy - 1) \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}.\]
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+    \begin{axis}[
+        axis lines = middle,
+        xlabel = \(x\),
+        ylabel = \(y\),
+        ymin=-3, ymax=3,
+        xmin=-3, xmax=3,
+        grid = both,
+        width=10cm,
+        height=10cm,
+    ]
+    % Plot the constraint curve xy = 1
+    \addplot[domain=-3:-0.01, samples=100, thick, blue] {1/x};
+    \node[anchor=south east] at (axis cs:1.5,2.5) {\footnotesize \(xy = 1\)};
+    \addplot[domain=0.01:3, samples=100, thick, blue] {1/x};
+    % Plot the level curves of f(x, y) = x^2 + y^2
+    \addplot[domain=0:360, samples=100, thick, red] ({sqrt(1)*cos(x)}, {sqrt(1)*sin(x)});
+    \node[anchor=south west] at (axis cs:-0.8,0.3) {\footnotesize \(f(x, y) = 1\)};
+    \addplot[domain=0:360, samples=100, thick, red] ({sqrt(2)*cos(x)}, {sqrt(2)*sin(x)});
+    \node[anchor=south west] at (axis cs:-2.2,1) {\footnotesize \(f(x, y) = 2\)};
+    \addplot[only marks, mark=*, mark size=2pt, black] coordinates {(1, 1) (-1, -1)};
+    \node[anchor=south west] at (axis cs:1,1) {\footnotesize \((1, 1)\)};
+    \node[anchor=north east] at (axis cs:-1,-1) {\footnotesize \((-1, -1)\)};
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+\end{multicols}
+This gives us the system of equations:
+\[\begin{cases}
+2x - \lambda y = 0 \\
+2y - \lambda x = 0 \\
+xy - 1 = 0
+\end{cases}\]
+From the first two equations, we can express \(\lambda\) in terms of \(x\) and \(y\):
+\[\lambda = \frac{2x}{y} = \frac{2y}{x} \implies 2x^2 = 2y^2 \implies x^2 = y^2.\]
+Substituting \(y = \pm x\) into the constraint \(xy = 1\) gives us:
+\[\begin{cases}
+x \cdot x = 1 \implies x = 1, y = 1 \\
+x \cdot (-x) = 1 \implies x = -1, y = -1
+\end{cases}\]
+Evaluating \(f\) at these points gives us:
+\[f(1, 1) = 1^2 + 1^2 = 2,\]
+\[f(-1, -1) = (-1)^2 + (-1)^2 = 2.\]
+Thus, the minimum of \(f\) on the set \(A\) is \(2\), achieved at the points \((1, 1)\) and \((-1, -1)\).
 \end{document}
